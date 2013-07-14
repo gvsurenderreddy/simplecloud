@@ -18,7 +18,7 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @admin_required
 def index():
     users = User.query.all()
-    return render_template('admin/index.html', users=users, active='index')
+    return render_template('admin/index.html', users=users, active='Dashboard')
 
 
 @admin.route('/users')
@@ -26,9 +26,57 @@ def index():
 @admin_required
 def users():
     users = User.query.all()
-    return render_template('admin/users.html', users=users, active='users')
+    return render_template('admin/users.html', users=users, active='Users')
 
+@admin.route('/hosts')
+@login_required
+@admin_required
+def hosts():
+    users = User.query.all()
+    return render_template('admin/users.html', users=users, active='Hosts')
 
+@admin.route('/images')
+@login_required
+@admin_required
+def images():
+    users = User.query.all()
+    return render_template('admin/users.html', users=users, active='Images')
+
+@admin.route('/templates')
+@login_required
+@admin_required
+def templates():
+    users = User.query.all()
+    return render_template('admin/users.html', users=users, active='Templates')
+    
+@admin.route('/storage')
+@login_required
+@admin_required
+def storage():
+    users = User.query.all()
+    return render_template('admin/users.html', users=users, active='Storage')
+
+@admin.route('/network')
+@login_required
+@admin_required
+def network():
+    users = User.query.all()
+    return render_template('admin/users.html', users=users, active='Network')
+
+@admin.route('/tasks')
+@login_required
+@admin_required
+def tasks():
+    users = User.query.all()
+    return render_template('admin/users.html', users=users, active='Tasks')    
+
+@admin.route('/system')
+@login_required
+@admin_required
+def system():
+    users = User.query.all()
+    return render_template('admin/users.html', users=users, active='System')        
+    
 @admin.route('/user/<int:user_id>', methods=['GET', 'POST'])
 @login_required
 @admin_required

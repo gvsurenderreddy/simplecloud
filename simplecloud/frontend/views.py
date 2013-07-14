@@ -61,7 +61,7 @@ def create_profile():
 
     return render_template('frontend/create_profile.html', form=form)
 
-
+'''
 @frontend.route('/')
 def index():
     current_app.logger.debug('debug')
@@ -72,7 +72,33 @@ def index():
     page = int(request.args.get('page', 1))
     pagination = User.query.paginate(page=page, per_page=10)
     return render_template('index.html', pagination=pagination)
+'''
 
+@frontend.route('/', methods=['GET', 'POST'])
+def index():
+    current_app.logger.debug('debug')
+    
+    if current_user.is_authenticated():
+        if current_user.is_admin():
+            return redirect(url_for('admin.index'))
+        return redirect(url_for('user.index'))
+    
+    form = LoginForm(login=request.args.get('login', None),
+                     next=request.args.get('next', None))
+
+    if form.validate_on_submit():
+        user, authenticated = User.authenticate(form.login.data,
+                                    form.password.data)
+
+        if user and authenticated:
+            remember = request.form.get('remember') == 'y'
+            if login_user(user, remember=remember):
+                flash(_("Logged in"), 'success')
+            return redirect(form.next.data or url_for('user.index'))
+        else:
+            flash(_('Sorry, invalid login'), 'error')
+
+    return render_template('frontend/login.html', form=form)
 
 @frontend.route('/search')
 def search():
@@ -84,7 +110,6 @@ def search():
     else:
         flash(_('Please input keyword(s)'), 'error')
     return render_template('frontend/search.html', pagination=pagination, keywords=keywords)
-
 
 @frontend.route('/login', methods=['GET', 'POST'])
 def login():

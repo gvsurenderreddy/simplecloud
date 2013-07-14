@@ -18,15 +18,8 @@ class ProfileForm(Form):
     multipart = True
     next = HiddenField()
     email = EmailField(u'Email', [Required(), Email()])
-    # Don't use the same name as model because we are going to use populate_obj().
-    avatar_file = FileField(u"Avatar", [Optional()])
-    sex_code = RadioField(u"Sex", [AnyOf([str(val) for val in SEX_TYPE.keys()])], choices=[(str(val), label) for val, label in SEX_TYPE.items()])
-    age = IntegerField(u'Age', [Optional(), NumberRange(AGE_MIN, AGE_MAX)])
-    phone = TelField(u'Phone', [Length(max=64)])
-    url = URLField(u'URL', [Optional(), URL()])
-    deposit = DecimalField(u'Deposit', [Optional(), NumberRange(DEPOSIT_MIN, DEPOSIT_MAX)])
-    location = TextField(u'Location', [Length(max=64)])
-    bio = TextAreaField(u'Bio', [Length(max=1024)])
+    username = TextField(u'Username', [Length(max=64)])
+    quota = TextField(u'Quota', [Length(max=64)])
     submit = SubmitField(u'Save')
 
     def validate_name(form, field):

@@ -4,6 +4,13 @@
 {% set page_title = page_header %}
 
 {% set tabs = [
-    ("index", url_for('admin.index')), 
-    ("users", url_for('admin.users')),
+    ("Dashboard", url_for('admin.index')), 
+    ("Users", url_for('admin.users')),
+    ("Hosts", url_for('admin.hosts')),
+    ("Images", url_for('admin.images')),  
+    ("Templates", url_for('admin.templates')),  
+    ("Storage", url_for('admin.storage')),  
+    ("Network", url_for('admin.network')),
+    ("Tasks", url_for('admin.tasks')),      
+    ("System", url_for('admin.system')),      
 ]%}
