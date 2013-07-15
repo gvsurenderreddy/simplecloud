@@ -8,7 +8,7 @@ from ..extensions import db
 from ..decorators import admin_required
 
 from ..user import User, USER_INACTIVE, USER_ACTIVE, USER_DELETED
-from .forms import UserForm, AddUserForm
+from .forms import EditUserForm, AddUserForm
 from .models import Host, Image, Task, Template
 
 
@@ -140,7 +140,7 @@ def system():
 @admin_required
 def user(user_id):
     user = User.query.filter_by(id=user_id).first_or_404()
-    form = UserForm(obj=user, next=request.args.get('next'))
+    form = EditUserForm(obj=user, next=request.args.get('next'))
 
     if form.validate_on_submit():
         form.populate_obj(user)
