@@ -20,4 +20,15 @@ USER_STATUS = {
     ACTIVE: 'active',
 }
 
-DEFAULT_USER_AVATAR = 'default.jpg'
+
+# VM status
+VM_OK = 0
+VM_INVALID = 1
+VM_DELETED = 2
+VM_STATUS = {
+    VM_OK: 'ok',
+    VM_INVALID: 'invalid',
+    VM_DELETED: 'deleted',
+}
+
+STRING_LEN = 256

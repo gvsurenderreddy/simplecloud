@@ -3,9 +3,9 @@
 
 
 /* TEAM */
-  Programmer: Wilson Xu
-  Site: http://imwilsonxu.net
-  Twitter: @imwilsonxu
+  Programmer: Lei Shi
+  Site: http://simplecloud.github.com
+  Twitter: 
 
 /* THANKS */
   Names (& URL):

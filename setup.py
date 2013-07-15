@@ -26,7 +26,7 @@ setup(
         'Flask-Login',
         'Flask-OpenID',
         'nose',
-        'mysql-python',
+#        'mysql-python',
     ],
     classifiers=[
         'Environment :: Web Environment',

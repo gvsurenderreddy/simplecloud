@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from flask import Blueprint, render_template, request, flash
+from flask import (Blueprint, render_template, request, flash,
+        redirect, url_for)
 from flask.ext.login import login_required
 
 from ..extensions import db
 from ..decorators import admin_required
 
 from ..user import User
-from .forms import UserForm
+from .forms import UserForm, AddUserForm
 
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
@@ -21,12 +22,25 @@ def index():
     return render_template('admin/index.html', users=users, active='Dashboard')
 
 
-@admin.route('/users')
+@admin.route('/users', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def users():
     users = User.query.all()
-    return render_template('admin/users.html', users=users, active='Users')
+    form = AddUserForm(next=request.args.get('next'))
+
+    if form.validate_on_submit():
+        user = User()
+        form.populate_obj(user)
+
+        db.session.add(user)
+        db.session.commit()
+        flash("User " + user.name + " was added.", "success")
+        return redirect(form.next.data or url_for('admin.users'))
+    elif form.is_submitted():
+        flash("Failed to add User", "error")    
+
+    return render_template('admin/users.html', users=users, active='Users', form=form)
 
 @admin.route('/hosts')
 @login_required
@@ -90,6 +104,19 @@ def user(user_id):
         db.session.add(user)
         db.session.commit()
 
-        flash('User updated.', 'success')
+        flash('User ' + user.name +' was updated.', 'success')
+        return redirect(form.next.data or url_for('admin.users'))
 
     return render_template('admin/user.html', user=user, form=form)
+    
+@admin.route('/user/delete/<int:user_id>', methods=['GET'])
+@login_required
+@admin_required
+def delete_user(user_id):
+    user = User.query.filter_by(id=user_id).first_or_404()
+    db.session.delete(user)
+    db.session.commit()
+    flash('User '+ user.name +' was deleted.', 'success')
+    return redirect(url_for('admin.users'))
+
+

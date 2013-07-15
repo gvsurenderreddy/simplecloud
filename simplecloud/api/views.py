@@ -31,3 +31,4 @@ def logout():
     if current_user.is_authenticated():
         logout_user()
     return jsonify(flag='success', msg='Logouted.')
+

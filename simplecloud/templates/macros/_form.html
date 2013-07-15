@@ -132,3 +132,58 @@
     </fieldset>
 </form>
 {% endmacro %}
+
+{% macro render_modal_form(id, name, url, form, horizontal=False, legend=None, confirm_msg=None) %}
+<div id="{{ id }}" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>{{ name }}</h3>
+  </div>
+  
+<form class="{% if horizontal %}form-horizontal{% endif %}" method="POST" action="{{ url }}"
+    {% if confirm_msg %}onsubmit='return confirm("{{ confirm_msg }}");' {% endif %} 
+    {% if form.multipart %}enctype="multipart/form-data"{% endif %} >
+    {{ form.hidden_tag() }}
+    {% set submit_field = None %}
+    <div class="modal-body">
+    <fieldset>
+        {% if legend %}
+        <legend>{{ legend|safe }}</legend>
+        {% endif %}
+        {% set focus = True %}
+
+        {% for field in form %}
+            {% if field.type != "HiddenField" and field.type != "CSRFTokenField" %}
+                {% if field.type == "RadioField" %}
+                    {{ render_radio(field) }}
+                {% elif field.type == "BooleanField" %}
+                    {{ render_checkbox(field) }}
+                {% elif field.type == "TextAreaField" %}
+                    {{ render_textarea(field) }}
+                {% elif field.type == "DateField" %}
+                    {{ render_datepicker(field) }}
+                {% elif field.type == "SubmitField" %}
+                    {% set submit_field = field %}
+                {% elif field.type == "TextField" %}
+                    {% if focus %}
+                        {{ render_input(field) }}
+                        {% set focus = False %}
+                    {% else %}
+                        {{ render_input(field) }}
+                    {% endif %}
+                {% elif field.type != "SubmitField" %}
+                    {{ render_input(field) }}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </fieldset>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">close</a>
+        <input type="submit" class="btn btn-primary" value="Save">
+    </div>
+</form>
+</div>
+
+{% endmacro %}
+

@@ -1,13 +1,13 @@
+{% from "macros/_form.html" import render_modal_form %}
+
 {% extends "admin/layout.html" %}
 
 {% block body %}
 <div class="container">
     <h2>Users</h2>
-    <div class="btn-group">
-        <button class="btn">Left</button>
-        <button class="btn">Middle</button>
-        <button class="btn">Right</button>
-    </div>
+    <a class='btn btn-primary btn-large' href="#adduser" data-toggle="modal">
+        <i class="icon-plus icon-white icon-4x"></i> Add User
+    </a>
     <hr>
     <table class='table table-bordered table-hover'>
         <thead>
@@ -15,6 +15,7 @@
                 <th>Username</th>
                 <th>Status</th>
                 <th>Role</th>
+                <th>Email</th>
                 <th>Created Time</th>
                 <th></th>
             </tr>
@@ -24,10 +25,21 @@
             <td>{{ user.name }}</td>
             <td>{{ user.status }}</td>
             <td>{{ user.role }}</td>
+            <td>{{ user.email }}</td>
             <td>{{ user.created_time|format_date }}</td>
-            <td><a href="{{ url_for('admin.user', user_id=user.id) }}">Edit</a></td>
+            <td>
+                <a class='btn-group'>
+                <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Edit</a></button>
+                <button class='btn'><a href="{{ url_for('admin.delete_user', user_id=user.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </table>
 </div>
+
+
+
+{{ render_modal_form("adduser", "Add User", url_for('admin.users'), form) }}
+
 {% endblock %}

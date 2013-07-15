@@ -10,7 +10,7 @@ from .user import User, user
 from .settings import settings
 from .frontend import frontend
 from .api import api
-from .admin import admin
+from .admin import Task, Template, Image, Host, admin
 from .extensions import db, mail, cache, login_manager, oid
 from .utils import INSTANCE_FOLDER_PATH
 

@@ -9,28 +9,19 @@ from flask.ext.wtf.html5 import URLField, EmailField, TelField
 from flask.ext.login import current_user
 
 from ..user import User
-from ..utils import PASSWORD_LEN_MIN, PASSWORD_LEN_MAX, AGE_MIN, AGE_MAX, DEPOSIT_MIN, DEPOSIT_MAX
-from ..utils import allowed_file, ALLOWED_AVATAR_EXTENSIONS
-from ..utils import SEX_TYPE
-
+from ..utils import PASSWORD_LEN_MIN, PASSWORD_LEN_MAX
 
 class ProfileForm(Form):
     multipart = True
     next = HiddenField()
     email = EmailField(u'Email', [Required(), Email()])
-    username = TextField(u'Username', [Length(max=64)])
-    quota = TextField(u'Quota', [Length(max=64)])
+    vm_quota = DecimalField(u'Quota of VirtualMachines', [Required()])
     submit = SubmitField(u'Save')
 
     def validate_name(form, field):
         user = User.get_by_id(current_user.id)
         if not user.check_name(field.data):
             raise ValidationError("Please pick another name.")
-
-    def validate_avatar_file(form, field):
-        if field.data and not allowed_file(field.data.filename):
-            raise ValidationError("Please upload files with extensions: %s" % "/".join(ALLOWED_AVATAR_EXTENSIONS))
-
 
 class PasswordForm(Form):
     next = HiddenField()

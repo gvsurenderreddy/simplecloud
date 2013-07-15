@@ -13,8 +13,6 @@ from datetime import datetime
 # Instance folder path, make it independent.
 INSTANCE_FOLDER_PATH = os.path.join('/tmp', 'instance')
 
-ALLOWED_AVATAR_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-
 # Form validation
 
 USERNAME_LEN_MIN = 4
@@ -26,25 +24,8 @@ REALNAME_LEN_MAX = 25
 PASSWORD_LEN_MIN = 6
 PASSWORD_LEN_MAX = 16
 
-AGE_MIN = 1
-AGE_MAX = 300
-
-DEPOSIT_MIN = 0.00
-DEPOSIT_MAX = 9999999999.99
-
-# Sex type.
-MALE = 1
-FEMALE = 2
-OTHER = 9
-SEX_TYPE = {
-    MALE: u'Male',
-    FEMALE: u'Female',
-    OTHER: u'Other',
-}
-
 # Model
 STRING_LEN = 64
-
 
 def get_current_time():
     return datetime.utcnow()
@@ -85,15 +66,9 @@ def pretty_date(dt, default=None):
 
     return default
 
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_AVATAR_EXTENSIONS
-
-
 def id_generator(size=10, chars=string.ascii_letters + string.digits):
     #return base64.urlsafe_b64encode(os.urandom(size))
     return ''.join(random.choice(chars) for x in range(size))
-
 
 def make_dir(dir_path):
     try:

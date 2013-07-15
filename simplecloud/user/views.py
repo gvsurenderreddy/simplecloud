@@ -21,13 +21,9 @@ def index():
 
 
 @user.route('/<int:user_id>/profile')
+@login_required
 def profile(user_id):
     user = User.get_by_id(user_id)
     return render_template('user/profile.html', user=user)
 
 
-@user.route('/<int:user_id>/avatar/<path:filename>')
-@login_required
-def avatar(user_id, filename):
-    dir_path = os.path.join(APP.config['UPLOAD_FOLDER'], 'user_%s' % user_id)
-    return send_from_directory(dir_path, filename, as_attachment=True)

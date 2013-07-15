@@ -8,7 +8,7 @@ from flask.ext.mail import Message
 from flaskext.babel import gettext as _
 from flask.ext.login import login_required, login_user, current_user, logout_user, confirm_login, login_fresh
 
-from ..user import User, UserDetail
+from ..user import User
 from ..extensions import db, mail, login_manager, oid
 from .forms import SignupForm, LoginForm, RecoverPasswordForm, ReauthForm, ChangePasswordForm, OpenIDForm, CreateProfileForm
 
@@ -35,6 +35,8 @@ def create_or_login(resp):
     user = User.query.filter_by(openid=resp.identity_url).first()
     if user and login_user(user):
         flash('Logged in', 'success')
+        if user.is_admin():
+            return redirect(oid.get_next_url() or url_for('admin.index'))
         return redirect(oid.get_next_url() or url_for('user.index'))
     return redirect(url_for('frontend.create_profile', next=oid.get_next_url(),
             name=resp.fullname or resp.nickname, email=resp.email,
@@ -169,7 +171,6 @@ def signup():
 
     if form.validate_on_submit():
         user = User()
-        user.user_detail = UserDetail()
         form.populate_obj(user)
 
         db.session.add(user)
