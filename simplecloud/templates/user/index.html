@@ -12,18 +12,27 @@
             <tr>
                 <th>#ID</th>
                 <th>Name</th>
-                <th>Role</th>
+                <th>Template ID</th>
                 <th>Created Time</th>
+                <th>Status</th>
                 <th></th>
             </tr>
         </thead>
-        {% for user in users %}
+        {% for vm in vms %}
         <tr>
-            <td>{{ user.name }}</td>
-            <td>{{ user.status }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.created_time|format_date }}</td>
-            <td><a href="{{ url_for('admin.user', user_id=user.id) }}">Edit</a></td>
+            <td>{{ vm.id }}</td>
+            <td>{{ vm.name }}</td>
+            <td>{{ vm.template_id }}</td>
+            <td>{{ vm.create_time|format_date }}</td>
+            <td>{{ vm.status }}</td>
+            <td>
+                <a class='btn-group'>
+                <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Start</a></button>
+                <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Stop</a></button>
+                <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Reboot</a></button>
+                <button class='btn'><a href="{{ url_for('admin.delete_user', user_id=user.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </table>

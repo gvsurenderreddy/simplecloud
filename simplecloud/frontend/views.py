@@ -116,6 +116,8 @@ def search():
 @frontend.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated():
+        if current_user.is_admin():
+            return redirect(url_for('admin.index'))
         return redirect(url_for('user.index'))
 
     form = LoginForm(login=request.args.get('login', None),
@@ -129,6 +131,8 @@ def login():
             remember = request.form.get('remember') == 'y'
             if login_user(user, remember=remember):
                 flash(_("Logged in"), 'success')
+            if user.is_admin():
+                return redirect(form.next.data or url_for('admin.index'))
             return redirect(form.next.data or url_for('user.index'))
         else:
             flash(_('Sorry, invalid login'), 'error')

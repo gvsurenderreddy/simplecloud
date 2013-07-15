@@ -4,7 +4,7 @@ from flask.ext.script import Manager
 
 from simplecloud import create_app
 from simplecloud.extensions import db
-from simplecloud.user import User, ADMIN, ACTIVE
+from simplecloud.user import User, ADMIN, USER_ACTIVE
 
 
 app = create_app()
@@ -30,7 +30,7 @@ def initdb():
             email=u'admin@example.com',
             password=u'123456',
             role_code=ADMIN,
-            status_code=ACTIVE)
+            status_code=USER_ACTIVE)
     db.session.add(admin)
     db.session.commit()
 
