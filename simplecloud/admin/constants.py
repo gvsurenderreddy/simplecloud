@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+PATH_STRING_LEN = 1024
+
 # Task status
 TASK_RUNNING = 0
 TASK_SUCCESS = 1

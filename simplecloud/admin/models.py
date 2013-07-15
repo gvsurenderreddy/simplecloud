@@ -7,7 +7,7 @@ from ..extensions import db
 from ..utils import get_current_time
 from .constants import (TASK_STATUS, TASK_RUNNING, IMAGE_STATUS,
         IMAGE_OK, TEMPLATE_STATUS, TEMPLATE_OK, HOST_STATUS, 
-        HOST_OK, HOST_TYPE, HOST_KVM, HOST_XEN)
+        HOST_OK, HOST_TYPE, HOST_KVM, HOST_XEN, PATH_STRING_LEN)
 from ..user import STRING_LEN
 
 class Task(db.Model):
@@ -70,7 +70,7 @@ class Host(db.Model):
     id = Column(db.Integer, primary_key=True)
     address = Column(db.String(STRING_LEN), nullable=False, unique=True)
     uri = Column(db.String(STRING_LEN), nullable=False, unique=True)
-    username = Column(db.String(STRING_LEN), nullable=False)
+    username = Column(db.String(STRING_LEN), default="root")
     
     # capability of this host
     cpu_pool = Column(db.Integer, default=0)

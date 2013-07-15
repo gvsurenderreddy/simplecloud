@@ -27,12 +27,20 @@ PASSWORD_LEN_MAX = 16
 VM_QUOTA_MIN = 0
 VM_QUOTA_MAX = 10
 
+VCPU_NUM_MIN = 1
+VCPU_NUM_MAX = 4
+
+MEM_SIZE_MIN = 64
+MEM_SIZE_MAX = 4096
+
+DISK_SIZE_MIN = 128
+DISK_SIZE_MAX = 102400
+
 # Model
 STRING_LEN = 64
 
 def get_current_time():
     return datetime.utcnow()
-
 
 def pretty_date(dt, default=None):
     """

@@ -35,8 +35,7 @@
             <td>{{ template.status }}</td>
             <td>
                 <a class='btn-group'>
-                <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Edit</a></button>
-                <button class='btn'><a href="{{ url_for('admin.delete_user', user_id=user.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                <button class='btn'><a href="{{ url_for('admin.delete_template', template_id=template.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
                 </a>
             </td>
         </tr>
@@ -46,7 +45,7 @@
 
 
 {% if form %}
-{{ render_modal_form("adduser", "Add User", url_for('admin.users'), form) }}
+{{ render_modal_form("addtemplate", "Add Template", url_for('admin.templates'), form) }}
 {% endif %}
 
 {% endblock %}
