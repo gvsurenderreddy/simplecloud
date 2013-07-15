@@ -7,7 +7,7 @@ from flask.ext.login import UserMixin
 
 from ..extensions import db
 from ..utils import get_current_time
-from .constants import (USER, USER_ROLE, ADMIN, INACTIVE, USER_STATUS,
+from .constants import (USER, USER_ROLE, ADMIN, USER_INACTIVE, USER_STATUS,
         VM_STATUS, VM_OK, STRING_LEN)
 
 class User(db.Model, UserMixin):
@@ -51,7 +51,7 @@ class User(db.Model, UserMixin):
 
     # ================================================================
     # One-to-many relationship between users and user_statuses.
-    status_code = Column(db.SmallInteger, default=INACTIVE)
+    status_code = Column(db.SmallInteger, default=USER_INACTIVE)
 
     @property
     def status(self):

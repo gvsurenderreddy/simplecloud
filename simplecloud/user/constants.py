@@ -11,13 +11,15 @@ USER_ROLE = {
 }
 
 # User status
-INACTIVE = 0
-NEW = 1
-ACTIVE = 2
+USER_INACTIVE = 0
+USER_NEW = 1
+USER_ACTIVE = 2
+USER_DELETED = 3
 USER_STATUS = {
-    INACTIVE: 'inactive',
-    NEW: 'new',
-    ACTIVE: 'active',
+    USER_INACTIVE: 'inactive',
+    USER_NEW: 'new',
+    USER_ACTIVE: 'active',
+    USER_DELETED: 'deleted',
 }
 
 

@@ -7,7 +7,7 @@ from flask.ext.login import login_required
 from ..extensions import db
 from ..decorators import admin_required
 
-from ..user import User
+from ..user import User, USER_INACTIVE, USER_ACTIVE, USER_DELETED
 from .forms import UserForm, AddUserForm
 
 
@@ -26,12 +26,13 @@ def index():
 @login_required
 @admin_required
 def users():
-    users = User.query.all()
+    users = User.query.filter(User.status_code!=USER_DELETED).all()
     form = AddUserForm(next=request.args.get('next'))
 
     if form.validate_on_submit():
         user = User()
         form.populate_obj(user)
+        user.status_code = USER_ACTIVE
 
         db.session.add(user)
         db.session.commit()
@@ -114,7 +115,8 @@ def user(user_id):
 @admin_required
 def delete_user(user_id):
     user = User.query.filter_by(id=user_id).first_or_404()
-    db.session.delete(user)
+    user.status_code = USER_DELETED
+    db.session.add(user)
     db.session.commit()
     flash('User '+ user.name +' was deleted.', 'success')
     return redirect(url_for('admin.users'))
