@@ -9,6 +9,7 @@ from ..decorators import admin_required
 
 from ..user import User, USER_INACTIVE, USER_ACTIVE, USER_DELETED
 from .forms import UserForm, AddUserForm
+from .models import Host, Image, Task, Template
 
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
@@ -43,26 +44,68 @@ def users():
 
     return render_template('admin/users.html', users=users, active='Users', form=form)
 
-@admin.route('/hosts')
+@admin.route('/hosts', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def hosts():
-    users = User.query.all()
-    return render_template('admin/users.html', users=users, active='Hosts')
+    hosts = Host.query.all()
+    form = AddUserForm(next=request.args.get('next'))
 
-@admin.route('/images')
+    if form.validate_on_submit():
+        user = User()
+        form.populate_obj(user)
+        user.status_code = USER_ACTIVE
+
+        db.session.add(user)
+        db.session.commit()
+        flash("User " + user.name + " was added.", "success")
+        return redirect(form.next.data or url_for('admin.users'))
+    elif form.is_submitted():
+        flash("Failed to add User", "error")    
+
+    return render_template('admin/hosts.html', hosts=hosts, active='Hosts', form=form)
+
+@admin.route('/images', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def images():
-    users = User.query.all()
-    return render_template('admin/users.html', users=users, active='Images')
+    images = Image.query.all()
+    form = AddUserForm(next=request.args.get('next'))
 
-@admin.route('/templates')
+    if form.validate_on_submit():
+        user = User()
+        form.populate_obj(user)
+        user.status_code = USER_ACTIVE
+
+        db.session.add(user)
+        db.session.commit()
+        flash("User " + user.name + " was added.", "success")
+        return redirect(form.next.data or url_for('admin.users'))
+    elif form.is_submitted():
+        flash("Failed to add User", "error")    
+
+    return render_template('admin/images.html', images=images, active='Images', form=form)
+
+@admin.route('/templates', methods=['GET', 'POST'])
 @login_required
 @admin_required
 def templates():
-    users = User.query.all()
-    return render_template('admin/users.html', users=users, active='Templates')
+    templates = Template.query.all()
+    form = AddUserForm(next=request.args.get('next'))
+
+    if form.validate_on_submit():
+        user = User()
+        form.populate_obj(user)
+        user.status_code = USER_ACTIVE
+
+        db.session.add(user)
+        db.session.commit()
+        flash("User " + user.name + " was added.", "success")
+        return redirect(form.next.data or url_for('admin.users'))
+    elif form.is_submitted():
+        flash("Failed to add User", "error")    
+
+    return render_template('admin/templates.html', templates=templates, active='Templates', form=form)
     
 @admin.route('/storage')
 @login_required
@@ -82,8 +125,8 @@ def network():
 @login_required
 @admin_required
 def tasks():
-    users = User.query.all()
-    return render_template('admin/users.html', users=users, active='Tasks')    
+    tasks = Task.query.all()
+    return render_template('admin/tasks.html', tasks=tasks, active='Tasks')    
 
 @admin.route('/system')
 @login_required

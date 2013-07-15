@@ -1,0 +1,35 @@
+{% from "macros/_form.html" import render_modal_form %}
+
+{% extends "admin/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <h2>Tasks</h2>
+    <table class='table table-bordered table-hover'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Owner ID</th>
+                <th>Create Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.name }}</td>
+            <td>{{ task.owner_id }}</td>
+            <td>{{ task.created_time | format_date }}</td>    
+            <td>{{ task.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+{% if form %}
+{{ render_modal_form("adduser", "Add User", url_for('admin.users'), form) }}
+{% endif %}
+
+{% endblock %}

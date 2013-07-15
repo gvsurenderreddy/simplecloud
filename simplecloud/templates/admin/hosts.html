@@ -4,31 +4,33 @@
 
 {% block body %}
 <div class="container">
-    <h2>Users</h2>
-    <a class='btn btn-primary btn-large' href="#adduser" data-toggle="modal">
-        <i class="icon-plus icon-white icon-4x"></i> Add User
+    <h2>Hosts</h2>
+    <a class='btn btn-primary btn-large' href="#addhost" data-toggle="modal">
+        <i class="icon-plus icon-white icon-4x"></i> Add Host
     </a>
     <hr>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>Username</th>
+                <th>ID</th>
+                <th>Address</th>
+                <th>Type</th>
+                <th>CPU Used</th>
+                <th>Memory Used</th>
+                <th>VM Number</th>
                 <th>Status</th>
-                <th>Role</th>
-                <th>Email</th>
-                <th>VM Quota</th>
-                <th>Created Time</th>
                 <th></th>
             </tr>
         </thead>
-        {% for user in users %}
+        {% for host in hosts %}
         <tr>
-            <td>{{ user.name }}</td>
-            <td>{{ user.status }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.email }}</td>    
-            <td>{{ user.vm_quota }}</td>
-            <td>{{ user.created_time|format_date }}</td>
+            <td>{{ host.id }}</td>
+            <td>{{ host.address }}</td>
+            <td>{{ host.hypervisor_type }}</td>
+            <td>{{ host.cpu_used }}/{{ host.cpu_pool }}</td>    
+            <td>{{ host.mem_used }}/{{ host.mem_pool }}</td>
+            <td>{{ host.vm_number }}</td>
+            <td>{{ host.status }}</td>
             <td>
                 <a class='btn-group'>
                 <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Edit</a></button>
@@ -41,7 +43,8 @@
 </div>
 
 
-
+{% if form %}
 {{ render_modal_form("adduser", "Add User", url_for('admin.users'), form) }}
+{% endif %}
 
 {% endblock %}

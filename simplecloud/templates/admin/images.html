@@ -4,31 +4,25 @@
 
 {% block body %}
 <div class="container">
-    <h2>Users</h2>
-    <a class='btn btn-primary btn-large' href="#adduser" data-toggle="modal">
-        <i class="icon-plus icon-white icon-4x"></i> Add User
+    <h2>Images</h2>
+    <a class='btn btn-primary btn-large' href="#addimage" data-toggle="modal">
+        <i class="icon-plus icon-white icon-4x"></i> Add Image
     </a>
     <hr>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>Username</th>
+                <th>ID</th>
+                <th>Name</th>
                 <th>Status</th>
-                <th>Role</th>
-                <th>Email</th>
-                <th>VM Quota</th>
-                <th>Created Time</th>
                 <th></th>
             </tr>
         </thead>
-        {% for user in users %}
+        {% for image in images %}
         <tr>
-            <td>{{ user.name }}</td>
-            <td>{{ user.status }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.email }}</td>    
-            <td>{{ user.vm_quota }}</td>
-            <td>{{ user.created_time|format_date }}</td>
+            <td>{{ image.id }}</td>
+            <td>{{ image.name }}</td>
+            <td>{{ image.status }}</td>
             <td>
                 <a class='btn-group'>
                 <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Edit</a></button>
@@ -41,7 +35,8 @@
 </div>
 
 
-
+{% if form %}
 {{ render_modal_form("adduser", "Add User", url_for('admin.users'), form) }}
+{% endif %}
 
 {% endblock %}

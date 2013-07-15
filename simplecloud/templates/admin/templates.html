@@ -4,31 +4,35 @@
 
 {% block body %}
 <div class="container">
-    <h2>Users</h2>
-    <a class='btn btn-primary btn-large' href="#adduser" data-toggle="modal">
-        <i class="icon-plus icon-white icon-4x"></i> Add User
+    <h2>Templates</h2>
+    <a class='btn btn-primary btn-large' href="#addtemplate" data-toggle="modal">
+        <i class="icon-plus icon-white icon-4x"></i> Add Template
     </a>
     <hr>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>Username</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image ID</th>
+                <th>VCPU</th>
+                <th>Memory(M)</th>
+                <th>Disk(M)</th>
+                <th>VM Number</th>
                 <th>Status</th>
-                <th>Role</th>
-                <th>Email</th>
-                <th>VM Quota</th>
-                <th>Created Time</th>
                 <th></th>
             </tr>
         </thead>
-        {% for user in users %}
+        {% for template in templates %}
         <tr>
-            <td>{{ user.name }}</td>
-            <td>{{ user.status }}</td>
-            <td>{{ user.role }}</td>
-            <td>{{ user.email }}</td>    
-            <td>{{ user.vm_quota }}</td>
-            <td>{{ user.created_time|format_date }}</td>
+            <td>{{ template.id }}</td>
+            <td>{{ template.name }}</td>
+            <td>{{ template.image_id }}</td>
+            <td>{{ template.vcpu }}</td>    
+            <td>{{ template.memory }}</td>
+            <td>{{ template.disk }}</td>
+            <td>{{ template.vm_number }}</td>
+            <td>{{ template.status }}</td>
             <td>
                 <a class='btn-group'>
                 <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Edit</a></button>
@@ -41,7 +45,8 @@
 </div>
 
 
-
+{% if form %}
 {{ render_modal_form("adduser", "Add User", url_for('admin.users'), form) }}
+{% endif %}
 
 {% endblock %}

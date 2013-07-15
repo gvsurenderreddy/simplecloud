@@ -71,7 +71,6 @@ class Host(db.Model):
     address = Column(db.String(STRING_LEN), nullable=False, unique=True)
     uri = Column(db.String(STRING_LEN), nullable=False, unique=True)
     username = Column(db.String(STRING_LEN), nullable=False)
-    password = Column(db.String(STRING_LEN), nullable=False)
     
     # capability of this host
     cpu_pool = Column(db.Integer, default=0)
