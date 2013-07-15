@@ -42,8 +42,6 @@
         {% endfor %}
     </table>
 </div>
-
-
 {% if form %}
 {{ render_modal_form("addtemplate", "Add Template", url_for('admin.templates'), form) }}
 {% endif %}

@@ -6,7 +6,6 @@
 <div class="container">
     <h2>My Virtual Machines</h2>
     <button class='btn btn-primary btn-large'>New VirtualMachine</button>
-    <hr>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
@@ -36,5 +35,44 @@
         </tr>
         {% endfor %}
     </table>
+    <hr>
+    <hr>
+    <h2>My Templates</h2>
+    <hr>
+    <table class='table table-bordered table-hover'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image ID</th>
+                <th>VCPU</th>
+                <th>Memory(M)</th>
+                <th>Disk(M)</th>
+                <th>VM Number</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for template in templates %}
+        <tr>
+            <td>{{ template.id }}</td>
+            <td>{{ template.name }}</td>
+            <td>{{ template.image_id }}</td>
+            <td>{{ template.vcpu }}</td>    
+            <td>{{ template.memory }}</td>
+            <td>{{ template.disk }}</td>
+            <td>{{ template.vm_number }}</td>
+            <td>{{ template.status }}</td>
+            <td>
+                <a class="btn btn-primary">New VirtualMachine
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% if form %}
+{{ render_modal_form("addvm", "Add VM", url_for('user.index'), form) }}
+{% endif %}
+
 </div>
 {% endblock %}
