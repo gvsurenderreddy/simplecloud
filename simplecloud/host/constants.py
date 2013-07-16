@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+HOST_CPU_VALUE = 100
+
 # Host status
 HOST_OK = 0
 HOST_ERROR = 1

@@ -14,8 +14,8 @@ from ..extensions import db
 from .models import Host
 from .forms import AddHostForm, EditHostForm
 
-from .constants import HOST_TYPE, HOST_KVM, HOST_XEN
-from ..task import log_task
+from .constants import HOST_TYPE, HOST_OK, HOST_ERROR, HOST_KVM, HOST_XEN, HOST_CPU_VALUE
+from ..task import log_task, TASK_FAILED
 
 host = Blueprint('host', __name__, url_prefix='/hosts')
 
@@ -29,25 +29,18 @@ def index():
     if form.validate_on_submit():
         host = Host()
         form.populate_obj(host)
-        # TODO: update host object before insert to DB
-        # 1. generate uri
-        uri = host.username + "@" + host.address + "/"
-        if int(host.type_code) == HOST_XEN:
-            host.uri = "xen+ssh://" + uri
-        elif int(host.type_code) == HOST_KVM:
-            host.uri = "qemu+ssh://" + uri + "system"
+        status,errMsg = host.check_connect()
+        message = "Add Host "+ host.address
+        if status:
+            flash("Host " + host.address + " was added.", "success")
+            log_task(message)
         else:
-            flash("Not supported hypervisor type " + str(host.type_code), "error")
-            return redirect(form.next.data or url_for('admin.hosts'))
-        # 2. connect uri and get cpu_pool/mem_pool
-        # 3. init cpu_used/mem_used/vm_number as 0
-        # 4. update status_code
+            flash("Failed to add Host " + host.address, "error")
+            current_app.logger.error(errMsg)
+            log_task(message, TASK_FAILED)
 
         db.session.add(host)
-        db.session.commit()
-        message = "Add Host "+ host.address
-        log_task(message)
-        flash("Host " + host.address + " was added.", "success")
+        db.session.commit()        
         return redirect(form.next.data or url_for('host.index'))
     elif form.is_submitted():
         flash("Failed to add Host", "error")    
@@ -64,12 +57,18 @@ def edit(host_id):
 
     if form.validate_on_submit():
         form.populate_obj(host)
+        status,errMsg = host.check_connect()
+        message = "Update Host "+ host.address
+        if status:
+            flash("Host " + host.address + " was updated.", "success")
+            log_task(message)
+        else:
+            flash("Failed to reconnect Host " + host.address, "error")
+            current_app.logger.error(errMsg)
+            log_task(message, TASK_FAILED)
 
         db.session.add(host)
-        db.session.commit()
-        message = "Update Host " + host.address + "(" + str(host_id) + ")"
-        log_task(message)
-        flash('Host ' + host.address +' was updated.', 'success')
+        db.session.commit()        
         return redirect(form.next.data or url_for('host.index'))
 
     return render_template('host/edit.html', host=host, form=form)
@@ -80,7 +79,10 @@ def edit(host_id):
 @admin_required
 def delete(host_id):
     host = Host.query.filter_by(id=host_id).first_or_404()
-    # TODO: validation
+
+    if not host.validate_delete():
+        flash("Some VirtualMachine is on this Host, Couldn't be deleted", "error")
+        return redirect(url_for('host.index'))
     db.session.delete(host)
     db.session.commit()
     message = "Delete Host " + host.address + "(" + str(host_id) + ")"

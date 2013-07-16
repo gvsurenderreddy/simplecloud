@@ -5,7 +5,7 @@
 #
 
 msgid "Project"
-msgstr "Flask Bone"
+msgstr "SimpleCloud"
 
 # use {{ _("home") }} in templates.
 # or _("Home") in python codes.

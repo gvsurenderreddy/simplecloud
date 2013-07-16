@@ -16,20 +16,13 @@ class BaseConfig(object):
     DEBUG = False
     TESTING = False
 
-    ADMINS = ['youremail@yourdomain.com']
+    ADMINS = ['simplecloud@qq.com']
 
     # http://flask.pocoo.org/docs/quickstart/#sessions
     SECRET_KEY = 'secret key'
 
     LOG_FOLDER = os.path.join(INSTANCE_FOLDER_PATH, 'logs')
     make_dir(LOG_FOLDER)
-
-    # Fild upload, should override in production.
-    # Limited the maximum allowed payload to 16 megabytes.
-    # http://flask.pocoo.org/docs/patterns/fileuploads/#improving-uploads
-    MAX_CONTENT_LENGTH = 16 * 1024 * 1024
-    UPLOAD_FOLDER = os.path.join(INSTANCE_FOLDER_PATH, 'uploads')
-    make_dir(UPLOAD_FOLDER)
 
 
 class DefaultConfig(BaseConfig):

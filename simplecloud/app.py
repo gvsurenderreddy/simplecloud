@@ -129,9 +129,9 @@ def configure_template_filters(app):
 def configure_logging(app):
     """Configure file(info) and email(error) logging."""
 
-    if app.debug or app.testing:
+    #if app.debug or app.testing:
         # Skip debug and test mode. Just check standard output.
-        return
+    #    return
 
     import logging
     from logging.handlers import SMTPHandler

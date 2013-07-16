@@ -24,8 +24,8 @@ setup(
         'Flask-Mail',
         'Flask-Cache',
         'Flask-Login',
-        'Flask-OpenID',
         'nose',
+#	'libvirt-python',
 #        'mysql-python',
     ],
     classifiers=[
