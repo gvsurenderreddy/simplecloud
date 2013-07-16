@@ -9,7 +9,6 @@ from ..decorators import admin_required
 
 from ..user import User, USER_ACTIVE, USER_DELETED
 from .forms import AddUserForm, EditUserForm
-from .models import Task
 
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
@@ -48,29 +47,36 @@ def users():
 @login_required
 @admin_required
 def storage():
-    users = User.query.all()
-    return render_template('admin/users.html', users=users, active='Storage')
+    storage = {}
+    
+    storage['Type'] = "Shared Storage"
+    storage['Protocol'] = "NFS"
+    storage['URL'] = "testserver:/nfs"
+    storage['Status'] = "OK"
+    storage['Space'] = "100G"
+    storage['Used'] = "50G"
+    storage['Free'] = "50G"
+    storage['Image Space'] = "5G"
+    storage['VM Space'] = "45G"
+    return render_template('admin/system.html', storage=storage, active='Storage')
 
 @admin.route('/network')
 @login_required
 @admin_required
 def network():
-    users = User.query.all()
-    return render_template('admin/users.html', users=users, active='Network')
+    network = {}
+    network['VM Network Mode'] = "Bridge"
+    network['Bridge Name'] = "br0"
+    network['VM IP Mode'] = "DHCP"
 
-@admin.route('/tasks')
-@login_required
-@admin_required
-def tasks():
-    tasks = Task.query.all()
-    return render_template('admin/tasks.html', tasks=tasks, active='Tasks')    
+    return render_template('admin/system.html', network=network, active='Network')
 
 @admin.route('/system')
 @login_required
 @admin_required
 def system():
-    users = User.query.all()
-    return render_template('admin/users.html', users=users, active='System')        
+    system = {}
+    return render_template('admin/system.html', system=system, active='System')        
 
 # Edit User Page    
 @admin.route('/users/<int:user_id>', methods=['GET', 'POST'])

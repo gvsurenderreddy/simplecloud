@@ -9,7 +9,6 @@ from flask.ext.wtf.html5 import EmailField, IntegerField
 
 from ..user import USER_ROLE, USER_STATUS
 from ..user import User
-from .models import Task
 from ..utils import (PASSWORD_LEN_MIN, PASSWORD_LEN_MAX,
         NAME_LEN_MIN, NAME_LEN_MAX, VM_QUOTA_MIN, VM_QUOTA_MAX)
 

@@ -10,7 +10,8 @@ from .user import User, user
 from .settings import settings
 from .frontend import frontend
 from .api import api
-from .admin import Task, admin
+from .admin import admin
+from .task import task, Task
 from .host import host, Host
 from .vm import vm, VM
 from .image import image, Image
@@ -33,6 +34,7 @@ DEFAULT_BLUEPRINTS = (
     image,
     template,
     host,
+    task,
 )
 
 

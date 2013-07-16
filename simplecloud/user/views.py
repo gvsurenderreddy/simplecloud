@@ -7,6 +7,7 @@ from flask import (Blueprint, render_template, send_from_directory, abort,
 from flask import current_app as APP
 from flask.ext.login import login_required, current_user
 from ..extensions import db
+from ..decorators import admin_required
 
 from .models import User
 from ..vm import vm

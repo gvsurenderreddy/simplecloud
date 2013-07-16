@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+PATH_STRING_LEN = 1024
+
 # Image status
 IMAGE_OK = 0
 IMAGE_INVALID = 1
