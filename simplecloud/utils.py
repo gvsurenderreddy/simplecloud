@@ -38,6 +38,8 @@ DISK_SIZE_MAX = 102400
 
 # Model
 STRING_LEN = 64
+NAME_LEN_MIN = 4
+NAME_LEN_MAX = STRING_LEN
 
 def get_current_time():
     return datetime.utcnow()

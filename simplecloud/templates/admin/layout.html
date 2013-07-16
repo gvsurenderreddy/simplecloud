@@ -6,9 +6,10 @@
 {% set tabs = [
     ("Dashboard", url_for('admin.index')), 
     ("Users", url_for('admin.users')),
-    ("Hosts", url_for('admin.hosts')),
-    ("Images", url_for('admin.images')),  
-    ("Templates", url_for('admin.templates')),  
+    ("Hosts", url_for('host.index')),
+    ("VirtualMachines", url_for('vm.index')),
+    ("Images", url_for('image.index')),  
+    ("Templates", url_for('template.index')),  
     ("Storage", url_for('admin.storage')),  
     ("Network", url_for('admin.network')),
     ("Tasks", url_for('admin.tasks')),      

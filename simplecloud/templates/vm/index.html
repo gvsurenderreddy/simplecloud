@@ -1,0 +1,66 @@
+{% from "macros/_form.html" import render_modal_form %}
+
+{% if current_user.is_admin() %}
+    {% extends "admin/layout.html" %}
+{% else %}
+    {% extends "user/layout.html" %}    
+{% endif %}
+
+{% block body %}
+<div class="container">
+
+    {% if current_user.is_admin() %}
+    <h2>VMs</h2>
+    {% else %}
+    <h2>My Virtual Machines</h2>
+    <a class='btn btn-primary btn-large' href="#addvm" data-toggle="modal">
+    <i class="icon-plus icon-white icon-4x"></i> New VirtualMachine
+    </a>
+    {% endif %}
+    <hr>
+    <table class='table table-bordered table-hover'>
+        <thead>
+            <tr>
+                <th>#ID</th>
+                <th>Name</th>
+                {% if current_user.is_admin() %}
+                <th>Owner ID</th>
+                {% endif %}                
+                <th>Template ID</th>
+                <th>Created Time</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for vm in vms %}
+        <tr>
+            <td>{{ vm.id }}</td>
+            <td>{{ vm.name }}</td>
+            {% if current_user.is_admin() %}
+            <th>{{ vm.owner_id }}</th>
+            {% endif %}              
+            <td>{{ vm.template_id }}</td>
+            <td>{{ vm.created_time|format_date }}</td>
+            <td>{{ vm.status }}</td>
+            <td>
+                <a class='btn-group'>
+                {% if not current_user.is_admin() %}
+                <button class='btn'><a href="{{ url_for('admin.user', user_id=vm.id) }}">Start</a></button>
+                <button class='btn'><a href="{{ url_for('admin.user', user_id=vm.id) }}">Stop</a></button>
+                <button class='btn'><a href="{{ url_for('admin.user', user_id=vm.id) }}">Reboot</a></button>
+                {% endif %}
+                <button class='btn'><a href="{{ url_for('vm.delete', vm_id=vm.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% if not current_user.is_admin() %}
+{% if form %}
+{{ render_modal_form("addvm", "Add VM", url_for('vm.index'), form) }}
+{% endif %}
+{% endif %}
+
+{% endblock %}

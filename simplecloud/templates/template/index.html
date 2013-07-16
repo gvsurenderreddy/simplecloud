@@ -1,0 +1,61 @@
+{% from "macros/_form.html" import render_modal_form %}
+
+{% if current_user.is_admin() %}
+    {% extends "admin/layout.html" %}
+{% else %}
+    {% extends "user/layout.html" %}    
+{% endif %}
+
+{% block body %}
+<div class="container">
+    <h2>Templates</h2>
+    {% if current_user.is_admin() %}
+    <a class='btn btn-primary btn-large' href="#addtemplate" data-toggle="modal">
+        <i class="icon-plus icon-white icon-4x"></i> Add Template
+    </a>
+    {% endif %}
+    <hr>
+    <table class='table table-bordered table-hover'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Image ID</th>
+                <th>VCPU</th>
+                <th>Memory(M)</th>
+                <th>Disk(M)</th>
+                <th>VM Number</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for template in templates %}
+        <tr>
+            <td>{{ template.id }}</td>
+            <td>{{ template.name }}</td>
+            <td>{{ template.image_id }}</td>
+            <td>{{ template.vcpu }}</td>    
+            <td>{{ template.memory }}</td>
+            <td>{{ template.disk }}</td>
+            <td>{{ template.vm_number }}</td>
+            <td>{{ template.status }}</td>
+            <td>
+                <a class='btn-group'>
+                {% if current_user.is_admin() %}
+                <button class='btn'><a href="{{ url_for('template.delete', template_id=template.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                {% else %}
+                <button class='btn'><a href="{{ url_for('template.delete', template_id=template.id) }}" onclick="return confirm('Are you sure?');">Create VM</a></button>                
+                {% endif %}
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% if current_user.is_admin() %}
+{% if form %}
+{{ render_modal_form("addtemplate", "Add Template", url_for('template.index'), form) }}
+{% endif %}
+{% endif %}
+
+{% endblock %}

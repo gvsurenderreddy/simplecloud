@@ -1,0 +1,50 @@
+{% from "macros/_form.html" import render_modal_form %}
+
+{% extends "admin/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <h2>Hosts</h2>
+    <a class='btn btn-primary btn-large' href="#addhost" data-toggle="modal">
+        <i class="icon-plus icon-white icon-4x"></i> Add Host
+    </a>
+    <hr>
+    <table class='table table-bordered table-hover'>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Address</th>
+                <th>Type</th>
+                <th>CPU Used</th>
+                <th>Memory Used</th>
+                <th>VM Number</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for host in hosts %}
+        <tr>
+            <td>{{ host.id }}</td>
+            <td>{{ host.address }}</td>
+            <td>{{ host.hypervisor_type }}</td>
+            <td>{{ host.cpu_used }}/{{ host.cpu_pool }}</td>    
+            <td>{{ host.mem_used }}/{{ host.mem_pool }}</td>
+            <td>{{ host.vm_number }}</td>
+            <td>{{ host.status }}</td>
+            <td>
+                <a class='btn-group'>
+                <button class='btn'><a href="{{ url_for('host.edit', host_id=host.id) }}">Edit</a></button>
+                <button class='btn'><a href="{{ url_for('host.delete', host_id=host.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+{% if form %}
+{{ render_modal_form("addhost", "Add Host", url_for('host.index'), form) }}
+{% endif %}
+
+{% endblock %}

@@ -10,9 +10,14 @@ from .user import User, user
 from .settings import settings
 from .frontend import frontend
 from .api import api
-from .admin import Task, Template, Image, Host, admin
+from .admin import Task, admin
+from .host import host, Host
+from .vm import vm, VM
+from .image import image, Image
+from .template import template, Template
 from .extensions import db, mail, cache, login_manager, oid
 from .utils import INSTANCE_FOLDER_PATH
+
 
 
 # For import *
@@ -24,6 +29,10 @@ DEFAULT_BLUEPRINTS = (
     settings,
     api,
     admin,
+    vm,
+    image,
+    template,
+    host,
 )
 
 

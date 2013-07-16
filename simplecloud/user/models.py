@@ -6,9 +6,8 @@ from werkzeug import generate_password_hash, check_password_hash
 from flask.ext.login import UserMixin
 
 from ..extensions import db
-from ..utils import get_current_time
-from .constants import (USER, USER_ROLE, ADMIN, USER_INACTIVE, USER_STATUS,
-        VM_STATUS, VM_OK, STRING_LEN)
+from ..utils import get_current_time, STRING_LEN
+from .constants import (USER, USER_ROLE, ADMIN, USER_INACTIVE, USER_STATUS)
 
 class User(db.Model, UserMixin):
 
@@ -93,21 +92,4 @@ class User(db.Model, UserMixin):
 
     def check_name(self, name):
         return User.query.filter(db.and_(User.name == name, User.email != self.id)).count() == 0
-        
-
-class VM(db.Model):
-
-    __tablename__ = 'vms'
-
-    id = Column(db.Integer, primary_key=True)
-    name = Column(db.String(STRING_LEN), nullable=False, unique=False)
-    owner_id = Column(db.Integer, db.ForeignKey("users.id"))
-    template_id = Column(db.Integer, db.ForeignKey("templates.id"))
-    host_id = Column(db.Integer, db.ForeignKey("hosts.id"))
-    created_time = Column(db.DateTime, default=get_current_time)
-
-    status_code = Column(db.SmallInteger, default=VM_OK)
-    @property
-    def status(self):
-        return VM_STATUS[self.VM_code]
 

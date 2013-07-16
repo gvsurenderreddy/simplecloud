@@ -4,8 +4,10 @@ from flask.ext.script import Manager
 
 from simplecloud import create_app
 from simplecloud.extensions import db
-from simplecloud.user import User, ADMIN, USER_ACTIVE
-
+from simplecloud.user import User, ADMIN, USER, USER_ACTIVE
+from simplecloud.image import Image
+from simplecloud.template import Template
+from simplecloud.host import Host
 
 app = create_app()
 manager = Manager(app)
@@ -28,10 +30,47 @@ def initdb():
     admin = User(
             name=u'admin',
             email=u'admin@example.com',
-            password=u'123456',
+            password=u'000000',
             role_code=ADMIN,
             status_code=USER_ACTIVE)
+    user = User(
+            name=u'test',
+            email=u'test@example.com',
+            password=u'000000',
+            role_code=USER,
+            status_code=USER_ACTIVE)
     db.session.add(admin)
+    db.session.add(user)
+    
+    # Just for test
+    image1 = Image(name=u'image1')
+    image2 = Image(name=u'image2')
+    image3 = Image(name=u'image3')
+    template1 = Template(
+            name=u'template1',
+            image_id=0,
+            vcpu=1,
+            memory=1024,
+            disk=10240)
+    template2 = Template(
+            name=u'template2',
+            image_id=2,
+            vcpu=2,
+            memory=2048,
+            disk=102400)
+    host1 = Host(
+            address="192.168.1.1",
+            uri="qemu+ssh://root@192.168.1.1/system")
+    host2 = Host(
+            address="192.168.1.2",
+            uri="xen+ssh://root@192.168.1.2/")
+    db.session.add(image1)
+    db.session.add(image2)
+    db.session.add(image3)
+    db.session.add(template1)
+    db.session.add(template2)
+    db.session.add(host1)
+    db.session.add(host2)
     db.session.commit()
 
 

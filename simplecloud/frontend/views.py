@@ -15,21 +15,6 @@ from .forms import SignupForm, LoginForm, RecoverPasswordForm, ReauthForm, Chang
 
 frontend = Blueprint('frontend', __name__)
 
-
-@frontend.route('/login/openid', methods=['GET', 'POST'])
-@oid.loginhandler
-def login_openid():
-    if current_user.is_authenticated():
-        return redirect(url_for('user.index'))
-
-    form = OpenIDForm()
-    if form.validate_on_submit():
-        openid = form.openid.data
-        current_app.logger.debug('login with openid(%s)...' % openid)
-        return oid.try_login(openid, ask_for=['email', 'fullname', 'nickname'])
-    return render_template('frontend/login_openid.html', form=form, error=oid.fetch_error())
-
-
 @oid.after_login
 def create_or_login(resp):
     user = User.query.filter_by(openid=resp.identity_url).first()
