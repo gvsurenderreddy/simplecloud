@@ -20,7 +20,7 @@
             <td>{{ task.id }}</td>
             <td>{{ task.name }}</td>
             <td>{{ task.owner_id }}</td>
-            <td>{{ task.created_time | format_date }}</td>    
+            <td>{{ task.created_time | format_time }}</td>    
             <td>{{ task.status }}</td>
         </tr>
         {% endfor %}

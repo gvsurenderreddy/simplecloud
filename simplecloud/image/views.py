@@ -14,7 +14,7 @@ from ..extensions import db
 from .models import Image
 from .constants import IMAGE_DELETED
 from .forms import AddImageForm
-
+from ..task import log_task
 
 image= Blueprint('image', __name__, url_prefix='/images')
 
@@ -32,8 +32,10 @@ def index():
 
         db.session.add(image)
         db.session.commit()
+        message = "Add Image "+ image.name
+        log_task(message)
         flash("Image " + image.name + " was added.", "success")
-        return redirect(form.next.data or url_for('admin.images'))
+        return redirect(form.next.data or url_for('image.index'))
     elif form.is_submitted():
         flash("Failed to add Image", "error")    
 
@@ -49,5 +51,7 @@ def delete(image_id):
     image.status_code = IMAGE_DELETED
     db.session.add(image)
     db.session.commit()
+    message = "Delete Image " + image.name + "(" + str(image_id) + ")"
+    log_task(message)
     flash('Image '+ image.name +' was deleted.', 'success')
     return redirect(url_for('image.index'))

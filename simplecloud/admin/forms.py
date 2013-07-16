@@ -32,8 +32,7 @@ class AddUserForm(Form):
             raise ValidationError(u'This email is taken')
 
 class EditUserForm(Form):
-    next = HiddenField()    
-    name = TextField(u'User Name', [Required(), Length(NAME_LEN_MIN, NAME_LEN_MAX)])
+    next = HiddenField()
     role_code = RadioField(u"Role", [AnyOf([str(val) for val in USER_ROLE.keys()])],
             choices=[(str(val), label) for val, label in USER_ROLE.items()])
     status_code = RadioField(u"Status", [AnyOf([str(val) for val in USER_STATUS.keys()])],

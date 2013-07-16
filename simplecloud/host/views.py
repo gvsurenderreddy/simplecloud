@@ -15,7 +15,7 @@ from .models import Host
 from .forms import AddHostForm, EditHostForm
 
 from .constants import HOST_TYPE, HOST_KVM, HOST_XEN
-
+from ..task import log_task
 
 host = Blueprint('host', __name__, url_prefix='/hosts')
 
@@ -45,6 +45,8 @@ def index():
 
         db.session.add(host)
         db.session.commit()
+        message = "Add Host "+ host.address
+        log_task(message)
         flash("Host " + host.address + " was added.", "success")
         return redirect(form.next.data or url_for('host.index'))
     elif form.is_submitted():
@@ -65,7 +67,8 @@ def edit(host_id):
 
         db.session.add(host)
         db.session.commit()
-
+        message = "Update Host " + host.address + "(" + str(host_id) + ")"
+        log_task(message)
         flash('Host ' + host.address +' was updated.', 'success')
         return redirect(form.next.data or url_for('host.index'))
 
@@ -80,6 +83,8 @@ def delete(host_id):
     # TODO: validation
     db.session.delete(host)
     db.session.commit()
+    message = "Delete Host " + host.address + "(" + str(host_id) + ")"
+    log_task(message)
     flash('Host '+ host.address +' was deleted.', 'success')
     return redirect(url_for('host.index'))
 

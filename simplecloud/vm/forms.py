@@ -11,7 +11,7 @@ from ..template import Template, TEMPLATE_OK
 
 class AddVMForm(Form):
     next = HiddenField()
-    name = TextField(u'Choose virtualmachine name', [Required(), Length(NAME_LEN_MIN, NAME_LEN_MAX)],
+    name = TextField(u'Choose virtualmachine name', [Required(), Length(1, NAME_LEN_MAX)],
             description=u"virtualmachine name.")
     template_id = IntegerField(u'Choose the template ID', [Required()])
     

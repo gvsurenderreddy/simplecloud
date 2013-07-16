@@ -13,7 +13,7 @@ from ..extensions import db
 from .models import VM
 from .constants import VM_DELETED
 from .forms import AddVMForm
-
+from ..task import log_task
 
 vm = Blueprint('vm', __name__, url_prefix='/vms')
 
@@ -48,6 +48,7 @@ def index():
 
         db.session.add(vm)
         db.session.commit()
+        log_task("Add VM " + vm.name)
         flash("VM " + vm.name + " was added.", "success")
         return redirect(form.next.data or url_for('vm.index'))
     elif form.is_submitted():
@@ -55,7 +56,7 @@ def index():
       
     return render_template('vm/index.html', vms=vms, form=form, active="VirtualMachines")
     
-# Delete Image Page    
+# Delete VM Page    
 @vm.route('/delete/<int:vm_id>', methods=['GET'])
 @login_required
 def delete(vm_id):
@@ -65,5 +66,7 @@ def delete(vm_id):
     vm.status_code = VM_DELETED
     db.session.delete(vm)
     db.session.commit()
+    message = "Delete VM " + vm.name + "(" + str(vm_id) + ")"
+    log_task(message)
     flash('VM '+ vm.name +' was deleted.', 'success')
     return redirect(url_for('vm.index'))

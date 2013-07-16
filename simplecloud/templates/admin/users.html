@@ -28,7 +28,7 @@
             <td>{{ user.role }}</td>
             <td>{{ user.email }}</td>    
             <td>{{ user.vm_quota }}</td>
-            <td>{{ user.created_time|format_date }}</td>
+            <td>{{ user.created_time|format_time }}</td>
             <td>
                 <a class='btn-group'>
                 <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Edit</a></button>

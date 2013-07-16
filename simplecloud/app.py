@@ -122,6 +122,9 @@ def configure_template_filters(app):
     def format_date(value, format='%Y-%m-%d'):
         return value.strftime(format)
 
+    @app.template_filter()
+    def format_time(value, format='%Y-%m-%d %H:%M'):
+        return value.strftime(format)
 
 def configure_logging(app):
     """Configure file(info) and email(error) logging."""

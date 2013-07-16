@@ -14,7 +14,7 @@ from ..extensions import db
 from .models import Template
 from .constants import TEMPLATE_DELETED
 from .forms import AddTemplateForm
-
+from ..task import log_task
 
 template = Blueprint('template', __name__, url_prefix='/templates')
 
@@ -31,6 +31,7 @@ def index():
 
         db.session.add(template)
         db.session.commit()
+        log_task("Add Template " + template.name)
         flash("Template " + template.name + " was added.", "success")
         return redirect(form.next.data or url_for('template.index'))
     elif form.is_submitted():
@@ -48,6 +49,8 @@ def delete(template_id):
     template.status_code = TEMPLATE_DELETED
     db.session.add(template)
     db.session.commit()
+    message = "Delete Template " + template.name+ "(" + str(template_id) + ")"
+    log_task(message)    
     flash('Template '+ template.name +' was deleted.', 'success')
     return redirect(url_for('template.index'))
 

@@ -9,7 +9,7 @@ from ..decorators import admin_required
 
 from ..user import User, USER_ACTIVE, USER_DELETED
 from .forms import AddUserForm, EditUserForm
-
+from ..task import log_task
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -36,6 +36,7 @@ def users():
 
         db.session.add(user)
         db.session.commit()
+        log_task("Add User " + user.name)
         flash("User " + user.name + " was added.", "success")
         return redirect(form.next.data or url_for('admin.users'))
     elif form.is_submitted():
@@ -90,8 +91,9 @@ def user(user_id):
         form.populate_obj(user)
 
         db.session.add(user)
-        db.session.commit()
-
+        db.session.commit()    
+        message = "Update User " + user.name + "(" + str(user_id) + ")"
+        log_task(message)
         flash('User ' + user.name +' was updated.', 'success')
         return redirect(form.next.data or url_for('admin.users'))
 
@@ -106,6 +108,8 @@ def delete_user(user_id):
     user.status_code = USER_DELETED
     db.session.add(user)
     db.session.commit()
+    message = "Delete User " + user.name + "(" + str(user_id) + ")"
+    log_task(message)
     flash('User '+ user.name +' was deleted.', 'success')
     return redirect(url_for('admin.users'))
 
