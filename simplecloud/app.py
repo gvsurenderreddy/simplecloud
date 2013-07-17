@@ -125,6 +125,10 @@ def configure_template_filters(app):
     @app.template_filter()
     def format_time(value, format='%Y-%m-%d %H:%M'):
         return value.strftime(format)
+    
+    @app.template_filter()
+    def format_float(value, format=''):
+        return str(int(value*100))+'%'
 
 def configure_logging(app):
     """Configure file(info) and email(error) logging."""

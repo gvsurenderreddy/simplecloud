@@ -1,44 +1,85 @@
 {% from "macros/_form.html" import render_modal_form %}
 
 {% extends "admin/layout.html" %}
-
+    storage['total_space'] = 0
+    storage['used_space'] = 0
+    storage['free_space'] = 0
+    storage['image_pool'] = IMAGE_POOL_PATH
+    storage['vm_pool'] = VM_POOL_PATH
+    
 {% block body %}
 <div class="container">
-    {% if network %}
-    <h2>Network</h2>
-    {% elif storage %}
-    <h2>Storage</h2>
-    {% else %}
     <h2>System</h2>
-    {% endif %}
+    <hr>
+    <h3>Storage</h3>
     <table class='table table-bordered table-hover'>
         <thead>
-            <tr>
+        <tr>
+                <th>ID</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        {% if storage %}
+        <tr>
+            <td>Status</td>
+            <td>{{ storage.status }}</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>{{ storage.type }}</td>
+        </tr>
+        <tr>
+            <td>Protocol</td>
+            <td>{{ storage.protocol }}</td>
+        </tr>
+        <tr>
+            <td>Instance Path</td>
+            <td>{{ storage.path }}</td>
+        </tr>
+        <tr>
+            <td>Image Pool Path</td>
+            <td>{{ storage.image_pool }}</td>
+        </tr>
+        <tr>
+            <td>VM Pool Path</td>
+            <td>{{ storage.vm_pool }}</td>
+        </tr>
+        <tr>
+            <td>Total Space</td>
+            <td>{{ storage.total_space }}</td>
+        </tr>
+        <tr>
+            <td>Used Space</td>
+            <td>{{ storage.used_space }}</td>
+        </tr>   
+        {% endif %}
+    </table>
+    <hr>
+    <h3>Network</h3>
+    <table class='table table-bordered table-hover'>
+        <thead>
+        <tr>
                 <th>ID</th>
                 <th>Value</th>
             </tr>
         </thead>
         {% if network %}
-        {% for item in network %}
         <tr>
-            <td>{{ item }}</td>
-            <td>{{ network[item] }}</td>
+            <td>Status</td>
+            <td>{{ network.status }}</td>
         </tr>
-        {% endfor %}
-        {% elif storage %}
-        {% for item in storage %}
         <tr>
-            <td>{{ item }}</td>
-            <td>{{ storage[item] }}</td>
+            <td>Network Name</td>
+            <td>{{ network.name }}</td>
         </tr>
-        {% endfor %}
-        {% else %}
-        {% for item in system %}
         <tr>
-            <td>{{ item }}</td>
-            <td>{{ system[item] }}</td>
+            <td>Network Mode</td>
+            <td>{{ network.mode }}</td>
         </tr>
-        {% endfor %}        
+        <tr>
+            <td>VM Network Mode</td>
+            <td>{{ network.vm_mode }}</td>
+        </tr>
         {% endif %}
     </table>
 </div>

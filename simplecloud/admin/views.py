@@ -10,6 +10,7 @@ from ..decorators import admin_required
 from ..user import User, USER_ACTIVE, USER_DELETED
 from .forms import AddUserForm, EditUserForm
 from ..task import log_task
+from .utils import get_system_stat, get_storage_stat, get_network_stat
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -18,8 +19,8 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @login_required
 @admin_required
 def index():
-    users = User.query.all()
-    return render_template('admin/index.html', users=users, active='Dashboard')
+    stat = get_system_stat()
+    return render_template('admin/index.html', stat=stat, active='Dashboard')
 
 
 @admin.route('/users', methods=['GET', 'POST'])
@@ -44,40 +45,13 @@ def users():
 
     return render_template('admin/users.html', users=users, active='Users', form=form)
 
-@admin.route('/storage')
-@login_required
-@admin_required
-def storage():
-    storage = {}
-    
-    storage['Type'] = "Shared Storage"
-    storage['Protocol'] = "NFS"
-    storage['URL'] = "testserver:/nfs"
-    storage['Status'] = "OK"
-    storage['Space'] = "100G"
-    storage['Used'] = "50G"
-    storage['Free'] = "50G"
-    storage['Image Space'] = "5G"
-    storage['VM Space'] = "45G"
-    return render_template('admin/system.html', storage=storage, active='Storage')
-
-@admin.route('/network')
-@login_required
-@admin_required
-def network():
-    network = {}
-    network['VM Network Mode'] = "Bridge"
-    network['Bridge Name'] = "br0"
-    network['VM IP Mode'] = "DHCP"
-
-    return render_template('admin/system.html', network=network, active='Network')
-
 @admin.route('/system')
 @login_required
 @admin_required
 def system():
-    system = {}
-    return render_template('admin/system.html', system=system, active='System')        
+    storage = get_storage_stat()
+    network = get_network_stat()
+    return render_template('admin/system.html', network=network, storage=storage, active='System')
 
 # Edit User Page    
 @admin.route('/users/<int:user_id>', methods=['GET', 'POST'])

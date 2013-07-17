@@ -177,12 +177,6 @@ class VMAction:
             
             # 5. update DB
             # Update Host/Template/VM
-            host = Host.query.filter_by(id=vm.host_id).first()
-        
-            if not host:
-                raise Exception("Not found host with id %d" % vm.host_id)
-            host.vm_number = host.vm_number - 1
-            db.session.add(host)
             
             template = Template.query.filter_by(id=vm.template_id).first()
             
@@ -190,6 +184,16 @@ class VMAction:
                 raise Exception("Not found template with id %d" % vm.template_id)
             template.vm_number = template.vm_number - 1      
             db.session.add(template)
+            
+            host = Host.query.filter_by(id=vm.host_id).first()
+        
+            if not host:
+                raise Exception("Not found host with id %d" % vm.host_id)
+            host.vm_number = host.vm_number - 1
+            host.cpu_used = host.cpu_used - template.vcpu * VM_VCPU_VALUE
+            host.mem_used = host.mem_used - template.memory
+            db.session.add(host)
+
             
             db.session.delete(vm)
             db.session.commit()

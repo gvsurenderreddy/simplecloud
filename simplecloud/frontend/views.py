@@ -19,7 +19,6 @@ frontend = Blueprint('frontend', __name__)
 def create_or_login(resp):
     user = User.query.filter_by(openid=resp.identity_url).first()
     if user and login_user(user):
-        flash('Logged in', 'success')
         if user.is_admin():
             return redirect(oid.get_next_url() or url_for('admin.index'))
         return redirect(oid.get_next_url() or url_for('user.index'))

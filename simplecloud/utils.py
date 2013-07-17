@@ -11,9 +11,19 @@ from datetime import datetime
 
 # Instance folder path, make it independent.
 INSTANCE_FOLDER_PATH = os.path.join('/tmp', 'instance')
+
 SHARED_STORAGE_PATH = os.path.join(INSTANCE_FOLDER_PATH, "share")
 IMAGE_POOL_PATH = os.path.join(SHARED_STORAGE_PATH, 'images')
 VM_POOL_PATH = os.path.join(SHARED_STORAGE_PATH, 'vms')
+
+# Storage Configuration
+STORAGE_TYPE = "Shared"
+STORAGE_PROTOCOL = "NFS"
+
+# Network Configuration
+NETWORK_MODE = "NAT"
+VM_NETWORK_MODE = "DHCP"
+NETWORK_NAME = "default"
 
 # Form validation
 
