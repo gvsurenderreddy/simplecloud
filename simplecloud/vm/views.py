@@ -42,7 +42,7 @@ def index():
         create_vm(vm)
         return redirect(form.next.data or url_for('vm.index'))
     elif form.is_submitted():
-        flash("Failed to add VM", "error")
+        flash(_("Failed to add VM"), "error")
       
     return render_template('vm/index.html', vms=vms, form=form, active="VirtualMachines")
     

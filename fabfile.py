@@ -42,10 +42,24 @@ def d():
     reset()
     local("python manage.py runserver -t 0.0.0.0")
 
+def create():
+    """
+    Get translation file
+    """
+    local("pybabel extract -F babel.cfg -o messages.pot ./simplecloud")
+    local("pybabel init -i messages.pot -d simplecloud/translations -l zh_CN")
 
-def babel():
+def update():
+    """
+    Update translation file
+    """
+    local("pybabel extract -F babel.cfg -o messages.pot ./simplecloud")
+    local("pybabel update -i messages.pot -d simplecloud/translations")
+
+def build():
     """
     Babel compile.
     """
+    local("pybabel compile -d simplecloud/translations")
 
-    local("python setup.py compile_catalog --directory `find -name translations` --locale zh -f")
+    #local("python setup.py compile_catalog --directory `find simplecloud/ -name translations` --locale zh -f")

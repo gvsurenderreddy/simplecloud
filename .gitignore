@@ -5,10 +5,10 @@
 *.swp
 *.swo
 *.zip
-*.cfg
 *.tox
 *~
 *.mo
+*.pot
 
 *.db
 *.sqlite

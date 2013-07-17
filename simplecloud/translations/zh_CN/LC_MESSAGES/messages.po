@@ -1,0 +1,105 @@
+# Chinese (China) translations for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-07-17 22:31+0800\n"
+"PO-Revision-Date: 2013-07-17 22:25+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: simplecloud/frontend/views.py:82 simplecloud/frontend/views.py:117
+msgid "Logged in"
+msgstr "登录"
+
+#: simplecloud/frontend/views.py:85 simplecloud/frontend/views.py:122
+msgid "Sorry, invalid login"
+msgstr ""
+
+#: simplecloud/frontend/views.py:97
+msgid "Please input keyword(s)"
+msgstr ""
+
+#: simplecloud/frontend/views.py:138
+msgid "Reauthenticated."
+msgstr ""
+
+#: simplecloud/frontend/views.py:141
+msgid "Password is wrong."
+msgstr ""
+
+#: simplecloud/frontend/views.py:149
+msgid "Logged out"
+msgstr ""
+
+#: simplecloud/frontend/views.py:197
+msgid "Your password has been changed, please log in again"
+msgstr ""
+
+#: simplecloud/frontend/views.py:226
+msgid "Sorry, no user found for that email address"
+msgstr ""
+
+#: simplecloud/templates/errors/forbidden_page.html:2
+msgid "Forbidden page"
+msgstr ""
+
+#: simplecloud/templates/errors/layout.html:9
+#: simplecloud/templates/layouts/base.html:9
+msgid "Project"
+msgstr ""
+
+#: simplecloud/templates/errors/page_not_found.html:2
+msgid "Page not found"
+msgstr ""
+
+#: simplecloud/templates/errors/server_error.html:2
+msgid "Server error"
+msgstr ""
+
+#: simplecloud/templates/frontend/search.html:6
+#, python-format
+msgid "Search results for \"%(keywords)s\""
+msgstr ""
+
+#: simplecloud/templates/frontend/search.html:8
+msgid "Keywords needed!"
+msgstr ""
+
+#: simplecloud/templates/frontend/search.html:13
+#, python-format
+msgid ""
+"<strong>%(total)s</strong> found for your search "
+"\"<strong>%(keywords)s</strong>\"."
+msgstr ""
+
+#: simplecloud/templates/frontend/search.html:17
+#, python-format
+msgid "Sorry, Nothing found for your search \"<strong>%(keywords)s</strong>\"."
+msgstr ""
+
+#: simplecloud/templates/frontend/search.html:18
+msgid ""
+"\n"
+"    <p>Suggestions:</p>\n"
+"    <ul>\n"
+"       <li>Make sure all words are spelled correctly.</li>\n"
+"       <li>Try different keywords.</li>\n"
+"       <li>Try more general keywords.</li>\n"
+"    </ul>\n"
+"    "
+msgstr ""
+
+#: simplecloud/vm/views.py:45
+msgid "Failed to add VM"
+msgstr ""
+
