@@ -29,6 +29,7 @@
                 <th>Template ID</th>
                 <th>Created Time</th>
                 <th>Status</th>
+                <th>VNC Link</th>
                 <th></th>
             </tr>
         </thead>
@@ -42,14 +43,15 @@
             <td>{{ vm.template_id }}</td>
             <td>{{ vm.created_time|format_time }}</td>
             <td>{{ vm.status }}</td>
+            <td>{{ vm.vnc_link }}</td>
             <td>
                 <a class='btn-group'>
                 {% if not current_user.is_admin() %}
-                <button class='btn'><a href="{{ url_for('admin.user', user_id=vm.id) }}">Start</a></button>
-                <button class='btn'><a href="{{ url_for('admin.user', user_id=vm.id) }}">Stop</a></button>
-                <button class='btn'><a href="{{ url_for('admin.user', user_id=vm.id) }}">Reboot</a></button>
+                <button class='btn'><a href="{{ url_for('vm.do', action='start', vm_id=vm.id) }}">Start</a></button>
+                <button class='btn'><a href="{{ url_for('vm.do', action='stop', vm_id=vm.id) }}">Stop</a></button>
+                <button class='btn'><a href="{{ url_for('vm.do', action='reboot', vm_id=vm.id) }}">Reboot</a></button>
                 {% endif %}
-                <button class='btn'><a href="{{ url_for('vm.delete', vm_id=vm.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                <button class='btn'><a href="{{ url_for('vm.do', action='delete', vm_id=vm.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
                 </a>
             </td>
         </tr>

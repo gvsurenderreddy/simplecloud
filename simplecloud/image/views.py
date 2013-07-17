@@ -34,6 +34,11 @@ def index():
                 image.status_code = IMAGE_OK
                 db.session.add(image)
                 db.session.commit()
+        elif image.status_code == IMAGE_OK:
+            if not os.path.isfile(os.path.join(IMAGE_POOL_PATH, image.name)):
+                image.status_code = IMAGE_INVALID
+                db.session.add(image)
+                db.session.commit()
     
     images = Image.query.filter().all()
     form = AddImageForm(next=request.args.get('next'))

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+VM_VCPU_VALUE = 50
 HOST_CPU_VALUE = 100
 
 # Host status

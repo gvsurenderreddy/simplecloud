@@ -24,6 +24,7 @@ class Host(db.Model):
     mem_used = Column(db.Integer, default=0)
     # the number of vm running on this host
     vm_number = Column(db.Integer, default=0)
+    vms = db.relationship("VM")
     
     type_code = Column(db.SmallInteger, default=HOST_KVM)
     @property

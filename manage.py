@@ -47,7 +47,7 @@ def initdb():
     image3 = Image(name=u'image3', src_path="/")
     template1 = Template(
             name=u'template1',
-            image_id=0,
+            image_id=1,
             vcpu=1,
             memory=1024,
             disk=10240)

@@ -118,6 +118,12 @@
     <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
     <script src="{{ url_for('static', filename='js/vendor/bootstrap.js') }}"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="text/javascript">   
+        $(document).on("click", ".open-addvm", function() {
+                var templateid = $(this).data('templateid')
+                $(".modal-body #template_id").val(templateid);
+            });
+    </script>
     {% endblock %}
 
     {% block ga %}

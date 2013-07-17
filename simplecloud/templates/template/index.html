@@ -44,7 +44,7 @@
                 {% if current_user.is_admin() %}
                 <button class='btn'><a href="{{ url_for('template.delete', template_id=template.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
                 {% else %}
-                <button class='btn'><a href="{{ url_for('template.delete', template_id=template.id) }}" onclick="return confirm('Are you sure?');">Create VM</a></button>                
+                <a class="open-addvm btn" href="#addvm" data-toggle="modal" data-templateid="{{ template.id }}">Create VM</a>              
                 {% endif %}
                 </a>
             </td>
@@ -53,9 +53,13 @@
     </table>
 </div>
 {% if current_user.is_admin() %}
-{% if form %}
-{{ render_modal_form("addtemplate", "Add Template", url_for('template.index'), form) }}
-{% endif %}
+    {% if form %}
+        {{ render_modal_form("addtemplate", "Add Template", url_for('template.index'), form) }}
+    {% endif %}
+{% else %}
+    {% if form %}
+        {{ render_modal_form("addvm", "Add VM", url_for('vm.index'), form) }}
+    {% endif %}
 {% endif %}
 
 {% endblock %}

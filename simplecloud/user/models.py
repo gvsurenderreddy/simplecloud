@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     created_time = Column(db.DateTime, default=get_current_time)
     vm_quota = Column(db.Integer, default=0)
     _password = Column('password', db.String(STRING_LEN), nullable=False)
+    vms = db.relationship("VM")
 
     def _get_password(self):
         return self._password

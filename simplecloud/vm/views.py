@@ -12,11 +12,12 @@ from flask.ext.login import login_required, current_user
 from ..extensions import db
 from .models import VM
 from .forms import AddVMForm
-from ..task import log_task
+from .utils import VMAction, create_vm
+from ..task import log_task, TASK_FAILED
 
 vm = Blueprint('vm', __name__, url_prefix='/vms')
 
-
+# List/Create VM
 @vm.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
@@ -38,32 +39,26 @@ def index():
             flash("VM Name %s is taken." % vm.name, "error")
             return redirect(form.next.data or url_for('user.index'))
         vm.owner_id = current_user.id
-        # Find host
-        # vm.host_id = 
-        
-        
-        # TODO: Start VM
-
-        db.session.add(vm)
-        db.session.commit()
-        log_task("Add VM " + vm.name)
-        flash("VM " + vm.name + " was added.", "success")
+        create_vm(vm)
         return redirect(form.next.data or url_for('vm.index'))
     elif form.is_submitted():
         flash("Failed to add VM", "error")
       
     return render_template('vm/index.html', vms=vms, form=form, active="VirtualMachines")
     
-# Delete VM Page    
-@vm.route('/delete/<int:vm_id>', methods=['GET'])
+# VM action Page    
+@vm.route('/<action>/<int:vm_id>', methods=['GET'])
 @login_required
-def delete(vm_id):
+def do(action, vm_id):
     vm = VM.query.filter_by(id=vm_id).first_or_404()
-    # TODO: validation
-    # TODO: Libvirt Delete VM
-    db.session.delete(vm)
-    db.session.commit()
-    message = "Delete VM " + vm.name + "(" + str(vm_id) + ")"
-    log_task(message)
-    flash('VM '+ vm.name +' was deleted.', 'success')
-    return redirect(url_for('vm.index'))
+    vmaction = VMAction()
+    op = getattr(vmaction, action, None)
+    if callable(op):
+        op(vm)
+    else:
+        errMsg = "Not supported action %s" % action
+        flash(errMsg, "error")
+    return redirect(url_for("vm.index"))
+
+
+
