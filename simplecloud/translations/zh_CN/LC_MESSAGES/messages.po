@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-07-17 22:31+0800\n"
+"POT-Creation-Date: 2013-07-17 22:44+0800\n"
 "PO-Revision-Date: 2013-07-17 22:25+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_CN <LL@li.org>\n"
@@ -16,6 +16,55 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
+
+#: simplecloud/admin/forms.py:21
+msgid "What's your email address?"
+msgstr ""
+
+#: simplecloud/admin/forms.py:22
+msgid "Password"
+msgstr ""
+
+#: simplecloud/admin/forms.py:23
+#, python-format
+msgid "%s characters or more! Be tricky."
+msgstr ""
+
+#: simplecloud/admin/forms.py:24
+msgid "Choose your username"
+msgstr ""
+
+#: simplecloud/admin/forms.py:25
+msgid "Don't worry. you can change it later."
+msgstr ""
+
+#: simplecloud/admin/forms.py:26 simplecloud/admin/forms.py:45
+msgid "Save"
+msgstr ""
+
+#: simplecloud/admin/forms.py:30 simplecloud/admin/forms.py:49
+msgid "This username is taken"
+msgstr ""
+
+#: simplecloud/admin/forms.py:34
+msgid "This email is taken"
+msgstr ""
+
+#: simplecloud/admin/forms.py:38
+msgid "Role"
+msgstr ""
+
+#: simplecloud/admin/forms.py:40
+msgid "Status"
+msgstr ""
+
+#: simplecloud/admin/forms.py:43
+msgid "VM Quota"
+msgstr ""
+
+#: simplecloud/admin/forms.py:44
+msgid "Created time"
+msgstr ""
 
 #: simplecloud/frontend/views.py:82 simplecloud/frontend/views.py:117
 msgid "Logged in"
