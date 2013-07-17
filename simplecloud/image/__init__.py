@@ -2,4 +2,4 @@
 
 from .views import image
 from .models import Image
-from .constants import (IMAGE_STATUS, IMAGE_OK, IMAGE_INVALID, IMAGE_DELETED)
+from .constants import (IMAGE_STATUS, IMAGE_OK, IMAGE_INVALID)

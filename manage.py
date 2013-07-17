@@ -12,7 +12,6 @@ from simplecloud.host import Host
 app = create_app()
 manager = Manager(app)
 
-
 @manager.command
 def run():
     """Run in local machine."""
@@ -43,9 +42,9 @@ def initdb():
     db.session.add(user)
     
     # Just for test
-    image1 = Image(name=u'image1')
-    image2 = Image(name=u'image2')
-    image3 = Image(name=u'image3')
+    image1 = Image(name=u'image1', src_path="/")
+    image2 = Image(name=u'image2', src_path="/")
+    image3 = Image(name=u'image3', src_path="/")
     template1 = Template(
             name=u'template1',
             image_id=0,

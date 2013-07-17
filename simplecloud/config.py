@@ -2,7 +2,8 @@
 
 import os
 
-from utils import make_dir, INSTANCE_FOLDER_PATH
+from utils import (make_dir, INSTANCE_FOLDER_PATH, SHARED_STORAGE_PATH,
+        IMAGE_POOL_PATH, VM_POOL_PATH)
 
 
 class BaseConfig(object):
@@ -23,6 +24,11 @@ class BaseConfig(object):
 
     LOG_FOLDER = os.path.join(INSTANCE_FOLDER_PATH, 'logs')
     make_dir(LOG_FOLDER)
+    
+    # Create image pool and vm pool
+    make_dir(SHARED_STORAGE_PATH)
+    make_dir(IMAGE_POOL_PATH)
+    make_dir(VM_POOL_PATH)
 
 
 class DefaultConfig(BaseConfig):

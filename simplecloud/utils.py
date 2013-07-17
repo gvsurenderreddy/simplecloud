@@ -11,6 +11,9 @@ from datetime import datetime
 
 # Instance folder path, make it independent.
 INSTANCE_FOLDER_PATH = os.path.join('/tmp', 'instance')
+SHARED_STORAGE_PATH = os.path.join(INSTANCE_FOLDER_PATH, "share")
+IMAGE_POOL_PATH = os.path.join(SHARED_STORAGE_PATH, 'images')
+VM_POOL_PATH = os.path.join(SHARED_STORAGE_PATH, 'vms')
 
 # Form validation
 
@@ -88,3 +91,4 @@ def make_dir(dir_path):
             os.mkdir(dir_path)
     except Exception, e:
         raise e
+
