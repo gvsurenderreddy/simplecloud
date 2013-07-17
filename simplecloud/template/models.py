@@ -12,15 +12,16 @@ class Template(db.Model):
 
     id = Column(db.Integer, primary_key=True)
     name = Column(db.String(STRING_LEN), nullable=False, unique=True)
-    image_id = Column(db.Integer, db.ForeignKey("images.id"))
-    
+    image_id = Column(db.Integer, db.ForeignKey("images.id", ondelete="SET NULL"))
+    vms = db.relationship("VM")
+
     # VCPU number
     vcpu = Column(db.Integer, nullable=False)
     # Memory size (M)
     memory = Column(db.Integer, nullable=False)
     # Disk size (M)
     disk = Column(db.Integer, nullable=False)
-    # The number of VM created from this template
+    # number of VMs created from this template
     vm_number = Column(db.Integer, default=0)
 
     status_code = Column(db.SmallInteger, default=TEMPLATE_OK)

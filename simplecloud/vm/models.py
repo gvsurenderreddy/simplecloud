@@ -13,7 +13,8 @@ class VM(db.Model):
     id = Column(db.Integer, primary_key=True)
     name = Column(db.String(STRING_LEN), nullable=False, unique=False)
     owner_id = Column(db.Integer, db.ForeignKey("users.id"))
-    template_id = Column(db.Integer, db.ForeignKey("templates.id"))
+    template_id = Column(db.Integer, db.ForeignKey("templates.id", ondelete="SET NULL"))
+    
     # host_id = Column(db.Integer, nullable=True, db.ForeignKey("hosts.id"))
     host_id = Column(db.Integer, nullable=True)
     created_time = Column(db.DateTime, default=get_current_time)

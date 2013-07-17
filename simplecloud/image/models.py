@@ -14,6 +14,7 @@ class Image(db.Model):
     id = Column(db.Integer, primary_key=True)
     name = Column(db.String(STRING_LEN), nullable=False, unique=True)
     src_path = Column(db.String(PATH_STRING_LEN), nullable=False, unique=False)
+    templates = db.relationship("Template")
 
     status_code = Column(db.SmallInteger, default=IMAGE_OK)
 

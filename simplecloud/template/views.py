@@ -12,7 +12,6 @@ from flask.ext.login import login_required, current_user
 
 from ..extensions import db
 from .models import Template
-from .constants import TEMPLATE_DELETED
 from .forms import AddTemplateForm
 from ..task import log_task
 
@@ -21,7 +20,7 @@ template = Blueprint('template', __name__, url_prefix='/templates')
 @template.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    templates = Template.query.filter(Template.status_code!=TEMPLATE_DELETED).all()
+    templates = Template.query.filter().all()
     form = AddTemplateForm(next=request.args.get('next'))
 
     if form.validate_on_submit():
@@ -45,9 +44,16 @@ def index():
 @admin_required
 def delete(template_id):
     template = Template.query.filter_by(id=template_id).first_or_404()
-    # TODO: validation
-    template.status_code = TEMPLATE_DELETED
-    db.session.add(template)
+    
+    # validate template coult be deleted
+    current_app.logger.info("Try to delete template %d %s" % (template.id, str(template.vm)))
+    if len(template.vms) > 0:
+        errmsg = "Couldn't delete template %s with %d vms using it." % (template.name, len(template.vms))
+        current_app.logger.error(errmsg)
+        flash(errmsg, 'error')
+        return redirect(url_for("template.index"))
+        
+    db.session.delete(template)
     db.session.commit()
     message = "Delete Template " + template.name+ "(" + str(template_id) + ")"
     log_task(message)    

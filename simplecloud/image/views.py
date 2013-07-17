@@ -64,7 +64,15 @@ def index():
 @admin_required
 def delete(image_id):
     image = Image.query.filter_by(id=image_id).first_or_404()
-    # TODO: validation
+
+    # validate image coult be deleted
+    current_app.logger.info("Try to delete image %d %s" % (image.id, str(image.templates)))
+    if len(image.templates) > 0:
+        errmsg = "Couldn't delete image %s with %d templates using it." % (image.name, len(image.templates))
+        current_app.logger.error(errmsg)
+        flash(errmsg, 'error')
+        return redirect(url_for("image.index"))
+        
     delete_image(image)
     db.session.delete(image)
     db.session.commit()

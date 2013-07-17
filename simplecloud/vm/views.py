@@ -11,7 +11,6 @@ from flask.ext.login import login_required, current_user
 
 from ..extensions import db
 from .models import VM
-from .constants import VM_DELETED
 from .forms import AddVMForm
 from ..task import log_task
 
@@ -24,10 +23,9 @@ def index():
     if not current_user.is_authenticated():
         abort(403)
     if current_user.is_admin():
-        vms = VM.query.filter(VM.status_code!=VM_DELETED).all()
+        vms = VM.query.filter().all()
     else:
-        vms = VM.query.filter(db.and_(VM.owner_id == current_user.id,
-                VM.status_code!=VM_DELETED)).all()
+        vms = VM.query.filter(VM.owner_id == current_user.id).all()
 
     form = AddVMForm(next=request.args.get('next'))
 
@@ -63,7 +61,6 @@ def delete(vm_id):
     vm = VM.query.filter_by(id=vm_id).first_or_404()
     # TODO: validation
     # TODO: Libvirt Delete VM
-    vm.status_code = VM_DELETED
     db.session.delete(vm)
     db.session.commit()
     message = "Delete VM " + vm.name + "(" + str(vm_id) + ")"
