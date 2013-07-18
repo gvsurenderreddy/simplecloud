@@ -25,7 +25,7 @@ setup(
         'Flask-Cache',
         'Flask-Login',
         'nose',
-#	'lxml',
+	'lxml',
 #	'libvirt-python',
 #        'mysql-python',
     ],

@@ -8,6 +8,8 @@ from flask.ext.wtf import (HiddenField, BooleanField, TextField,
 from flask.ext.wtf import Required, Length, EqualTo, Email
 from flask.ext.wtf.html5 import EmailField
 
+from flaskext.babel import lazy_gettext as _
+
 from ..user import User
 from ..utils import (PASSWORD_LEN_MIN, PASSWORD_LEN_MAX,
         USERNAME_LEN_MIN, USERNAME_LEN_MAX)
@@ -15,10 +17,10 @@ from ..utils import (PASSWORD_LEN_MIN, PASSWORD_LEN_MAX,
 
 class LoginForm(Form):
     next = HiddenField()
-    login = TextField(u'Username or email', [Required()])
-    password = PasswordField('Password', [Required(), Length(PASSWORD_LEN_MIN, PASSWORD_LEN_MAX)])
-    remember = BooleanField('Remember me')
-    submit = SubmitField('Login')
+    login = TextField(_(u'Username or email'), [Required()])
+    password = PasswordField(_('Password'), [Required(), Length(PASSWORD_LEN_MIN, PASSWORD_LEN_MAX)])
+    remember = BooleanField(_('Remember me'))
+    submit = SubmitField(_('Login'))
 
 
 class SignupForm(Form):

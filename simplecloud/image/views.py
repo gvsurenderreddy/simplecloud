@@ -5,6 +5,7 @@ import os.path
 import hashlib
 import shutil
 
+from flaskext.babel import gettext as _
 from datetime import datetime
 from ..decorators import admin_required
 
@@ -56,12 +57,12 @@ def index():
         db.session.commit()
         message = "Add Image "+ image.name
         log_task(message)
-        flash("Image " + image.name + " was added.", "success")
+        flash(_("Image %(name)s was added.", name = image.name), "success")
         return redirect(form.next.data or url_for('image.index'))
     elif form.is_submitted():
-        flash("Failed to add Image", "error")    
+        flash(_("Failed to add Image"), "error")    
 
-    return render_template('image/index.html', images=images, active='Images', form=form)
+    return render_template('image/index.html', images=images, active=_('Images'), form=form)
 
 # Delete Image Page    
 @image.route('/delete/<int:image_id>', methods=['GET'])
@@ -73,7 +74,8 @@ def delete(image_id):
     # validate image coult be deleted
     current_app.logger.info("Try to delete image %d %s" % (image.id, str(image.templates)))
     if len(image.templates) > 0:
-        errmsg = "Couldn't delete image %s with %d templates using it." % (image.name, len(image.templates))
+        errmsg = _("Couldn't delete image %(name)s with %(count)d templates using it.",
+                name = image.name, count = len(image.templates))
         current_app.logger.error(errmsg)
         flash(errmsg, 'error')
         return redirect(url_for("image.index"))
@@ -81,9 +83,9 @@ def delete(image_id):
     delete_image(image)
     db.session.delete(image)
     db.session.commit()
-    message = "Delete Image " + image.name + "(" + str(image_id) + ")"
+    message = _("Delete Image %(name)s (%(id)d)", name = image.name, id = image_id)
     log_task(message)
-    flash('Image '+ image.name +' was deleted.', 'success')
+    flash(_('Image %(name)s was deleted.', name = image.name), 'success')
     return redirect(url_for('image.index'))
 
 def copy_image(image):

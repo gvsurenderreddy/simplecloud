@@ -4,15 +4,15 @@
 
 {% block body %}
 <div class="container">
-    <h2>Tasks</h2>
+    <h2>{{ _("Tasks") }}</h2>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Owner ID</th>
-                <th>Create Time</th>
-                <th>Status</th>
+                <th>{{ _("ID") }}</th>
+                <th>{{ _("Name") }}</th>
+                <th>{{ _("Owner ID") }}</th>
+                <th>{{ _("Create Time") }}</th>
+                <th>{{ _("Status") }}</th>
             </tr>
         </thead>
         {% for task in tasks %}

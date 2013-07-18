@@ -3,6 +3,7 @@
 from flask import (Blueprint, render_template, request, flash,
         redirect, url_for)
 from flask.ext.login import login_required
+from flaskext.babel import gettext as _
 
 from ..extensions import db
 from ..decorators import admin_required
@@ -20,7 +21,7 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @admin_required
 def index():
     stat = get_system_stat()
-    return render_template('admin/index.html', stat=stat, active='Dashboard')
+    return render_template('admin/index.html', stat=stat, active=_('Dashboard'))
 
 
 @admin.route('/users', methods=['GET', 'POST'])
@@ -37,13 +38,13 @@ def users():
 
         db.session.add(user)
         db.session.commit()
-        log_task("Add User " + user.name)
-        flash("User " + user.name + " was added.", "success")
+        log_task(_("Add User %(name)s", name = user.name))
+        flash(_("User %(name)s was added.", name=user.name), "success")
         return redirect(form.next.data or url_for('admin.users'))
     elif form.is_submitted():
-        flash("Failed to add User", "error")    
+        flash(_("Failed to add User"), "error")    
 
-    return render_template('admin/users.html', users=users, active='Users', form=form)
+    return render_template('admin/users.html', users=users, active=_('Users'), form=form)
 
 @admin.route('/system')
 @login_required
@@ -51,7 +52,7 @@ def users():
 def system():
     storage = get_storage_stat()
     network = get_network_stat()
-    return render_template('admin/system.html', network=network, storage=storage, active='System')
+    return render_template('admin/system.html', network=network, storage=storage, active=_('System'))
 
 # Edit User Page    
 @admin.route('/users/<int:user_id>', methods=['GET', 'POST'])
@@ -66,9 +67,9 @@ def user(user_id):
 
         db.session.add(user)
         db.session.commit()    
-        message = "Update User " + user.name + "(" + str(user_id) + ")"
+        message = _("Update User %(name)s (%(id)d)", name=user.name, id=user.id)
         log_task(message)
-        flash('User ' + user.name +' was updated.', 'success')
+        flash(_('User %(name)s was updated', name=user.name), 'success')
         return redirect(form.next.data or url_for('admin.users'))
 
     return render_template('admin/user.html', user=user, form=form)
@@ -82,8 +83,8 @@ def delete_user(user_id):
     user.status_code = USER_DELETED
     db.session.add(user)
     db.session.commit()
-    message = "Delete User " + user.name + "(" + str(user_id) + ")"
+    message = _("Delete User %(name)s (%(id)d)", name=user.name, id=user.id)
     log_task(message)
-    flash('User '+ user.name +' was deleted.', 'success')
+    flash(_('User %(name)s was deleted.', name=user.name), 'success')
     return redirect(url_for('admin.users'))
 

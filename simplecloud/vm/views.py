@@ -8,6 +8,7 @@ from datetime import datetime
 from flask import (Blueprint, render_template, current_app, request, flash,
         redirect, url_for)
 from flask.ext.login import login_required, current_user
+from flaskext.babel import gettext as _
 
 from ..extensions import db
 from .models import VM
@@ -36,7 +37,7 @@ def index():
         # validate VM name here
         if VM.query.filter(db.and_(VM.owner_id == current_user.id,
                 VM.name == vm.name)).first() is not None:
-            flash("VM Name %s is taken." % vm.name, "error")
+            flash(_("VM Name %(name)s is taken.", name = vm.name), "error")
             return redirect(form.next.data or url_for('user.index'))
         vm.owner_id = current_user.id
         create_vm(vm)
@@ -44,7 +45,7 @@ def index():
     elif form.is_submitted():
         flash(_("Failed to add VM"), "error")
       
-    return render_template('vm/index.html', vms=vms, form=form, active="VirtualMachines")
+    return render_template('vm/index.html', vms=vms, form=form, active=_("VirtualMachines"))
     
 # VM action Page    
 @vm.route('/<action>/<int:vm_id>', methods=['GET'])
@@ -56,7 +57,7 @@ def do(action, vm_id):
     if callable(op):
         op(vm)
     else:
-        errMsg = "Not supported action %s" % action
+        errMsg = _("Not supported action %(name)s", name = action)
         flash(errMsg, "error")
     return redirect(url_for("vm.index"))
 

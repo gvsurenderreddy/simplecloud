@@ -4,20 +4,20 @@
 
 {% block body %}
 <div class="container">
-    <h2>Users</h2>
+    <h2>{{ _("Users") }}</h2>
     <a class='btn btn-primary btn-large' href="#adduser" data-toggle="modal">
-        <i class="icon-plus icon-white icon-4x"></i> Add User
+        <i class="icon-plus icon-white icon-4x"></i> {{ _("Add User") }}
     </a>
     <hr>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>Username</th>
-                <th>Status</th>
-                <th>Role</th>
-                <th>Email</th>
-                <th>VM Quota</th>
-                <th>Created Time</th>
+                <th>{{ _("Username") }}</th>
+                <th>{{ _("Status") }}</th>
+                <th>{{ _("Role") }}</th>
+                <th>{{ _("Email") }}</th>
+                <th>{{ _("VM Quota") }}</th>
+                <th>{{ _("Created Time") }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -31,8 +31,8 @@
             <td>{{ user.created_time|format_time }}</td>
             <td>
                 <a class='btn-group'>
-                <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">Edit</a></button>
-                <button class='btn'><a href="{{ url_for('admin.delete_user', user_id=user.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                <button class='btn'><a href="{{ url_for('admin.user', user_id=user.id) }}">{{ _("Edit") }}</a></button>
+                <button class='btn'><a href="{{ url_for('admin.delete_user', user_id=user.id) }}" onclick="return confirm('Are you sure?');">{{ _("Delete") }}</a></button>
                 </a>
             </td>
         </tr>
@@ -42,6 +42,6 @@
 
 
 
-{{ render_modal_form("adduser", "Add User", url_for('admin.users'), form) }}
+{{ render_modal_form("adduser", _("Add User"), url_for('admin.users'), form) }}
 
 {% endblock %}

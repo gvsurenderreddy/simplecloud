@@ -8,24 +8,24 @@
 
 {% block body %}
 <div class="container">
-    <h2>Templates</h2>
+    <h2>{{ _("Templates") }}</h2>
     {% if current_user.is_admin() %}
     <a class='btn btn-primary btn-large' href="#addtemplate" data-toggle="modal">
-        <i class="icon-plus icon-white icon-4x"></i> Add Template
+        <i class="icon-plus icon-white icon-4x"></i> {{ _("Add Template") }}
     </a>
     {% endif %}
     <hr>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Image ID</th>
-                <th>VCPU</th>
-                <th>Memory(M)</th>
-                <th>Disk(M)</th>
-                <th>VM Number</th>
-                <th>Status</th>
+                <th>{{ _("ID") }}</th>
+                <th>{{ _("Name") }}</th>
+                <th>{{ _("Image ID") }}</th>
+                <th>{{ _("VCPU") }}</th>
+                <th>{{ _("Memory(M)") }}</th>
+                <th>{{ _("Disk(M)") }}</th>
+                <th>{{ _("VM Number") }}</th>
+                <th>{{ _("Status") }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -42,9 +42,9 @@
             <td>
                 <a class='btn-group'>
                 {% if current_user.is_admin() %}
-                <button class='btn'><a href="{{ url_for('template.delete', template_id=template.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                <button class='btn'><a href="{{ url_for('template.delete', template_id=template.id) }}" onclick="return confirm('Are you sure?');">{{ _("Delete") }}</a></button>
                 {% else %}
-                <a class="open-addvm btn" href="#addvm" data-toggle="modal" data-templateid="{{ template.id }}">Create VM</a>              
+                <a class="open-addvm btn" href="#addvm" data-toggle="modal" data-templateid="{{ template.id }}">{{ _("Create VM") }}</a>              
                 {% endif %}
                 </a>
             </td>
@@ -54,11 +54,11 @@
 </div>
 {% if current_user.is_admin() %}
     {% if form %}
-        {{ render_modal_form("addtemplate", "Add Template", url_for('template.index'), form) }}
+        {{ render_modal_form("addtemplate", _("Add Template"), url_for('template.index'), form) }}
     {% endif %}
 {% else %}
     {% if form %}
-        {{ render_modal_form("addvm", "Add VM", url_for('vm.index'), form) }}
+        {{ render_modal_form("addvm", _("Add VM"), url_for('vm.index'), form) }}
     {% endif %}
 {% endif %}
 

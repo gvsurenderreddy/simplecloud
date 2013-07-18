@@ -9,6 +9,7 @@ from ..decorators import admin_required
 from flask import (Blueprint, render_template, current_app, request, flash,
         redirect, url_for)
 from flask.ext.login import login_required, current_user
+from flaskext.babel import gettext as _
 
 from ..extensions import db
 from .models import Host
@@ -30,12 +31,12 @@ def index():
         host = Host()
         form.populate_obj(host)
         status,errMsg = host.check_connect()
-        message = "Add Host "+ host.address
+        message = _("Add Host %(address)s", address = host.address)
         if status:
-            flash("Host " + host.address + " was added.", "success")
+            flash(_("Host %(address)s was added", address = host.address), "success")
             log_task(message)
         else:
-            flash("Failed to add Host " + host.address, "error")
+            flash(_("Failed to add Host %(address)s", address = host.address), "error")
             current_app.logger.error(errMsg)
             log_task(message, TASK_FAILED)
 
@@ -43,9 +44,9 @@ def index():
         db.session.commit()        
         return redirect(form.next.data or url_for('host.index'))
     elif form.is_submitted():
-        flash("Failed to add Host", "error")    
+        flash(_("Failed to add Host"), "error")    
 
-    return render_template('host/index.html', hosts=hosts, active='Hosts', form=form)
+    return render_template('host/index.html', hosts=hosts, active=_('Hosts'), form=form)
 
 # Edit Host page
 @host.route('/edit/<int:host_id>', methods=['GET', 'POST'])
@@ -58,12 +59,12 @@ def edit(host_id):
     if form.validate_on_submit():
         form.populate_obj(host)
         status,errMsg = host.check_connect()
-        message = "Update Host "+ host.address
+        message = _("Update Host %(address)s(%(id)d)", address = host.address, id = host.id)
         if status:
-            flash("Host " + host.address + " was updated.", "success")
+            flash(_("Host %(address)s was updated", address = host.address), "success")
             log_task(message)
         else:
-            flash("Failed to reconnect Host " + host.address, "error")
+            flash(_("Failed to reconnect Host %(address)s", address = host.address), "error")
             current_app.logger.error(errMsg)
             log_task(message, TASK_FAILED)
 
@@ -81,12 +82,12 @@ def delete(host_id):
     host = Host.query.filter_by(id=host_id).first_or_404()
 
     if not host.validate_delete():
-        flash("Some VirtualMachine is on this Host, Couldn't be deleted", "error")
+        flash(_("Some VirtualMachine is on this Host, Couldn't be deleted"), "error")
         return redirect(url_for('host.index'))
     db.session.delete(host)
     db.session.commit()
-    message = "Delete Host " + host.address + "(" + str(host_id) + ")"
+    message = _("Delete Host %(address)s(%(id)d)", address = host.address, id = host.id)
     log_task(message)
-    flash('Host '+ host.address +' was deleted.', 'success')
+    flash(_("Host %(address)s was deleted", address = host.address), "success")
     return redirect(url_for('host.index'))
 

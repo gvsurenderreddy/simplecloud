@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-07-17 22:44+0800\n"
+"POT-Creation-Date: 2013-07-18 12:23+0800\n"
 "PO-Revision-Date: 2013-07-17 22:25+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: zh_CN <LL@li.org>\n"
@@ -17,112 +17,599 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: simplecloud/admin/forms.py:21
+#: simplecloud/admin/forms.py:20
 msgid "What's your email address?"
-msgstr ""
+msgstr "常用邮箱地址"
+
+#: simplecloud/admin/forms.py:21 simplecloud/frontend/forms.py:21
+msgid "Password"
+msgstr "密码"
 
 #: simplecloud/admin/forms.py:22
-msgid "Password"
-msgstr ""
+msgid "%(number)d characters or more! Be tricky."
+msgstr "至少%(number)d个字符"
 
 #: simplecloud/admin/forms.py:23
-#, python-format
-msgid "%s characters or more! Be tricky."
-msgstr ""
-
-#: simplecloud/admin/forms.py:24
 msgid "Choose your username"
-msgstr ""
+msgstr "用户名"
 
-#: simplecloud/admin/forms.py:25
+#: simplecloud/admin/forms.py:24 simplecloud/image/forms.py:20
+#: simplecloud/template/forms.py:22
 msgid "Don't worry. you can change it later."
-msgstr ""
+msgstr "设定后不可更改"
 
-#: simplecloud/admin/forms.py:26 simplecloud/admin/forms.py:45
+#: simplecloud/admin/forms.py:25 simplecloud/admin/forms.py:44
+#: simplecloud/host/forms.py:25 simplecloud/host/forms.py:36
+#: simplecloud/image/forms.py:24 simplecloud/settings/forms.py:20
+#: simplecloud/settings/forms.py:32 simplecloud/template/forms.py:31
+#: simplecloud/templates/macros/_form.html:183 simplecloud/vm/forms.py:18
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
-#: simplecloud/admin/forms.py:30 simplecloud/admin/forms.py:49
+#: simplecloud/admin/forms.py:29 simplecloud/admin/forms.py:48
 msgid "This username is taken"
-msgstr ""
+msgstr "用户名已被占用"
 
-#: simplecloud/admin/forms.py:34
+#: simplecloud/admin/forms.py:33
 msgid "This email is taken"
-msgstr ""
+msgstr "邮箱已被使用"
 
-#: simplecloud/admin/forms.py:38
+#: simplecloud/admin/forms.py:37 simplecloud/templates/admin/users.html:17
 msgid "Role"
-msgstr ""
+msgstr "角色"
 
-#: simplecloud/admin/forms.py:40
+#: simplecloud/admin/forms.py:39 simplecloud/templates/admin/system.html:18
+#: simplecloud/templates/admin/system.html:62
+#: simplecloud/templates/admin/users.html:16
+#: simplecloud/templates/host/index.html:21
+#: simplecloud/templates/image/index.html:17
+#: simplecloud/templates/task/index.html:15
+#: simplecloud/templates/template/index.html:28
+#: simplecloud/templates/vm/index.html:31
 msgid "Status"
-msgstr ""
+msgstr "状态"
+
+#: simplecloud/admin/forms.py:42 simplecloud/templates/admin/users.html:19
+msgid "VM Quota"
+msgstr "虚拟机数目配额"
 
 #: simplecloud/admin/forms.py:43
-msgid "VM Quota"
-msgstr ""
-
-#: simplecloud/admin/forms.py:44
 msgid "Created time"
-msgstr ""
+msgstr "创建时间"
+
+#: simplecloud/admin/views.py:24 simplecloud/templates/admin/index.html:12
+#: simplecloud/templates/admin/layout.html:7
+msgid "Dashboard"
+msgstr "主面板"
+
+#: simplecloud/admin/views.py:41
+msgid "Add User %(name)s"
+msgstr "添加用户 %(name)s"
+
+#: simplecloud/admin/views.py:42
+#, python-format
+msgid "User %(name)s was added."
+msgstr "用户 %(name)s 被添加"
+
+#: simplecloud/admin/views.py:45
+msgid "Failed to add User"
+msgstr "添加用户失败"
+
+#: simplecloud/admin/views.py:47 simplecloud/templates/admin/index.html:16
+#: simplecloud/templates/admin/layout.html:8
+#: simplecloud/templates/admin/user.html:3
+#: simplecloud/templates/admin/users.html:7
+msgid "Users"
+msgstr "用户"
+
+#: simplecloud/admin/views.py:55 simplecloud/templates/admin/layout.html:14
+#: simplecloud/templates/admin/system.html:6
+msgid "System"
+msgstr "系统"
+
+#: simplecloud/admin/views.py:70
+#, python-format
+msgid "Update User %(name)s (%(id)d)"
+msgstr "更新用户 %(name)s (%(id)d)"
+
+#: simplecloud/admin/views.py:72
+msgid "User %(name)s was updated"
+msgstr "用户 %(name)s 删除成功"
+
+#: simplecloud/admin/views.py:86
+msgid "Delete User %(name)s (%(id)d)"
+msgstr "删除用户 %(name)s (%(id)d)"
+
+#: simplecloud/admin/views.py:88
+msgid "User %(name)s was deleted."
+msgstr "用户 %(name)s 删除成功"
+
+#: simplecloud/frontend/forms.py:20
+msgid "Username or email"
+msgstr "用户名或邮箱"
+
+#: simplecloud/frontend/forms.py:22
+msgid "Remember me"
+msgstr "下次自动登录"
+
+#: simplecloud/frontend/forms.py:23
+msgid "Login"
+msgstr "登录"
 
 #: simplecloud/frontend/views.py:82 simplecloud/frontend/views.py:117
 msgid "Logged in"
-msgstr "登录"
+msgstr "成功登录"
 
 #: simplecloud/frontend/views.py:85 simplecloud/frontend/views.py:122
 msgid "Sorry, invalid login"
-msgstr ""
+msgstr "登录失败"
 
 #: simplecloud/frontend/views.py:97
 msgid "Please input keyword(s)"
-msgstr ""
+msgstr "请输入查询词"
 
 #: simplecloud/frontend/views.py:138
 msgid "Reauthenticated."
-msgstr ""
+msgstr "重新认证"
 
-#: simplecloud/frontend/views.py:141
+#: simplecloud/frontend/views.py:141 simplecloud/settings/forms.py:37
 msgid "Password is wrong."
-msgstr ""
+msgstr "密码错误"
 
 #: simplecloud/frontend/views.py:149
 msgid "Logged out"
-msgstr ""
+msgstr "退出"
 
 #: simplecloud/frontend/views.py:197
 msgid "Your password has been changed, please log in again"
-msgstr ""
+msgstr "密码已改，请重新登录"
 
 #: simplecloud/frontend/views.py:226
 msgid "Sorry, no user found for that email address"
-msgstr ""
+msgstr "该邮箱尚未注册"
+
+#: simplecloud/host/constants.py:11 simplecloud/image/constants.py:10
+#: simplecloud/template/constants.py:8
+msgid "ok"
+msgstr "正常"
+
+#: simplecloud/host/constants.py:12
+msgid "error"
+msgstr "错误"
+
+#: simplecloud/host/forms.py:19
+msgid "The IP address or hostname of target host"
+msgstr "目标服务器的IP地址或主机名"
+
+#: simplecloud/host/forms.py:20 simplecloud/host/forms.py:33
+msgid "Hypervisor Type"
+msgstr "虚拟化平台类型"
+
+#: simplecloud/host/forms.py:23 simplecloud/host/forms.py:35
+msgid "The Username used by libvirt+ssh connection"
+msgstr "用于libvirt SSH连接的用户名"
+
+#: simplecloud/host/forms.py:29 simplecloud/host/forms.py:39
+msgid "This host is added"
+msgstr "服务器添加成功"
+
+#: simplecloud/host/models.py:51
+#, python-format
+msgid "Not supported hypervisor type %(code)d"
+msgstr "不支持的虚拟化类型 %(code)d"
+
+#: simplecloud/host/utils.py:38
+msgid "No available host is found."
+msgstr "服务器资源不足"
+
+#: simplecloud/host/views.py:34
+#, python-format
+msgid "Add Host %(address)s"
+msgstr "添加服务器 %(address)s"
+
+#: simplecloud/host/views.py:36
+#, python-format
+msgid "Host %(address)s was added"
+msgstr "服务器 %(address)s 添加成功"
+
+#: simplecloud/host/views.py:39
+msgid "Failed to add Host %(address)s"
+msgstr "服务器%(address)s添加失败"
+
+#: simplecloud/host/views.py:47
+msgid "Failed to add Host"
+msgstr "服务器添加失败"
+
+#: simplecloud/host/views.py:49 simplecloud/templates/admin/index.html:20
+#: simplecloud/templates/admin/layout.html:9
+#: simplecloud/templates/host/edit.html:3
+#: simplecloud/templates/host/index.html:7
+msgid "Hosts"
+msgstr "服务器"
+
+#: simplecloud/host/views.py:62
+#, python-format
+msgid "Update Host %(address)s(%(id)d)"
+msgstr "更新服务器 %(address)s (%(id)d)"
+
+#: simplecloud/host/views.py:64
+#, python-format
+msgid "Host %(address)s was updated"
+msgstr "服务器 %(address)s 删除成功"
+
+#: simplecloud/host/views.py:67
+#, python-format
+msgid "Failed to reconnect Host %(address)s"
+msgstr "无法重连服务器  %(address)s"
+
+#: simplecloud/host/views.py:85
+msgid "Some VirtualMachine is on this Host, Couldn't be deleted"
+msgstr "该服务器上有虚拟机运行，无法删除"
+
+#: simplecloud/host/views.py:89
+#, python-format
+msgid "Delete Host %(address)s(%(id)d)"
+msgstr "删除服务器 %(address)s (%(id)d)"
+
+#: simplecloud/host/views.py:91
+#, python-format
+msgid "Host %(address)s was deleted"
+msgstr "服务器 %(address)s 删除成功"
+
+#: simplecloud/image/constants.py:11 simplecloud/template/constants.py:9
+#: simplecloud/vm/constants.py:13
+msgid "invalid"
+msgstr "错误"
+
+#: simplecloud/image/forms.py:19
+msgid "Choose the image name"
+msgstr "镜像名称"
+
+#: simplecloud/image/forms.py:21
+msgid "Choose the image file path"
+msgstr "镜像路径"
+
+#: simplecloud/image/forms.py:22
+msgid "The image will be copied to IMAGEPOOL from this location."
+msgstr "镜像文件将由该路径拷贝到镜像池"
+
+#: simplecloud/image/forms.py:28
+msgid "This image name is taken"
+msgstr "镜像名称已被占用"
+
+#: simplecloud/image/forms.py:32
+msgid "The source file does not exist."
+msgstr "源文件不存在"
+
+#: simplecloud/image/utils.py:11
+#, python-format
+msgid "Not found image with id %(id)d"
+msgstr "无法找到镜像 %(id)d"
+
+#: simplecloud/image/views.py:60
+msgid "Image %(name)s was added."
+msgstr "镜像 %(name)s 添加成功"
+
+#: simplecloud/image/views.py:63
+msgid "Failed to add Image"
+msgstr "镜像添加失败"
+
+#: simplecloud/image/views.py:65 simplecloud/templates/admin/index.html:24
+#: simplecloud/templates/admin/layout.html:11
+#: simplecloud/templates/image/index.html:7
+msgid "Images"
+msgstr "镜像"
+
+#: simplecloud/image/views.py:78
+#, python-format
+msgid "Couldn't delete image %(name)s with %(count)d templates using it."
+msgstr "镜像%(name)s 正在被 %(count)d 个模板使用，无法删除"
+
+#: simplecloud/image/views.py:86
+msgid "Delete Image %(name)s (%(id)d)"
+msgstr "删除镜像 %(name)s (%(id)d)"
+
+#: simplecloud/image/views.py:88
+msgid "Image %(name)s was deleted."
+msgstr "镜像 %(name)s 删除成功"
+
+#: simplecloud/settings/forms.py:17 simplecloud/templates/admin/users.html:18
+msgid "Email"
+msgstr "邮箱"
+
+#: simplecloud/settings/forms.py:18
+msgid "Quota of VirtualMachines"
+msgstr "虚拟机数目配额"
+
+#: simplecloud/settings/forms.py:25
+msgid "Please pick another name."
+msgstr "请选择其他的名称"
+
+#: simplecloud/settings/forms.py:29
+msgid "Current password"
+msgstr "当前密码"
+
+#: simplecloud/settings/forms.py:30
+msgid "New password"
+msgstr "新密码"
+
+#: simplecloud/settings/forms.py:31
+msgid "Password again"
+msgstr "再次输入"
+
+#: simplecloud/settings/views.py:33
+msgid "Public profile updated."
+msgstr "用户信息更新成功"
+
+#: simplecloud/settings/views.py:36
+#: simplecloud/templates/settings/layout.html:7
+msgid "profile"
+msgstr "信息"
+
+#: simplecloud/settings/views.py:55
+#: simplecloud/templates/settings/layout.html:8
+msgid "password"
+msgstr "密码"
+
+#: simplecloud/task/constants.py:9 simplecloud/vm/constants.py:14
+msgid "running"
+msgstr "运行"
+
+#: simplecloud/task/constants.py:10
+msgid "success"
+msgstr "成功"
+
+#: simplecloud/task/constants.py:11
+msgid "failed"
+msgstr "失败"
+
+#: simplecloud/task/views.py:22 simplecloud/templates/admin/layout.html:13
+#: simplecloud/templates/task/index.html:7
+msgid "Tasks"
+msgstr "任务"
+
+#: simplecloud/template/forms.py:21
+msgid "Choose the template name"
+msgstr "模板名称"
+
+#: simplecloud/template/forms.py:23
+msgid "Choose the image attached on this template"
+msgstr "该模板使用镜像的ID"
+
+#: simplecloud/template/forms.py:24
+#, python-format
+msgid "Choose the VCPU number (From %(min)d to %(max)d)"
+msgstr "VCPU数目（%(min)d 到 %(max)d）"
+
+#: simplecloud/template/forms.py:26
+#, python-format
+msgid "Choose the memory size (From %(min)dM to %(max)dM)"
+msgstr "内存大小（%(min)dM 到 %(max)dM）"
+
+#: simplecloud/template/forms.py:28
+#, python-format
+msgid "Choose the disk size (From %(min)dM to %(max)dM)"
+msgstr "磁盘大小（%(min)dM 到 %(max)dM）"
+
+#: simplecloud/template/forms.py:35
+msgid "This template name is taken"
+msgstr "模板名称已被占用"
+
+#: simplecloud/template/forms.py:39
+msgid "This Image is not found"
+msgstr "页面不存在"
+
+#: simplecloud/template/forms.py:47 simplecloud/vm/forms.py:15
+msgid "Choose virtualmachine name"
+msgstr "虚拟机名称"
+
+#: simplecloud/template/forms.py:48 simplecloud/vm/forms.py:16
+msgid "Choose the template ID"
+msgstr "模板ID"
+
+#: simplecloud/template/forms.py:55 simplecloud/vm/forms.py:23
+msgid "This Template is not found"
+msgstr "该模板不存在"
+
+#: simplecloud/template/forms.py:57 simplecloud/vm/forms.py:25
+msgid "This Template is not OK"
+msgstr "该模板不可用"
+
+#: simplecloud/template/views.py:35
+msgid "Add Template %(name)s"
+msgstr "添加模板 %(name)s"
+
+#: simplecloud/template/views.py:36
+msgid "Template %(name)s was added."
+msgstr "模板 %(name)s 添加成功"
+
+#: simplecloud/template/views.py:39
+msgid "Failed to add Template"
+msgstr "模板添加失败"
+
+#: simplecloud/template/views.py:41 simplecloud/templates/admin/index.html:28
+#: simplecloud/templates/admin/layout.html:12
+#: simplecloud/templates/template/index.html:11
+#: simplecloud/templates/user/layout.html:8
+msgid "Templates"
+msgstr "模板"
+
+#: simplecloud/template/views.py:54
+#, python-format
+msgid "Couldn't delete template %(name)s with %(count)d vms using it."
+msgstr "模板%(name)s正被%(count)d个虚拟机使用，无法删除"
+
+#: simplecloud/template/views.py:61
+msgid "Delete Template %(name)s (%(id)d)"
+msgstr "删除模板 %(name)s (%(id)d)"
+
+#: simplecloud/template/views.py:63
+msgid "Template %(name)s was deleted."
+msgstr "模板 %(name)s 删除成功"
+
+#: simplecloud/templates/admin/index.html:36
+#: simplecloud/templates/admin/layout.html:10
+#: simplecloud/templates/user/layout.html:7
+#: simplecloud/templates/vm/index.html:13 simplecloud/vm/views.py:48
+msgid "VirtualMachines"
+msgstr "虚拟机"
+
+#: simplecloud/templates/admin/index.html:40
+msgid "Used Resource"
+msgstr "已用资源"
+
+#: simplecloud/templates/admin/index.html:46
+msgid "Total"
+msgstr "总数"
+
+#: simplecloud/templates/admin/index.html:49
+msgid "Disk"
+msgstr "磁盘"
+
+#: simplecloud/templates/admin/index.html:55
+msgid "Running"
+msgstr "运行"
+
+#: simplecloud/templates/admin/index.html:56
+msgid "Stopped"
+msgstr "关机"
+
+#: simplecloud/templates/admin/index.html:59
+msgid "CPU"
+msgstr "CPU"
+
+#: simplecloud/templates/admin/index.html:60
+msgid "Memory"
+msgstr "内存"
+
+#: simplecloud/templates/admin/system.html:8
+msgid "Storage"
+msgstr "存储"
+
+#: simplecloud/templates/admin/system.html:12
+#: simplecloud/templates/admin/system.html:56
+#: simplecloud/templates/host/index.html:15
+#: simplecloud/templates/image/index.html:15
+#: simplecloud/templates/task/index.html:11
+#: simplecloud/templates/template/index.html:21
+#: simplecloud/templates/vm/index.html:24
+msgid "ID"
+msgstr "ID"
+
+#: simplecloud/templates/admin/system.html:13
+#: simplecloud/templates/admin/system.html:57
+msgid "Value"
+msgstr "值"
+
+#: simplecloud/templates/admin/system.html:22
+#: simplecloud/templates/host/index.html:17
+msgid "Type"
+msgstr "类型"
+
+#: simplecloud/templates/admin/system.html:26
+msgid "Protocol"
+msgstr "协议"
+
+#: simplecloud/templates/admin/system.html:30
+msgid "Instance Path"
+msgstr "系统路径"
+
+#: simplecloud/templates/admin/system.html:34
+msgid "Image Pool Path"
+msgstr "镜像池路径"
+
+#: simplecloud/templates/admin/system.html:38
+msgid "VM Pool Path"
+msgstr "虚拟机池路径"
+
+#: simplecloud/templates/admin/system.html:42
+msgid "Total Space"
+msgstr "存储总量"
+
+#: simplecloud/templates/admin/system.html:46
+msgid "Used Space"
+msgstr "已用资源"
+
+#: simplecloud/templates/admin/system.html:52
+msgid "Network"
+msgstr "网络"
+
+#: simplecloud/templates/admin/system.html:66
+msgid "Network Name"
+msgstr "虚拟网络名称"
+
+#: simplecloud/templates/admin/system.html:70
+msgid "Network Mode"
+msgstr "虚拟网络模式"
+
+#: simplecloud/templates/admin/system.html:74
+msgid "VM Network Mod"
+msgstr "虚拟机网络模式"
+
+#: simplecloud/templates/admin/user.html:9
+msgid "Edit User"
+msgstr "更新用户"
+
+#: simplecloud/templates/admin/users.html:9
+#: simplecloud/templates/admin/users.html:45
+msgid "Add User"
+msgstr "添加用户"
+
+#: simplecloud/templates/admin/users.html:15
+msgid "Username"
+msgstr "用户名"
+
+#: simplecloud/templates/admin/users.html:20
+#: simplecloud/templates/vm/index.html:30
+msgid "Created Time"
+msgstr "创建时间"
+
+#: simplecloud/templates/admin/users.html:34
+#: simplecloud/templates/host/index.html:36
+msgid "Edit"
+msgstr "更新"
+
+#: simplecloud/templates/admin/users.html:35
+#: simplecloud/templates/host/index.html:37
+#: simplecloud/templates/image/index.html:28
+#: simplecloud/templates/template/index.html:45
+#: simplecloud/templates/vm/index.html:54
+msgid "Delete"
+msgstr "删除"
 
 #: simplecloud/templates/errors/forbidden_page.html:2
 msgid "Forbidden page"
-msgstr ""
+msgstr "页面未授权"
 
 #: simplecloud/templates/errors/layout.html:9
 #: simplecloud/templates/layouts/base.html:9
 msgid "Project"
-msgstr ""
+msgstr "项目"
 
 #: simplecloud/templates/errors/page_not_found.html:2
 msgid "Page not found"
-msgstr ""
+msgstr "页面不存在"
 
 #: simplecloud/templates/errors/server_error.html:2
 msgid "Server error"
-msgstr ""
+msgstr "服务器错误"
+
+#: simplecloud/templates/frontend/login.html:3
+msgid "Sign In"
+msgstr "登录"
+
+#: simplecloud/templates/frontend/login.html:8
+msgid "Login SimpleCloud"
+msgstr "登录SimpleCloud系统"
 
 #: simplecloud/templates/frontend/search.html:6
 #, python-format
 msgid "Search results for \"%(keywords)s\""
-msgstr ""
+msgstr "查询结果 \"%(keywords)s\""
 
 #: simplecloud/templates/frontend/search.html:8
 msgid "Keywords needed!"
-msgstr ""
+msgstr "请输入查询词"
 
 #: simplecloud/templates/frontend/search.html:13
 #, python-format
@@ -148,7 +635,271 @@ msgid ""
 "    "
 msgstr ""
 
-#: simplecloud/vm/views.py:45
+#: simplecloud/templates/host/edit.html:9
+msgid "Edit Host"
+msgstr "更新服务器"
+
+#: simplecloud/templates/host/index.html:9
+#: simplecloud/templates/host/index.html:47
+msgid "Add Host"
+msgstr "添加服务器"
+
+#: simplecloud/templates/host/index.html:16
+msgid "Address"
+msgstr "地址"
+
+#: simplecloud/templates/host/index.html:18
+msgid "CPU Used"
+msgstr "已用CPU"
+
+#: simplecloud/templates/host/index.html:19
+msgid "Memory Used"
+msgstr "已用内存"
+
+#: simplecloud/templates/host/index.html:20
+#: simplecloud/templates/template/index.html:27
+msgid "VM Number"
+msgstr "虚拟机数目"
+
+#: simplecloud/templates/image/index.html:9
+#: simplecloud/templates/image/index.html:38
+msgid "Add Image"
+msgstr "添加镜像"
+
+#: simplecloud/templates/image/index.html:16
+#: simplecloud/templates/task/index.html:12
+#: simplecloud/templates/template/index.html:22
+#: simplecloud/templates/vm/index.html:25
+msgid "Name"
+msgstr "名称"
+
+#: simplecloud/templates/layouts/base.html:48
+#: simplecloud/templates/layouts/base.html:50
+msgid "Home"
+msgstr "主页"
+
+#: simplecloud/templates/layouts/base.html:52
+msgid "Settings"
+msgstr "配置"
+
+#: simplecloud/templates/layouts/base.html:53
+msgid "Log out"
+msgstr "退出"
+
+#: simplecloud/templates/macros/_form.html:182
+msgid "Close"
+msgstr "关闭"
+
+#: simplecloud/templates/settings/password.html:7
+msgid "Change Password"
+msgstr "修改密码"
+
+#: simplecloud/templates/settings/profile.html:7
+#: simplecloud/templates/user/profile.html:6
+msgid "Profile"
+msgstr "信息"
+
+#: simplecloud/templates/task/index.html:13
+#: simplecloud/templates/vm/index.html:27
+msgid "Owner ID"
+msgstr "拥有者ID"
+
+#: simplecloud/templates/task/index.html:14
+msgid "Create Time"
+msgstr "创建时间"
+
+#: simplecloud/templates/template/index.html:14
+#: simplecloud/templates/template/index.html:57
+msgid "Add Template"
+msgstr "添加模板"
+
+#: simplecloud/templates/template/index.html:23
+msgid "Image ID"
+msgstr "镜像ID"
+
+#: simplecloud/templates/template/index.html:24
+msgid "VCPU"
+msgstr "VCPU"
+
+#: simplecloud/templates/template/index.html:25
+msgid "Memory(M)"
+msgstr "内存（M）"
+
+#: simplecloud/templates/template/index.html:26
+msgid "Disk(M)"
+msgstr "磁盘（M）"
+
+#: simplecloud/templates/template/index.html:47
+msgid "Create VM"
+msgstr "创建虚拟机"
+
+#: simplecloud/templates/template/index.html:61
+#: simplecloud/templates/vm/index.html:64
+msgid "Add VM"
+msgstr "创建虚拟机"
+
+#: simplecloud/templates/vm/index.html:15
+msgid "My VirtualMachines"
+msgstr "我的虚拟机"
+
+#: simplecloud/templates/vm/index.html:17
+msgid "New VirtualMachine"
+msgstr "创建虚拟机"
+
+#: simplecloud/templates/vm/index.html:29
+msgid "Template ID"
+msgstr "模板ID"
+
+#: simplecloud/templates/vm/index.html:32
+msgid "VNC Link"
+msgstr "VNC访问链接"
+
+#: simplecloud/templates/vm/index.html:50
+msgid "Start"
+msgstr "开机"
+
+#: simplecloud/templates/vm/index.html:51
+msgid "Stop"
+msgstr "关机"
+
+#: simplecloud/templates/vm/index.html:52
+msgid "Reboot"
+msgstr "重启"
+
+#: simplecloud/user/constants.py:8
+msgid "admin"
+msgstr "管理员"
+
+#: simplecloud/user/constants.py:9
+msgid "user"
+msgstr "用户"
+
+#: simplecloud/user/constants.py:18
+msgid "inactive"
+msgstr "未激活"
+
+#: simplecloud/user/constants.py:19
+msgid "new"
+msgstr "新建"
+
+#: simplecloud/user/constants.py:20
+msgid "active"
+msgstr "已激活"
+
+#: simplecloud/user/constants.py:21
+msgid "deleted"
+msgstr "已删除"
+
+#: simplecloud/vm/constants.py:12
+msgid "init"
+msgstr "初始化"
+
+#: simplecloud/vm/constants.py:15
+msgid "stopped"
+msgstr "关机"
+
+#: simplecloud/vm/constants.py:16
+msgid "unknown"
+msgstr "未知"
+
+#: simplecloud/vm/utils.py:71 simplecloud/vm/utils.py:93
+#: simplecloud/vm/utils.py:120 simplecloud/vm/utils.py:192
+#, python-format
+msgid "Not found host with id %(id)d"
+msgstr "无法找到服务器 %(id)d"
+
+#: simplecloud/vm/utils.py:114 simplecloud/vm/utils.py:185
+#, python-format
+msgid "Not found template with id %(id)d"
+msgstr "无法找到模板 %(id)d"
+
+#: simplecloud/vm/utils.py:158
+#, python-format
+msgid "Failed to create VM %(name)s: %(error)s"
+msgstr "虚拟机创建失败 %(name)s: %(error)s"
+
+#: simplecloud/vm/utils.py:159
+msgid "Add VM %(name)s"
+msgstr "创建虚拟机 %(name)s"
+
+#: simplecloud/vm/utils.py:202 simplecloud/vm/utils.py:207
+msgid "Delete VM %(name)s (%(id)d)"
+msgstr "删除虚拟机 %(name)s (%(id)d)"
+
+#: simplecloud/vm/utils.py:204
+msgid "VM %(name)s was deleted."
+msgstr "虚拟机 %(name)s 删除成功"
+
+#: simplecloud/vm/utils.py:206
+#, python-format
+msgid "Failed to delete VM %(name)s: %(error)s"
+msgstr "虚拟机删除失败 %(name)s: %(error)s"
+
+#: simplecloud/vm/utils.py:221 simplecloud/vm/utils.py:226
+msgid "Start VM %(name)s (%(id)d)"
+msgstr "启动虚拟机 %(name)s (%(id)d)"
+
+#: simplecloud/vm/utils.py:223
+msgid "VM %(name)s was started."
+msgstr "虚拟机 %(name)s 创建成功"
+
+#: simplecloud/vm/utils.py:225
+#, python-format
+msgid "Failed to start VM %(name)s: %(error)s"
+msgstr "虚拟机启动失败 %(name)s: %(error)s"
+
+#: simplecloud/vm/utils.py:236 simplecloud/vm/utils.py:241
+msgid "Shutdown VM %(name)s (%(id)d)"
+msgstr "关闭虚拟机 %(name)s (%(id)d)"
+
+#: simplecloud/vm/utils.py:238
+msgid "VM %(name)s was shutdown."
+msgstr "虚拟机 %(name)s 关闭成功"
+
+#: simplecloud/vm/utils.py:240
+#, python-format
+msgid "Failed to shutdown VM %(name)s: %(error)s"
+msgstr "虚拟机关闭失败 %(name)s: %(error)s"
+
+#: simplecloud/vm/utils.py:254 simplecloud/vm/utils.py:259
+msgid "Stop VM %(name)s (%(id)d)"
+msgstr "关闭虚拟机 %(name)s (%(id)d)"
+
+#: simplecloud/vm/utils.py:256
+msgid "VM %(name)s was stopped."
+msgstr "虚拟机 %(name)s 关闭成功"
+
+#: simplecloud/vm/utils.py:258
+#, python-format
+msgid "Failed to stop VM %(name)s: %(error)s"
+msgstr "虚拟机关闭失败 %(name)s: %(error)s"
+
+#: simplecloud/vm/utils.py:268 simplecloud/vm/utils.py:273
+msgid "Reboot VM %(name)s (%(id)d)"
+msgstr "重启虚拟机 %(name)s (%(id)d)"
+
+#: simplecloud/vm/utils.py:270
+msgid "VM %(name)s was rebooted."
+msgstr "虚拟机 %(name)s 重启成功"
+
+#: simplecloud/vm/utils.py:272
+#, python-format
+msgid "Failed to reboot VM %(name)s: %(error)s"
+msgstr "虚拟机重启失败 %(name)s: %(error)s"
+
+#: simplecloud/vm/views.py:40
+msgid "VM Name %(name)s is taken."
+msgstr "虚拟机名称 %(name)s 已被占用"
+
+#: simplecloud/vm/views.py:46
 msgid "Failed to add VM"
-msgstr ""
+msgstr "虚拟机创建失败"
+
+#: simplecloud/vm/views.py:60
+#, python-format
+msgid "Not supported action %(name)s"
+msgstr "不支持的操作 %(name)s"
+
+#~ msgid "virtualmachine name."
+#~ msgstr "虚拟机"
 

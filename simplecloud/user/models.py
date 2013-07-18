@@ -7,7 +7,8 @@ from flask.ext.login import UserMixin
 
 from ..extensions import db
 from ..utils import get_current_time, STRING_LEN
-from .constants import (USER, USER_ROLE, ADMIN, USER_INACTIVE, USER_STATUS)
+from .constants import (USER, USER_ROLE, ADMIN, USER_INACTIVE, USER_STATUS,
+        USER_LOCALE_ZH_CN)
 
 class User(db.Model, UserMixin):
 
@@ -21,7 +22,7 @@ class User(db.Model, UserMixin):
     vm_quota = Column(db.Integer, default=0)
     _password = Column('password', db.String(STRING_LEN), nullable=False)
     vms = db.relationship("VM")
-
+    
     def _get_password(self):
         return self._password
 
@@ -56,7 +57,7 @@ class User(db.Model, UserMixin):
     @property
     def status(self):
         return USER_STATUS[self.status_code]
-
+        
     # ================================================================
     # One-to-one (uselist=False) relationship between users and user_details.
     #user_detail_id = Column(db.Integer, db.ForeignKey("user_details.id"))

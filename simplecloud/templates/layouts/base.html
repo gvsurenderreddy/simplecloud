@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}{{ page_title|default(_('Project')) }}{% endblock %} - Project</title>
+    <title>{% block title %}{{ page_title|default(_('Project')) }}{% endblock %}</title>
     <meta name="description" content="SimpleCloud is an IaaS(Infrastructure as a Service) application.">
     <meta name="author" content="Lei Shi">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,12 +45,12 @@
                     <div class="nav-collapse collapse pull-right">
                         <ul class="nav">
                             {% if current_user.is_admin() %}
-                            <li><a href="{{ url_for('admin.index') }}">{{ current_user.name}}'s Home</a></li>
+                            <li><a href="{{ url_for('admin.index') }}">{{ current_user.name}} {{ _("Home") }}</a></li>
                             {% else %}
-                            <li><a href="{{ url_for('user.index') }}">{{ current_user.name}}'s Home</a></li>
+                            <li><a href="{{ url_for('user.index') }}">{{ current_user.name}} {{ _("Home") }}</a></li>
                             {% endif %}
-                            <li><a href="{{ url_for('settings.profile') }}">Settings</a></li>
-                            <li><a href="{{ url_for('frontend.logout') }}">Log out</a></li>
+                            <li><a href="{{ url_for('settings.profile') }}">{{ _("Settings") }}</a></li>
+                            <li><a href="{{ url_for('frontend.logout') }}">{{ _("Log out") }}</a></li>
                         </ul>
                     </div>
                     {% endif %}

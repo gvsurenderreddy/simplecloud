@@ -4,17 +4,17 @@
 
 {% block body %}
 <div class="container">
-    <h2>Images</h2>
+    <h2>{{ _("Images") }}</h2>
     <a class='btn btn-primary btn-large' href="#addimage" data-toggle="modal">
-        <i class="icon-plus icon-white icon-4x"></i> Add Image
+        <i class="icon-plus icon-white icon-4x"></i> {{ _("Add Image") }}
     </a>
     <hr>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Status</th>
+                <th>{{ _("ID") }}</th>
+                <th>{{ _("Name") }}</th>
+                <th>{{ _("Status") }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -25,7 +25,7 @@
             <td>{{ image.status }}</td>
             <td>
                 <a class='btn-group'>
-                <button class='btn'><a href="{{ url_for('image.delete', image_id=image.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                <button class='btn'><a href="{{ url_for('image.delete', image_id=image.id) }}" onclick="return confirm('Are you sure?');">{{ _("Delete") }}</a></button>
                 </a>
             </td>
         </tr>
@@ -35,7 +35,7 @@
 
 
 {% if form %}
-{{ render_modal_form("addimage", "Add Image", url_for('image.index'), form) }}
+{{ render_modal_form("addimage", _("Add Image"), url_for('image.index'), form) }}
 {% endif %}
 
 {% endblock %}

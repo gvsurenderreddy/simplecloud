@@ -4,21 +4,21 @@
 
 {% block body %}
 <div class="container">
-    <h2>Hosts</h2>
+    <h2>{{ _("Hosts") }}</h2>
     <a class='btn btn-primary btn-large' href="#addhost" data-toggle="modal">
-        <i class="icon-plus icon-white icon-4x"></i> Add Host
+        <i class="icon-plus icon-white icon-4x"></i> {{ _("Add Host") }}
     </a>
     <hr>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Address</th>
-                <th>Type</th>
-                <th>CPU Used</th>
-                <th>Memory Used</th>
-                <th>VM Number</th>
-                <th>Status</th>
+                <th>{{ _("ID") }}</th>
+                <th>{{ _("Address") }}</th>
+                <th>{{ _("Type") }}</th>
+                <th>{{ _("CPU Used") }}</th>
+                <th>{{ _("Memory Used") }}</th>
+                <th>{{ _("VM Number") }}</th>
+                <th>{{ _("Status") }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -33,8 +33,8 @@
             <td>{{ host.status }}</td>
             <td>
                 <a class='btn-group'>
-                <button class='btn'><a href="{{ url_for('host.edit', host_id=host.id) }}">Edit</a></button>
-                <button class='btn'><a href="{{ url_for('host.delete', host_id=host.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                <button class='btn'><a href="{{ url_for('host.edit', host_id=host.id) }}">{{ _("Edit") }}</a></button>
+                <button class='btn'><a href="{{ url_for('host.delete', host_id=host.id) }}" onclick="return confirm('Are you sure?');">{{ _("Delete") }}</a></button>
                 </a>
             </td>
         </tr>
@@ -44,7 +44,7 @@
 
 
 {% if form %}
-{{ render_modal_form("addhost", "Add Host", url_for('host.index'), form) }}
+{{ render_modal_form("addhost", _("Add Host"), url_for('host.index'), form) }}
 {% endif %}
 
 {% endblock %}

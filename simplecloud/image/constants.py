@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from flaskext.babel import lazy_gettext as _
 
 PATH_STRING_LEN = 1024
 
@@ -6,8 +7,8 @@ PATH_STRING_LEN = 1024
 IMAGE_OK = 0
 IMAGE_INVALID = 1
 IMAGE_STATUS = {
-    IMAGE_OK: 'ok',
-    IMAGE_INVALID: 'invalid',
+    IMAGE_OK: _('ok'),
+    IMAGE_INVALID: _('invalid'),
 }
 
 # Image type

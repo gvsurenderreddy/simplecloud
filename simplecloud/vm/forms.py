@@ -5,22 +5,22 @@ from flask.ext.wtf import AnyOf
 from flask.ext.wtf import Form, ValidationError
 from flask.ext.wtf import Required, Length, EqualTo
 from flask.ext.wtf.html5 import IntegerField
+from flaskext.babel import lazy_gettext as _
 
 from ..utils import NAME_LEN_MIN, NAME_LEN_MAX
 from ..template import Template, TEMPLATE_OK
 
 class AddVMForm(Form):
     next = HiddenField()
-    name = TextField(u'Choose virtualmachine name', [Required(), Length(1, NAME_LEN_MAX)],
-            description=u"virtualmachine name.")
-    template_id = IntegerField(u'Choose the template ID', [Required()])
+    name = TextField(_(u'Choose virtualmachine name'), [Required(), Length(1, NAME_LEN_MAX)])
+    template_id = IntegerField(_(u'Choose the template ID'), [Required()])
     
-    submit = SubmitField('Save')
+    submit = SubmitField(_('Save'))
             
     def validate_template_id(self, field):
         template = Template.query.filter_by(id=field.data).first()
         if template is None:
-            raise ValidationError(u'This Template is not found')
+            raise ValidationError(_(u'This Template is not found'))
         if template.status_code != TEMPLATE_OK:
-            raise ValidationError(u'This Template is not OK')
+            raise ValidationError(_(u'This Template is not OK'))
 

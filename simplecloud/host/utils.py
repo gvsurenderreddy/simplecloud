@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from flaskext.babel import gettext as _
 from flask import current_app
 from flask.ext.login import current_user
 from .models import Host
@@ -35,6 +35,6 @@ def get_host(cpu_require, mem_require):
     
     if not target_host:
         current_app.logger.error("No available host is found.")
-        raise Exception("No available host is found.")
+        raise Exception(_("No available host is found."))
     
     return target_host.id

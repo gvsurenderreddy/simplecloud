@@ -2,7 +2,7 @@
 
 import os
 
-from flask import Flask, request, render_template
+from flask import Flask, g, request, render_template
 from flaskext.babel import Babel
 
 from .config import DefaultConfig

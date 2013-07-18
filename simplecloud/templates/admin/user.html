@@ -1,12 +1,12 @@
 {% from "macros/_form.html" import render_form %}
 
-{% set active="Users" %}
+{% set active=_("Users") %}
 {% extends "admin/layout.html" %}
 
 {% block body %}
 <div class="container">
     <!-- <a href="{{ url_for('admin.users') }}"><i class="icon-backward icon-2x"></i> Back to Users</a>-->
-    <h2>Edit User {{ user.name }}</h2>
+    <h2>{{ _("Edit User") }} / {{ user.name }}</h2>
     {{ render_form(url_for('admin.user', user_id=user.id), form) }}
 </div>
 {% endblock %}

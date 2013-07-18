@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from flaskext.babel import gettext as _
 from sqlalchemy import Column, types
 from sqlalchemy.ext.mutable import Mutable
 from ..extensions import db
@@ -47,7 +48,7 @@ class Host(db.Model):
         elif int(self.type_code) == HOST_KVM:
             self.uri = "qemu+ssh://" + uri + "system"
         else:
-            errMsg = "Not supported hypervisor type " + str(self.type_code)
+            errMsg = _("Not supported hypervisor type %(code)d", code = self.type_code)
             self.status_code = HOST_ERROR
             return False,errMsg
         # 2. connect uri and get cpu_pool/mem_pool

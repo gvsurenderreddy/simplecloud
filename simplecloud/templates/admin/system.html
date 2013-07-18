@@ -1,83 +1,77 @@
 {% from "macros/_form.html" import render_modal_form %}
 
-{% extends "admin/layout.html" %}
-    storage['total_space'] = 0
-    storage['used_space'] = 0
-    storage['free_space'] = 0
-    storage['image_pool'] = IMAGE_POOL_PATH
-    storage['vm_pool'] = VM_POOL_PATH
-    
+{% extends "admin/layout.html" %}    
 {% block body %}
 <div class="container">
-    <h2>System</h2>
+    <h2>{{ _("System") }}</h2>
     <hr>
-    <h3>Storage</h3>
+    <h3>{{ _("Storage") }}</h3>
     <table class='table table-bordered table-hover'>
         <thead>
         <tr>
-                <th>ID</th>
-                <th>Value</th>
+                <th>{{ _("ID") }}</th>
+                <th>{{ _("Value") }}</th>
             </tr>
         </thead>
         {% if storage %}
         <tr>
-            <td>Status</td>
+            <td>{{ _("Status") }}</td>
             <td>{{ storage.status }}</td>
         </tr>
         <tr>
-            <td>Type</td>
+            <td>{{ _("Type") }}</td>
             <td>{{ storage.type }}</td>
         </tr>
         <tr>
-            <td>Protocol</td>
+            <td>{{ _("Protocol") }}</td>
             <td>{{ storage.protocol }}</td>
         </tr>
         <tr>
-            <td>Instance Path</td>
+            <td>{{ _("Instance Path") }}</td>
             <td>{{ storage.path }}</td>
         </tr>
         <tr>
-            <td>Image Pool Path</td>
+            <td>{{ _("Image Pool Path") }}</td>
             <td>{{ storage.image_pool }}</td>
         </tr>
         <tr>
-            <td>VM Pool Path</td>
+            <td>{{ _("VM Pool Path") }}</td>
             <td>{{ storage.vm_pool }}</td>
         </tr>
         <tr>
-            <td>Total Space</td>
+            <td>{{ _("Total Space") }}</td>
             <td>{{ storage.total_space }}</td>
         </tr>
         <tr>
-            <td>Used Space</td>
+            <td>{{ _("Used Space") }}</td>
             <td>{{ storage.used_space }}</td>
         </tr>   
         {% endif %}
     </table>
     <hr>
-    <h3>Network</h3>
+    <h3>{{ _("Network") }}</h3>
     <table class='table table-bordered table-hover'>
         <thead>
         <tr>
-                <th>ID</th>
-                <th>Value</th>
+                <th>{{ _("ID") }}</th>
+                <th>{{ _("Value") }}</th>
             </tr>
         </thead>
         {% if network %}
         <tr>
-            <td>Status</td>
+            <td>{{ _("Status") }}</td>
             <td>{{ network.status }}</td>
         </tr>
         <tr>
-            <td>Network Name</td>
+            <td>{{ _("Network Name") }}</td>
             <td>{{ network.name }}</td>
         </tr>
         <tr>
-            <td>Network Mode</td>
+            <td>{{ _("Network Mode") }}</td>
             <td>{{ network.mode }}</td>
         </tr>
         <tr>
-            <td>VM Network Mode</td>
+            <td>{{ _("VM Network Mod") }}e</td>
             <td>{{ network.vm_mode }}</td>
         </tr>
         {% endif %}

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from flaskext.babel import lazy_gettext as _
 
 VM_VCPU_VALUE = 50
 HOST_CPU_VALUE = 100
@@ -7,8 +8,8 @@ HOST_CPU_VALUE = 100
 HOST_OK = 0
 HOST_ERROR = 1
 HOST_STATUS = {
-    HOST_OK: 'ok',
-    HOST_ERROR: 'error',
+    HOST_OK: _('ok'),
+    HOST_ERROR: _('error'),
 }
 
 # Host Hypervisor Type

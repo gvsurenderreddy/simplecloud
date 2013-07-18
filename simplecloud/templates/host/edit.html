@@ -1,12 +1,12 @@
 {% from "macros/_form.html" import render_form %}
 
-{% set active="Hosts" %}
+{% set active=_("Hosts") %}
 {% extends "admin/layout.html" %}
 
 {% block body %}
 <div class="container">
     <!-- <a href="{{ url_for('admin.users') }}"><i class="icon-backward icon-2x"></i> Back to Users</a>-->
-    <h2>Edit Host {{ host.address }}</h2>
+    <h2>{{ _("Edit Host") }} / {{ host.address }}</h2>
     {{ render_form(url_for('host.edit', host_id=host.id), form) }}
 </div>
 {% endblock %}

@@ -43,7 +43,7 @@ class DefaultConfig(BaseConfig):
     #SQLALCHEMY_DATABASE_URI = 'mysql://username:password@server/db?charset=utf8'
 
     # Flask-babel: http://pythonhosted.org/Flask-Babel/
-    ACCEPT_LANGUAGES = ['zh']
+    ACCEPT_LANGUAGES = ['zh_CN', 'en']
     BABEL_DEFAULT_LOCALE = 'en'
 
     # Flask-cache: http://pythonhosted.org/Flask-Cache/

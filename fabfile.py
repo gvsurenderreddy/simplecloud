@@ -60,6 +60,5 @@ def build():
     """
     Babel compile.
     """
-    local("pybabel compile -d simplecloud/translations")
-
-    #local("python setup.py compile_catalog --directory `find simplecloud/ -name translations` --locale zh -f")
+    #local("pybabel compile -d simplecloud/translations")
+    local("python setup.py compile_catalog --directory `find simplecloud/ -name translations` --locale zh_CN -f")

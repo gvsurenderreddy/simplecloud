@@ -10,26 +10,26 @@
 <div class="container">
 
     {% if current_user.is_admin() %}
-    <h2>VMs</h2>
+    <h2>{{ _("VirtualMachines") }}</h2>
     {% else %}
-    <h2>My Virtual Machines</h2>
+    <h2>{{ _("My VirtualMachines") }}</h2>
     <a class='btn btn-primary btn-large' href="#addvm" data-toggle="modal">
-    <i class="icon-plus icon-white icon-4x"></i> New VirtualMachine
+    <i class="icon-plus icon-white icon-4x"></i> {{ _("New VirtualMachine") }}
     </a>
     {% endif %}
     <hr>
     <table class='table table-bordered table-hover'>
         <thead>
             <tr>
-                <th>#ID</th>
-                <th>Name</th>
+                <th>{{ _("ID") }}</th>
+                <th>{{ _("Name") }}</th>
                 {% if current_user.is_admin() %}
-                <th>Owner ID</th>
+                <th>{{ _("Owner ID") }}</th>
                 {% endif %}                
-                <th>Template ID</th>
-                <th>Created Time</th>
-                <th>Status</th>
-                <th>VNC Link</th>
+                <th>{{ _("Template ID") }}</th>
+                <th>{{ _("Created Time") }}</th>
+                <th>{{ _("Status") }}</th>
+                <th>{{ _("VNC Link") }}</th>
                 <th></th>
             </tr>
         </thead>
@@ -47,11 +47,11 @@
             <td>
                 <a class='btn-group'>
                 {% if not current_user.is_admin() %}
-                <button class='btn'><a href="{{ url_for('vm.do', action='start', vm_id=vm.id) }}">Start</a></button>
-                <button class='btn'><a href="{{ url_for('vm.do', action='stop', vm_id=vm.id) }}">Stop</a></button>
-                <button class='btn'><a href="{{ url_for('vm.do', action='reboot', vm_id=vm.id) }}">Reboot</a></button>
+                <button class='btn'><a href="{{ url_for('vm.do', action='start', vm_id=vm.id) }}">{{ _("Start") }}</a></button>
+                <button class='btn'><a href="{{ url_for('vm.do', action='stop', vm_id=vm.id) }}">{{ _("Stop") }}</a></button>
+                <button class='btn'><a href="{{ url_for('vm.do', action='reboot', vm_id=vm.id) }}">{{ _("Reboot") }}</a></button>
                 {% endif %}
-                <button class='btn'><a href="{{ url_for('vm.do', action='delete', vm_id=vm.id) }}" onclick="return confirm('Are you sure?');">Delete</a></button>
+                <button class='btn'><a href="{{ url_for('vm.do', action='delete', vm_id=vm.id) }}" onclick="return confirm('Are you sure?');">{{ _("Delete") }}</a></button>
                 </a>
             </td>
         </tr>
@@ -61,7 +61,7 @@
 
 {% if not current_user.is_admin() %}
 {% if form %}
-{{ render_modal_form("addvm", "Add VM", url_for('vm.index'), form) }}
+{{ render_modal_form("addvm", _("Add VM"), url_for('vm.index'), form) }}
 {% endif %}
 {% endif %}
 

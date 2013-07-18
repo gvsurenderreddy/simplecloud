@@ -15,6 +15,7 @@ from ..image import get_image_path
 from ..utils import VM_POOL_PATH
 from ..task import log_task, TASK_FAILED, TASK_SUCCESS
 from .constants import VM_RUNNING, VM_STOPPED, VM_UNKNOWN
+from flaskext.babel import gettext as _
 
 KVM_VM_TEMPLATE_XML = """
 <domain type='kvm'>
@@ -67,7 +68,7 @@ def get_libvirt_connection(vm):
     host =  Host.query.filter_by(id=vm.host_id).first()
     
     if not host:
-        raise Exception("Not found host with id %d") % vm.host_id
+        raise Exception(_("Not found host with id %(id)d", id = vm.host_id))
     
     return libvirt.open(host.uri)
 
@@ -89,7 +90,7 @@ def get_vm_vnclink(vm):
     host = Host.query.filter_by(id=vm.host_id).first()
         
     if not host:
-        raise Exception("Not found host with id %d" % vm.host_id)
+        raise Exception(_("Not found host with id %(id)d", id = vm.host_id))
     
     con = libvirt.open(host.uri)
     name = get_vm_realname(vm.owner_id, vm.name)
@@ -110,13 +111,13 @@ def create_vm(vm):
     try:
         template = Template.query.filter_by(id=vm.template_id).first()
         if not template:
-            raise Exception("Not found template with id %d" % vm.template_id)
+            raise Exception(_("Not found template with id %(id)d", id = vm.template_id))
         # 1. Get available Host       
         vm.host_id = get_host(template.vcpu * VM_VCPU_VALUE, template.memory)
         host = Host.query.filter_by(id=vm.host_id).first()
         
         if not host:
-            raise Exception("Not found host with id %d" % vm.host_id)
+            raise Exception(_("Not found host with id %(id)d", id = vm.host_id))
 
         # 2. Create the VM disk
         disk_path = get_vm_disk(vm.owner_id, vm.name)
@@ -154,8 +155,8 @@ def create_vm(vm):
         message = "VM %s was added." % vm.name
         log_task("Add VM %s " % vm.name, TASK_SUCCESS, message)
     except Exception, ex:
-        errMsg = "Failed to create VM %s: %s" % (vm.name, str(ex))
-        log_task("Add VM " + vm.name, TASK_FAILED, errMsg)
+        errMsg = _("Failed to create VM %(name)s: %(error)s", name = vm.name, error = str(ex))
+        log_task(_("Add VM %(name)s", name = vm.name), TASK_FAILED, errMsg)
 
 
 class VMAction:
@@ -181,14 +182,14 @@ class VMAction:
             template = Template.query.filter_by(id=vm.template_id).first()
             
             if not template:
-                raise Exception("Not found template with id %d" % vm.template_id)
+                raise Exception(_("Not found template with id %(id)d", id = vm.template_id))
             template.vm_number = template.vm_number - 1      
             db.session.add(template)
             
             host = Host.query.filter_by(id=vm.host_id).first()
         
             if not host:
-                raise Exception("Not found host with id %d" % vm.host_id)
+                raise Exception(_("Not found host with id %(id)d", id = vm.host_id))
             host.vm_number = host.vm_number - 1
             host.cpu_used = host.cpu_used - template.vcpu * VM_VCPU_VALUE
             host.mem_used = host.mem_used - template.memory
@@ -198,12 +199,12 @@ class VMAction:
             db.session.delete(vm)
             db.session.commit()
             
-            message = "Delete VM %s (%d)" % (vm.name, vm.id)
+            message = _("Delete VM %(name)s (%(id)d)", name = vm.name, id = vm.id)
             log_task(message)
-            flash('VM '+ vm.name +' was deleted.', 'success')        
+            flash(_('VM %(name)s was deleted.', name = vm.name), 'success')        
         except Exception, ex:
-            errMsg = "Failed to delete VM %s: %s" % (vm.name, str(ex))
-            log_task("Delete VM " + vm.name, TASK_FAILED, errMsg)
+            errMsg = _("Failed to delete VM %(name)s: %(error)s", name = vm.name, error = str(ex))
+            log_task(_("Delete VM %(name)s (%(id)d)", name = vm.name, id = vm.id), TASK_FAILED, errMsg)
 
     def start(self, vm):
         try:
@@ -217,12 +218,12 @@ class VMAction:
             vm.status_code = VM_RUNNING
             db.session.add(vm)
             db.session.commit()
-            message = "Start VM %s (%d)" % (vm.name, vm.id)
+            message = _("Start VM %(name)s (%(id)d)", name = vm.name, id = vm.id)
             log_task(message)
-            flash('VM '+ vm.name +' was started.', 'success')        
+            flash(_('VM %(name)s was started.', name = vm.name), 'success')        
         except Exception, ex:
-            errMsg = "Failed to start VM %s: %s" % (vm.name, str(ex))
-            log_task("Start VM " + vm.name, TASK_FAILED, errMsg)
+            errMsg = _("Failed to start VM %(name)s: %(error)s", name = vm.name, error = str(ex))
+            log_task(_("Start VM %(name)s (%(id)d)", name = vm.name, id = vm.id), TASK_FAILED, errMsg)
 
     def shutdown(self, vm):
         try:
@@ -232,12 +233,12 @@ class VMAction:
             # 2. shutdown VM if running
             if dom.isActive():
                 dom.shutdown()
-            message = "Shutdown VM %s (%d)" % (vm.name, vm.id)
+            message = _("Shutdown VM %(name)s (%(id)d)", name = vm.name, id = vm.id)
             log_task(message)
-            flash('VM '+ vm.name +' was shutdown.', 'success')        
+            flash(_('VM %(name)s was shutdown.', name = vm.name), 'success')        
         except Exception, ex:
-            errMsg = "Failed to shutdown VM %s: %s" % (vm.name, str(ex))
-            log_task("Shutdown VM " + vm.name, TASK_FAILED, errMsg)
+            errMsg = _("Failed to shutdown VM %(name)s: %(error)s", name = vm.name, error = str(ex))
+            log_task(_("Shutdown VM %(name)s (%(id)d)", name = vm.name, id = vm.id), TASK_FAILED, errMsg)
 
     def stop(self, vm):
         try:
@@ -250,12 +251,12 @@ class VMAction:
             vm.status_code = VM_STOPPED
             db.session.add(vm)
             db.session.commit()
-            message = "Stop VM %s (%d)" % (vm.name, vm.id)
+            message = _("Stop VM %(name)s (%(id)d)", name = vm.name, id = vm.id)
             log_task(message)
-            flash('VM '+ vm.name +' was stopped.', 'success')        
+            flash(_('VM %(name)s was stopped.', name = vm.name), 'success')        
         except Exception, ex:
-            errMsg = "Failed to stop VM %s: %s" % (vm.name, str(ex))
-            log_task("Stop VM " + vm.name, TASK_FAILED, errMsg)
+            errMsg = _("Failed to stop VM %(name)s: %(error)s", name = vm.name, error = str(ex))
+            log_task(_("Stop VM %(name)s (%(id)d)", name = vm.name, id = vm.id), TASK_FAILED, errMsg)
 
     def reboot(self, vm):
         try:
@@ -264,11 +265,11 @@ class VMAction:
             vm.status_code = VM_RUNNING
             db.session.add(vm)
             db.session.commit()
-            message = "Reboot VM %s (%d)" % (vm.name, vm.id)
+            message = _("Reboot VM %(name)s (%(id)d)", name = vm.name, id = vm.id)
             log_task(message)
-            flash('VM '+ vm.name +' was rebooted.', 'success')        
+            flash(_('VM %(name)s was rebooted.', name = vm.name), 'success')        
         except Exception, ex:
-            errMsg = "Failed to reboot VM %s: %s" % (vm.name, str(ex))
-            log_task("Reboot VM " + vm.name, TASK_FAILED, errMsg)
+            errMsg = _("Failed to reboot VM %(name)s: %(error)s", name = vm.name, error = str(ex))
+            log_task(_("Reboot VM %(name)s (%(id)d)", name = vm.name, id = vm.id), TASK_FAILED, errMsg)
     
 

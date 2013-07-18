@@ -7,11 +7,11 @@ from datetime import datetime
 
 from flask import Blueprint, render_template, current_app, request, flash
 from flask.ext.login import login_required, current_user
-
+from flaskext.babel import refresh
 from ..extensions import db
 from ..user import User
 from .forms import ProfileForm, PasswordForm
-
+from flaskext.babel import gettext as _
 
 settings = Blueprint('settings', __name__, url_prefix='/settings')
 
@@ -20,21 +20,20 @@ settings = Blueprint('settings', __name__, url_prefix='/settings')
 @login_required
 def profile():
     user = User.query.filter_by(name=current_user.name).first_or_404()
-    form = ProfileForm(obj=user.user_detail,
-            email=current_user.email,
-            role_code=current_user.role_code,
-            status_code=current_user.status_code,
+    form = ProfileForm(obj=user,
             next=request.args.get('next'))
 
     if form.validate_on_submit():
         form.populate_obj(user)
         db.session.add(user)
         db.session.commit()
+        #current_user.locale = user.locale
+        #refresh()
 
-        flash('Public profile updated.', 'success')
+        flash(_('Public profile updated.'), 'success')
 
     return render_template('settings/profile.html', user=user,
-            active="profile", form=form)
+            active=_("profile"), form=form)
 
 
 @settings.route('/password', methods=['GET', 'POST'])
@@ -53,4 +52,4 @@ def password():
         flash('Password updated.', 'success')
 
     return render_template('settings/password.html', user=user,
-            active="password", form=form)
+            active=_("password"), form=form)
