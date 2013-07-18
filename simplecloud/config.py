@@ -45,6 +45,7 @@ class DefaultConfig(BaseConfig):
     # Flask-babel: http://pythonhosted.org/Flask-Babel/
     ACCEPT_LANGUAGES = ['zh_CN', 'en']
     BABEL_DEFAULT_LOCALE = 'en'
+    LOCALE_SETTING = "zh_CN"
 
     # Flask-cache: http://pythonhosted.org/Flask-Cache/
     CACHE_TYPE = 'simple'

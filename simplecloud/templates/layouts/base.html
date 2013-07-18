@@ -39,9 +39,11 @@
                     <a class='brand' href='{{ url_for('frontend.index') }}' <strong>SimpleCloud</strong></a>
 
                     {% if current_user.is_authenticated() %}
+                    <!--
                     <form class="navbar-search pull-left" action="{{ url_for('frontend.search') }}">
                         <input type='text' class="search-query" name='keywords' value='{{ keywords|default('') }}' placeholder='Search' />
                     </form>
+                    -->
                     <div class="nav-collapse collapse pull-right">
                         <ul class="nav">
                             {% if current_user.is_admin() %}

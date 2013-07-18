@@ -8,7 +8,7 @@ from flask.ext.login import UserMixin
 from ..extensions import db
 from ..utils import get_current_time, STRING_LEN
 from .constants import (USER, USER_ROLE, ADMIN, USER_INACTIVE, USER_STATUS,
-        USER_LOCALE_ZH_CN)
+        USER_LOCALE_ZH_CN, USER_LOCALE_EN, USER_LOCALE)
 
 class User(db.Model, UserMixin):
 
@@ -57,7 +57,14 @@ class User(db.Model, UserMixin):
     @property
     def status(self):
         return USER_STATUS[self.status_code]
-        
+
+    # ================================================================
+    # One-to-many relationship between users and user_locale.
+    locale_code = Column(db.SmallInteger, default=USER_LOCALE_EN)
+
+    @property
+    def locale(self):
+        return USER_LOCALE[self.locale_code]      
     # ================================================================
     # One-to-one (uselist=False) relationship between users and user_details.
     #user_detail_id = Column(db.Integer, db.ForeignKey("user_details.id"))

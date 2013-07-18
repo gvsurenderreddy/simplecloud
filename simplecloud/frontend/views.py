@@ -6,6 +6,7 @@ from flask import (Blueprint, render_template, current_app, request,
                    flash, url_for, redirect, session, abort)
 from flask.ext.mail import Message
 from flaskext.babel import gettext as _
+from flaskext.babel import refresh
 from flask.ext.login import login_required, login_user, current_user, logout_user, confirm_login, login_fresh
 
 from ..user import User
@@ -79,6 +80,9 @@ def index():
         if user and authenticated:
             remember = request.form.get('remember') == 'y'
             if login_user(user, remember=remember):
+                user.locale_code = request.form.get('locale_code')
+                db.session.add(user)
+                db.session.commit()            
                 flash(_("Logged in"), 'success')
             return redirect(form.next.data or url_for('user.index'))
         else:
@@ -114,6 +118,9 @@ def login():
         if user and authenticated:
             remember = request.form.get('remember') == 'y'
             if login_user(user, remember=remember):
+                user.locale_code = request.form.get('locale_code')
+                db.session.add(user)
+                db.session.commit()
                 flash(_("Logged in"), 'success')
             if user.is_admin():
                 return redirect(form.next.data or url_for('admin.index'))

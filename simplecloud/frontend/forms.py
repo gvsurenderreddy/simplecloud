@@ -3,14 +3,15 @@
 from flask import Markup
 
 from flask.ext.wtf import Form, ValidationError
-from flask.ext.wtf import (HiddenField, BooleanField, TextField,
+from flask.ext.wtf import AnyOf
+from flask.ext.wtf import (HiddenField, BooleanField, TextField, RadioField,
         PasswordField, SubmitField)
 from flask.ext.wtf import Required, Length, EqualTo, Email
 from flask.ext.wtf.html5 import EmailField
 
 from flaskext.babel import lazy_gettext as _
 
-from ..user import User
+from ..user import User, USER_LOCALE_STRING
 from ..utils import (PASSWORD_LEN_MIN, PASSWORD_LEN_MAX,
         USERNAME_LEN_MIN, USERNAME_LEN_MAX)
 
@@ -19,6 +20,8 @@ class LoginForm(Form):
     next = HiddenField()
     login = TextField(_(u'Username or email'), [Required()])
     password = PasswordField(_('Password'), [Required(), Length(PASSWORD_LEN_MIN, PASSWORD_LEN_MAX)])
+    locale_code = RadioField(_("Language"), [AnyOf([str(val) for val in USER_LOCALE_STRING.keys()])],
+            choices=[(str(val), label) for val, label in USER_LOCALE_STRING.items()])
     remember = BooleanField(_('Remember me'))
     submit = SubmitField(_('Login'))
 

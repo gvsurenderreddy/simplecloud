@@ -22,6 +22,15 @@ USER_STATUS = {
 }
 
 # User Locale
-USER_LOCALE_LEN = 10
-USER_LOCALE_EN = "en"
-USER_LOCALE_ZH_CN = "zh_CN"
+USER_LOCALE_EN = 0
+USER_LOCALE_ZH_CN = 1
+
+USER_LOCALE = {
+    USER_LOCALE_EN: "en",
+    USER_LOCALE_ZH_CN: "zh_CN",
+}
+
+USER_LOCALE_STRING = {
+    USER_LOCALE_EN: _("English"),
+    USER_LOCALE_ZH_CN: _("Simplified Chinese"),
+}

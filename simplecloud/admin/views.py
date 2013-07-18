@@ -4,6 +4,7 @@ from flask import (Blueprint, render_template, request, flash,
         redirect, url_for)
 from flask.ext.login import login_required
 from flaskext.babel import gettext as _
+from flaskext.babel import refresh
 
 from ..extensions import db
 from ..decorators import admin_required
@@ -20,6 +21,7 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 @login_required
 @admin_required
 def index():
+    refresh()
     stat = get_system_stat()
     return render_template('admin/index.html', stat=stat, active=_('Dashboard'))
 

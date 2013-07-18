@@ -4,6 +4,7 @@ import os
 
 from flask import Flask, g, request, render_template
 from flaskext.babel import Babel
+from flask.ext.login import current_user
 
 from .config import DefaultConfig
 from .user import User, user
@@ -89,6 +90,8 @@ def configure_extensions(app):
 
     @babel.localeselector
     def get_locale():
+        if current_user.is_authenticated():
+            return current_user.locale
         accept_languages = app.config.get('ACCEPT_LANGUAGES')
         return request.accept_languages.best_match(accept_languages)
 

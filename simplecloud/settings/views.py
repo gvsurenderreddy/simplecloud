@@ -27,7 +27,7 @@ def profile():
         form.populate_obj(user)
         db.session.add(user)
         db.session.commit()
-        #current_user.locale = user.locale
+        #current_user.locale = form.data['locale']
         #refresh()
 
         flash(_('Public profile updated.'), 'success')

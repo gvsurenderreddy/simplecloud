@@ -8,7 +8,7 @@ from flask.ext.wtf import Required, Length, EqualTo, Email, NumberRange, URL
 from flask.ext.wtf.html5 import EmailField, IntegerField
 from flask.ext.login import current_user
 from flaskext.babel import lazy_gettext as _
-from ..user import User
+from ..user import User, USER_LOCALE_STRING
 from ..utils import PASSWORD_LEN_MIN, PASSWORD_LEN_MAX
 
 class ProfileForm(Form):
@@ -16,7 +16,9 @@ class ProfileForm(Form):
     next = HiddenField()
     email = EmailField(_(u'Email'), [Required(), Email()])
     vm_quota = IntegerField(_(u'Quota of VirtualMachines'))
-    #locale = TextField(u'Language', [Required()])
+    locale_code = RadioField(_("Language"), [AnyOf([str(val) for val in USER_LOCALE_STRING.keys()])],
+            choices=[(str(val), label) for val, label in USER_LOCALE_STRING.items()])
+
     submit = SubmitField(_(u'Save'))
 
     def validate_name(form, field):
