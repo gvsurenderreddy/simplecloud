@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from simplecloud.user import User, UserDetail
+from simplecloud.user import User
 
 from tests import TestCase
 
 
 class TestUser(TestCase):
 
-    def test_get_current_time(self):
+    def test_count(self):
 
         assert User.query.count() == 2
-        assert UserDetail.query.count() == 2

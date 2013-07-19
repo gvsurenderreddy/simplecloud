@@ -10,10 +10,10 @@
 from flask.ext.testing import TestCase as Base, Twill
 
 from simplecloud import create_app
-from simplecloud.user import User, UserDetail, ADMIN, USER, ACTIVE
+from simplecloud.user import (User, ADMIN, USER, USER_ACTIVE,
+        USER_LOCALE_EN)
 from simplecloud.config import TestConfig
 from simplecloud.extensions import db
-from simplecloud.utils import MALE
 
 
 class TestCase(Base):
@@ -33,27 +33,13 @@ class TestCase(Base):
                 email=u'demo@example.com',
                 password=u'123456',
                 role_code=USER,
-                status_code=ACTIVE,
-                user_detail=UserDetail(
-                    sex_code=MALE,
-                    age=10,
-                    url=u'http://demo.example.com',
-                    deposit=100.00,
-                    location=u'Hangzhou',
-                    bio=u'admin Guy is ... hmm ... just a demo guy.'))
+                status_code=USER_ACTIVE)
         admin = User(
                 name=u'admin',
                 email=u'admin@example.com',
                 password=u'123456',
                 role_code=ADMIN,
-                status_code=ACTIVE,
-                user_detail=UserDetail(
-                    sex_code=MALE,
-                    age=10,
-                    url=u'http://admin.example.com',
-                    deposit=100.00,
-                    location=u'Hangzhou',
-                    bio=u'admin Guy is ... hmm ... just a admin guy.'))
+                status_code=USER_ACTIVE)
         db.session.add(demo)
         db.session.add(admin)
         db.session.commit()
@@ -73,6 +59,7 @@ class TestCase(Base):
         data = {
             'login': username,
             'password': password,
+            'locale_code': USER_LOCALE_EN,
         }
         response = self.client.post('/login', data=data, follow_redirects=True)
         return response

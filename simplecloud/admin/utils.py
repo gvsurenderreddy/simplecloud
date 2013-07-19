@@ -52,10 +52,22 @@ def get_system_stat():
     vmstat['total'] = VM.query.count()
     vmstat['running'] = VM.query.filter(VM.status_code == VM_RUNNING).count()
     vmstat['stopped'] = VM.query.filter(VM.status_code == VM_STOPPED).count()
-    cpu_pool = int(db.session.query(func.sum(Host.cpu_pool)).first()[0])
-    mem_pool = int(db.session.query(func.sum(Host.mem_pool)).first()[0])
-    cpu_used = int(db.session.query(func.sum(Host.cpu_used)).first()[0])
-    mem_used = int(db.session.query(func.sum(Host.mem_used)).first()[0])
+
+    cpu_pool = db.session.query(func.sum(Host.cpu_pool)).first()[0]
+    mem_pool = db.session.query(func.sum(Host.mem_pool)).first()[0]
+    cpu_used = db.session.query(func.sum(Host.cpu_used)).first()[0]
+    mem_used = db.session.query(func.sum(Host.mem_used)).first()[0]
+    if cpu_pool is None:
+        cpu_pool = 0
+    
+    if mem_pool is None:
+        mem_pool = 0
+    
+    if cpu_used is None:
+        cpu_used = 0
+    
+    if mem_used is None:
+        mem_used = 0
     
     storagestat = get_storage_stat()
     resourcestat['cpu'] = 0
