@@ -1,9 +1,9 @@
-SimpleCloud - The Open Source IaaS Software 
+SimpleCloud - The Open Source Virtualization Management Software
 ===========
 
 http://simplecloud.github.com
 
-SimpleCloud is an IaaS software and virtualization based cloud computing management platform.
+SimpleCloud is an IaaS (Infrastructure as a Service) software and virtualization management platform.
 
 Features
 ===========
