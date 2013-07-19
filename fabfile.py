@@ -42,6 +42,16 @@ def d():
     reset()
     local("python manage.py runserver -t 0.0.0.0")
 
+def t():
+    """
+    Test
+    """
+    local("rm -rf /tmp/instance")
+    local("mkdir /tmp/instance")
+    local("python manage.py inittestdb")
+
+    local("python manage.py runserver -t 0.0.0.0")
+
 def create():
     """
     Get translation file

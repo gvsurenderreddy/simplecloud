@@ -20,7 +20,7 @@ def run():
 
 
 @manager.command
-def initdb():
+def inittestdb():
     """Init/reset database."""
 
     db.drop_all()
@@ -71,6 +71,23 @@ def initdb():
     db.session.add(host1)
     db.session.add(host2)
     db.session.commit()
+
+@manager.command
+def initdb():
+    """Init/reset database."""
+
+    db.drop_all()
+    db.create_all()
+
+    admin = User(
+            name=u'admin',
+            email=u'admin@example.com',
+            password=u'000000',
+            role_code=ADMIN,
+            status_code=USER_ACTIVE)
+    db.session.add(admin)
+    db.session.commit()
+
 
 
 manager.add_option('-c', '--config',
