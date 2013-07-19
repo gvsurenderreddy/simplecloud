@@ -27,7 +27,7 @@ Features
 ACKNOWLEDGEMENTS
 ==========
 
-The initial version of project was done only in few days, thanks to Wilson Xen's project [Fbone](https://github.com/imwilsonxu/fbone).
+Thanks to Wilson Xu's project [Fbone](https://github.com/imwilsonxu/fbone), Python, Flask and its extensions.
 
 License
 ===========
