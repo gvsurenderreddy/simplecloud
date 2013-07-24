@@ -16,6 +16,9 @@ SHARED_STORAGE_PATH = os.path.join(INSTANCE_FOLDER_PATH, "share")
 IMAGE_POOL_PATH = os.path.join(SHARED_STORAGE_PATH, 'images')
 VM_POOL_PATH = os.path.join(SHARED_STORAGE_PATH, 'vms')
 
+# Host configuraiton
+HOST_PUBKEY_FILE = "/root/.ssh/id_rsa.pub"
+
 # Storage Configuration
 STORAGE_TYPE = "Shared"
 STORAGE_PROTOCOL = "NFS"

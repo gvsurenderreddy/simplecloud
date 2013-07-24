@@ -12,7 +12,7 @@ from ..decorators import admin_required
 from ..user import User, USER_ACTIVE, USER_DELETED
 from .forms import AddUserForm, EditUserForm
 from ..task import log_task
-from .utils import get_system_stat, get_storage_stat, get_network_stat
+from .utils import get_system_stat, get_storage_stat, get_network_stat, get_host_stat
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -52,9 +52,10 @@ def users():
 @login_required
 @admin_required
 def system():
+    host = get_host_stat()
     storage = get_storage_stat()
     network = get_network_stat()
-    return render_template('admin/system.html', network=network, storage=storage, active=_('System'))
+    return render_template('admin/system.html', host=host, network=network, storage=storage, active=_('System'))
 
 # Edit User Page    
 @admin.route('/users/<int:user_id>', methods=['GET', 'POST'])

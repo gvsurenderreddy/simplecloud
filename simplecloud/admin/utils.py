@@ -10,8 +10,13 @@ from ..vm import VM, VM_RUNNING, VM_STOPPED
 from ..extensions import db
 from ..utils import (INSTANCE_FOLDER_PATH, SHARED_STORAGE_PATH, STORAGE_PROTOCOL,
         STORAGE_TYPE, IMAGE_POOL_PATH, VM_POOL_PATH, NETWORK_MODE, VM_NETWORK_MODE,
-        NETWORK_NAME)
+        NETWORK_NAME, HOST_PUBKEY_FILE)
 
+def get_host_stat():
+    host = {}
+    host['key'] = open(HOST_PUBKEY_FILE, 'r').readline()
+    return host
+    
 def get_storage_stat():
     storage = {}    
     storage['type'] = STORAGE_TYPE
