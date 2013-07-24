@@ -14,7 +14,7 @@ from ..utils import (INSTANCE_FOLDER_PATH, SHARED_STORAGE_PATH, STORAGE_PROTOCOL
 
 def get_host_stat():
     host = {}
-    host['key'] = open(HOST_PUBKEY_FILE, 'r').readline()
+    #host['key'] = open(HOST_PUBKEY_FILE, 'r').readline()
     return host
     
 def get_storage_stat():

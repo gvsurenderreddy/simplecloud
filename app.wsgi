@@ -21,3 +21,18 @@ if BASE_DIR not in sys.path:
 # give wsgi the "application"
 from simplecloud import create_app
 application = create_app()
+
+# Add following lines to /etc/apache2/sites-available/simplecloud file
+#<VirtualHost *>
+#    ServerName example.com
+#
+#    WSGIDaemonProcess simplecloud user=simplecloud group=simplecloud threads=5
+#    WSGIScriptAlias / /var/www/simplecloud/app.wsgi
+#
+#    <Directory /var/www/simplecloud>
+#        WSGIProcessGroup simplecloud
+#        WSGIApplicationGroup %{GLOBAL}
+#        Order deny,allow
+#        Allow from all
+#    </Directory>
+#</VirtualHost>
