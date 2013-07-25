@@ -83,7 +83,7 @@ def index():
                 user.locale_code = request.form.get('locale_code')
                 db.session.add(user)
                 db.session.commit()            
-                flash(_("Logged in"), 'success')
+                #flash(_("Logged in"), 'success')
             return redirect(form.next.data or url_for('user.index'))
         else:
             flash(_('Sorry, invalid login'), 'error')
@@ -121,7 +121,7 @@ def login():
                 user.locale_code = request.form.get('locale_code')
                 db.session.add(user)
                 db.session.commit()
-                flash(_("Logged in"), 'success')
+                #flash(_("Logged in"), 'success')
             if user.is_admin():
                 return redirect(form.next.data or url_for('admin.index'))
             return redirect(form.next.data or url_for('user.index'))
@@ -153,7 +153,7 @@ def reauth():
 @login_required
 def logout():
     logout_user()
-    flash(_('Logged out'), 'success')
+    #flash(_('Logged out'), 'success')
     return redirect(url_for('frontend.index'))
 
 
