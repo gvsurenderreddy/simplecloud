@@ -6,11 +6,16 @@
 import string
 import random
 import os
+import shutil
 
 from datetime import datetime
 
 # Instance folder path, make it independent.
 INSTANCE_FOLDER_PATH = os.path.join('/tmp', 'instance')
+INSTANCE_CONFIG_PATH = os.path.join(INSTANCE_FOLDER_PATH, 'config')
+
+# XML Config file
+XML_CONFIG_FILE = os.path.join(INSTANCE_CONFIG_PATH, 'vm.xml')
 
 SHARED_STORAGE_PATH = os.path.join(INSTANCE_FOLDER_PATH, "share")
 IMAGE_POOL_PATH = os.path.join(SHARED_STORAGE_PATH, 'images')
@@ -104,4 +109,13 @@ def make_dir(dir_path):
             os.mkdir(dir_path)
     except Exception, e:
         raise e
+
+def get_xml_file():
+    with open(XML_CONFIG_FILE, 'r') as content_file:
+	content = content_file.read()
+
+    return content
+
+def copy_file(src, dst):
+    shutil.copy2(src, dst)
 

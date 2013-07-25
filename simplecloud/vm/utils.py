@@ -12,7 +12,7 @@ from ..extensions import db
 from ..template import Template
 from ..host import get_host, Host, VM_VCPU_VALUE
 from ..image import get_image_path
-from ..utils import VM_POOL_PATH
+from ..utils import VM_POOL_PATH, get_xml_file
 from ..task import log_task, TASK_FAILED, TASK_SUCCESS
 from .constants import VM_RUNNING, VM_STOPPED, VM_UNKNOWN
 from flaskext.babel import gettext as _
@@ -62,7 +62,12 @@ def get_vm_disk(user_id, vmname):
     return os.path.join(VM_POOL_PATH, disk_file)
 
 def get_vm_xml(vmname, cpu, mem, disk_path):
-    return KVM_VM_TEMPLATE_XML % (vmname, cpu, mem, disk_path)
+    try:
+	xml_file = get_xml_file()
+	return xml_file % (vmname, cpu, mem, disk_path)
+    except Exception, ex:
+	current_app.logger.error("Failed to get xml from config file: %s" % str(ex))
+    	return KVM_VM_TEMPLATE_XML % (vmname, cpu, mem, disk_path)
 
 def get_libvirt_connection(vm):
     host =  Host.query.filter_by(id=vm.host_id).first()

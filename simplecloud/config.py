@@ -3,7 +3,7 @@
 import os
 
 from utils import (make_dir, INSTANCE_FOLDER_PATH, SHARED_STORAGE_PATH,
-        IMAGE_POOL_PATH, VM_POOL_PATH)
+        IMAGE_POOL_PATH, VM_POOL_PATH, INSTANCE_CONFIG_PATH, copy_file)
 
 
 class BaseConfig(object):
@@ -22,6 +22,9 @@ class BaseConfig(object):
     # http://flask.pocoo.org/docs/quickstart/#sessions
     SECRET_KEY = 'secret key'
 
+    make_dir(INSTANCE_CONFIG_PATH)
+#    LOCAL_XML_FILE = os.path.join(PROJECT_ROOT, 'vm.xml')
+#    copy_file(LOCAL_XML_FILE, INSTANCE_CONFIG_PATH)
     LOG_FOLDER = os.path.join(INSTANCE_FOLDER_PATH, 'logs')
     make_dir(LOG_FOLDER)
     
