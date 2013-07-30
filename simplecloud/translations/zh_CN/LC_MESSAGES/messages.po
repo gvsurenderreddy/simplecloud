@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  SimpleCloud\n"
 "Report-Msgid-Bugs-To: simplecloud@qq.com\n"
-"POT-Creation-Date: 2013-07-30 11:15+0800\n"
+"POT-Creation-Date: 2013-07-30 15:06+0800\n"
 "PO-Revision-Date: 2013-07-17 22:25+0800\n"
 "Last-Translator: Lei Shi <simplecloud@qq.com>\n"
 "Language-Team: zh_CN <Lei Shi simplecloud@qq.com>\n"
@@ -51,7 +51,7 @@ msgstr "虚拟机数目配额"
 #: simplecloud/admin/forms.py:26 simplecloud/admin/forms.py:45
 #: simplecloud/host/forms.py:25 simplecloud/host/forms.py:36
 #: simplecloud/image/forms.py:24 simplecloud/settings/forms.py:22
-#: simplecloud/settings/forms.py:38 simplecloud/template/forms.py:31
+#: simplecloud/settings/forms.py:38 simplecloud/template/forms.py:33
 #: simplecloud/templates/macros/_form.html:183 simplecloud/vm/forms.py:18
 msgid "Save"
 msgstr "保存"
@@ -74,7 +74,7 @@ msgstr "角色"
 #: simplecloud/templates/host/index.html:21
 #: simplecloud/templates/image/index.html:17
 #: simplecloud/templates/task/index.html:15
-#: simplecloud/templates/template/index.html:28
+#: simplecloud/templates/template/index.html:29
 #: simplecloud/templates/vm/index.html:31
 msgid "Status"
 msgstr "状态"
@@ -178,12 +178,12 @@ msgstr "密码已改，请重新登录"
 msgid "Sorry, no user found for that email address"
 msgstr "该邮箱尚未注册"
 
-#: simplecloud/host/constants.py:11 simplecloud/image/constants.py:10
+#: simplecloud/host/constants.py:10 simplecloud/image/constants.py:10
 #: simplecloud/template/constants.py:8
 msgid "ok"
 msgstr "正常"
 
-#: simplecloud/host/constants.py:12
+#: simplecloud/host/constants.py:11
 msgid "error"
 msgstr "错误"
 
@@ -297,6 +297,11 @@ msgstr "源文件不存在"
 msgid "Not found image with id %(id)d"
 msgstr "无法找到镜像 %(id)d"
 
+#: simplecloud/image/views.py:58
+# python-format
+msgid "Add Image %(name)s"
+msgstr "添加镜像 %(name)s"
+
 #: simplecloud/image/views.py:60
 #, python-format
 msgid "Image %(name)s was added."
@@ -392,36 +397,40 @@ msgid "Choose the VCPU number (From %(min)d to %(max)d)"
 msgstr "VCPU数目（%(min)d 到 %(max)d）"
 
 #: simplecloud/template/forms.py:26
+msgid "Input the CPU value (1 physical CPU = 100 CPU value)"
+msgstr "输入占用物理CPU数（100 = 1个物理CPU）"
+
+#: simplecloud/template/forms.py:28
 #, python-format
 msgid "Choose the memory size (From %(min)dM to %(max)dM)"
 msgstr "内存大小（%(min)dM 到 %(max)dM）"
 
-#: simplecloud/template/forms.py:28
+#: simplecloud/template/forms.py:30
 #, python-format
 msgid "Choose the disk size (From %(min)dM to %(max)dM)"
 msgstr "磁盘大小（%(min)dM 到 %(max)dM）"
 
-#: simplecloud/template/forms.py:35
+#: simplecloud/template/forms.py:37
 msgid "This template name is taken"
 msgstr "模板名称已被占用"
 
-#: simplecloud/template/forms.py:39
+#: simplecloud/template/forms.py:41
 msgid "This Image is not found"
 msgstr "页面不存在"
 
-#: simplecloud/template/forms.py:47 simplecloud/vm/forms.py:15
+#: simplecloud/template/forms.py:49 simplecloud/vm/forms.py:15
 msgid "Choose virtualmachine name"
 msgstr "虚拟机名称"
 
-#: simplecloud/template/forms.py:48 simplecloud/vm/forms.py:16
+#: simplecloud/template/forms.py:50 simplecloud/vm/forms.py:16
 msgid "Choose the template ID"
 msgstr "模板ID"
 
-#: simplecloud/template/forms.py:55 simplecloud/vm/forms.py:23
+#: simplecloud/template/forms.py:57 simplecloud/vm/forms.py:23
 msgid "This Template is not found"
 msgstr "该模板不存在"
 
-#: simplecloud/template/forms.py:57 simplecloud/vm/forms.py:25
+#: simplecloud/template/forms.py:59 simplecloud/vm/forms.py:25
 msgid "This Template is not OK"
 msgstr "该模板不可用"
 
@@ -586,7 +595,7 @@ msgstr "更新"
 #: simplecloud/templates/admin/users.html:35
 #: simplecloud/templates/host/index.html:37
 #: simplecloud/templates/image/index.html:28
-#: simplecloud/templates/template/index.html:45
+#: simplecloud/templates/template/index.html:47
 #: simplecloud/templates/vm/index.html:54
 msgid "Delete"
 msgstr "删除"
@@ -671,7 +680,7 @@ msgid "Memory Used"
 msgstr "已用内存"
 
 #: simplecloud/templates/host/index.html:20
-#: simplecloud/templates/template/index.html:27
+#: simplecloud/templates/template/index.html:28
 msgid "VM Number"
 msgstr "虚拟机数目"
 
@@ -723,7 +732,7 @@ msgid "Create Time"
 msgstr "创建时间"
 
 #: simplecloud/templates/template/index.html:14
-#: simplecloud/templates/template/index.html:57
+#: simplecloud/templates/template/index.html:59
 msgid "Add Template"
 msgstr "添加模板"
 
@@ -736,18 +745,22 @@ msgid "VCPU"
 msgstr "VCPU"
 
 #: simplecloud/templates/template/index.html:25
+msgid "PCPU"
+msgstr "物理CPU"
+
+#: simplecloud/templates/template/index.html:26
 msgid "Memory(M)"
 msgstr "内存（M）"
 
-#: simplecloud/templates/template/index.html:26
+#: simplecloud/templates/template/index.html:27
 msgid "Disk(M)"
 msgstr "磁盘（M）"
 
-#: simplecloud/templates/template/index.html:47
+#: simplecloud/templates/template/index.html:49
 msgid "Create VM"
 msgstr "创建虚拟机"
 
-#: simplecloud/templates/template/index.html:61
+#: simplecloud/templates/template/index.html:63
 #: simplecloud/templates/vm/index.html:64
 msgid "Add VM"
 msgstr "创建虚拟机"
@@ -933,10 +946,4 @@ msgstr "虚拟机创建失败"
 #, python-format
 msgid "Not supported action %(name)s"
 msgstr "不支持的操作 %(name)s"
-
-#~ msgid "Logged in"
-#~ msgstr "成功登录"
-
-#~ msgid "Logged out"
-#~ msgstr "退出"
 

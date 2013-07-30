@@ -22,6 +22,7 @@
                 <th>{{ _("Name") }}</th>
                 <th>{{ _("Image ID") }}</th>
                 <th>{{ _("VCPU") }}</th>
+                <th>{{ _("PCPU") }}</th>
                 <th>{{ _("Memory(M)") }}</th>
                 <th>{{ _("Disk(M)") }}</th>
                 <th>{{ _("VM Number") }}</th>
@@ -34,7 +35,8 @@
             <td>{{ template.id }}</td>
             <td>{{ template.name }}</td>
             <td>{{ template.image_id }}</td>
-            <td>{{ template.vcpu }}</td>    
+            <td>{{ template.vcpu }}</td>
+            <td>{{ template.pcpu }}</td>
             <td>{{ template.memory }}</td>
             <td>{{ template.disk }}</td>
             <td>{{ template.vm_number }}</td>

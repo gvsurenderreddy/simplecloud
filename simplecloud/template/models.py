@@ -17,6 +17,8 @@ class Template(db.Model):
 
     # VCPU number
     vcpu = Column(db.Integer, nullable=False)
+    # CPU percentage (100 = 1 physical CPU)
+    pcpu = Column(db.Integer, nullable=False)
     # Memory size (M)
     memory = Column(db.Integer, nullable=False)
     # Disk size (M)

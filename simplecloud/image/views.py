@@ -55,7 +55,7 @@ def index():
         #copy_image(image)
         db.session.add(image)
         db.session.commit()
-        message = "Add Image "+ image.name
+        message = _("Add Image %(name)s", name = image.name)
         log_task(message)
         flash(_("Image %(name)s was added.", name = image.name), "success")
         return redirect(form.next.data or url_for('image.index'))

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from flaskext.babel import lazy_gettext as _
 
-VM_VCPU_VALUE = 50
 HOST_CPU_VALUE = 100
 
 # Host status

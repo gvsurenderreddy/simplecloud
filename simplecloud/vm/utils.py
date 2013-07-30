@@ -10,7 +10,7 @@ from flask import current_app, flash
 from flask.ext.login import current_user
 from ..extensions import db
 from ..template import Template
-from ..host import get_host, Host, VM_VCPU_VALUE
+from ..host import get_host, Host
 from ..image import get_image_path
 from ..utils import VM_POOL_PATH, get_xml_file
 from ..task import log_task, TASK_FAILED, TASK_SUCCESS
@@ -118,7 +118,7 @@ def create_vm(vm):
         if not template:
             raise Exception(_("Not found template with id %(id)d", id = vm.template_id))
         # 1. Get available Host       
-        vm.host_id = get_host(template.vcpu * VM_VCPU_VALUE, template.memory)
+        vm.host_id = get_host(template.pcpu, template.memory)
         host = Host.query.filter_by(id=vm.host_id).first()
         
         if not host:
@@ -147,7 +147,7 @@ def create_vm(vm):
         db.session.add(vm)
         
         host.vm_number = host.vm_number + 1
-        host.cpu_used = host.cpu_used + template.vcpu * VM_VCPU_VALUE
+        host.cpu_used = host.cpu_used + template.pcpu
         host.mem_used = host.mem_used + template.memory
         db.session.add(host)
         
@@ -196,7 +196,7 @@ class VMAction:
             if not host:
                 raise Exception(_("Not found host with id %(id)d", id = vm.host_id))
             host.vm_number = host.vm_number - 1
-            host.cpu_used = host.cpu_used - template.vcpu * VM_VCPU_VALUE
+            host.cpu_used = host.cpu_used - template.pcpu
             host.mem_used = host.mem_used - template.memory
             db.session.add(host)
 

@@ -23,6 +23,8 @@ class AddTemplateForm(Form):
     image_id = IntegerField(_(u'Choose the image attached on this template'), [Required()])
     vcpu_desc = _("Choose the VCPU number (From %(min)d to %(max)d)",  min=VCPU_NUM_MIN, max=VCPU_NUM_MAX)
     vcpu = IntegerField(vcpu_desc, [Required(), NumberRange(VCPU_NUM_MIN, VCPU_NUM_MAX)])
+    pcpu_desc = _("Input the CPU value (1 physical CPU = 100 CPU value)")
+    pcpu = IntegerField(pcpu_desc, [Required()])
     memory_desc = _("Choose the memory size (From %(min)dM to %(max)dM)",  min=MEM_SIZE_MIN, max=MEM_SIZE_MAX)
     memory = IntegerField(memory_desc, [Required(), NumberRange(MEM_SIZE_MIN, MEM_SIZE_MAX)])
     disk_desc = _("Choose the disk size (From %(min)dM to %(max)dM)",  min=DISK_SIZE_MIN, max=DISK_SIZE_MAX)
