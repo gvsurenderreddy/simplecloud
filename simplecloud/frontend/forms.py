@@ -11,7 +11,7 @@ from flask.ext.wtf.html5 import EmailField
 
 from flaskext.babel import lazy_gettext as _
 
-from ..user import User, USER_LOCALE_STRING
+from ..user import User, USER_LOCALE_STRING, USER_LOCALE_ZH_CN
 from ..utils import (PASSWORD_LEN_MIN, PASSWORD_LEN_MAX,
         USERNAME_LEN_MIN, USERNAME_LEN_MAX)
 
@@ -21,7 +21,7 @@ class LoginForm(Form):
     login = TextField(_(u'Username or email'), [Required()])
     password = PasswordField(_('Password'), [Required(), Length(PASSWORD_LEN_MIN, PASSWORD_LEN_MAX)])
     locale_code = RadioField(_("Language"), [AnyOf([str(val) for val in USER_LOCALE_STRING.keys()])],
-            choices=[(str(val), label) for val, label in USER_LOCALE_STRING.items()])
+            choices=[(str(val), label) for val, label in USER_LOCALE_STRING.items()], default=USER_LOCALE_ZH_CN)
     remember = BooleanField(_('Remember me'))
     submit = SubmitField(_('Login'))
 

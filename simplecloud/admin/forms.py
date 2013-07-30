@@ -16,12 +16,13 @@ from ..utils import (PASSWORD_LEN_MIN, PASSWORD_LEN_MAX,
 # User Form
 class AddUserForm(Form):
     next = HiddenField()
+    name = TextField(_(u'Choose your username'), [Required(), Length(NAME_LEN_MIN, NAME_LEN_MAX)],
+            description=_(u"Don't worry. you can change it later."))
     email = EmailField(_(u'Email'), [Required(), Email()],
             description = _(u"What's your email address?"))
     password = PasswordField(_(u'Password'), [Required(), Length(PASSWORD_LEN_MIN, PASSWORD_LEN_MAX)],
             description=_('%(number)d characters or more! Be tricky.', number=PASSWORD_LEN_MIN))
-    name = TextField(_(u'Choose your username'), [Required(), Length(NAME_LEN_MIN, NAME_LEN_MAX)],
-            description=_(u"Don't worry. you can change it later."))
+    vm_quota = IntegerField(_(u'Quota of VirtualMachines'), default=2)
     submit = SubmitField(_(u'Save'))
 
     def validate_name(self, field):

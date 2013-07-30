@@ -25,6 +25,10 @@ class ProfileForm(Form):
         user = User.get_by_id(current_user.id)
         if not user.check_name(field.data):
             raise ValidationError(_("Please pick another name."))
+    
+    def validate_vm_quota(form, field):
+        if (not current_user.is_admin()) and current_user.vm_quota != int(field.data):
+            raise ValidationError(_("Only admin user can update vm quota."))
 
 class PasswordForm(Form):
     next = HiddenField()

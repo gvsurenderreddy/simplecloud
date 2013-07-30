@@ -1,13 +1,13 @@
-# Chinese (China) translations for PROJECT.
+# Chinese (China) translations for .
 # Copyright (C) 2013 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
+# This file is distributed under the same license as the  project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: SimpleCloud\n"
+"Project-Id-Version:  SimpleCloud\n"
 "Report-Msgid-Bugs-To: simplecloud@qq.com\n"
-"POT-Creation-Date: 2013-07-18 17:18+0800\n"
+"POT-Creation-Date: 2013-07-30 11:15+0800\n"
 "PO-Revision-Date: 2013-07-17 22:25+0800\n"
 "Last-Translator: Lei Shi <simplecloud@qq.com>\n"
 "Language-Team: zh_CN <Lei Shi simplecloud@qq.com>\n"
@@ -17,54 +17,58 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: simplecloud/admin/forms.py:19 simplecloud/settings/forms.py:17
-#: simplecloud/templates/admin/users.html:18
-msgid "Email"
-msgstr "邮箱"
-
-#: simplecloud/admin/forms.py:20
-msgid "What's your email address?"
-msgstr "常用邮箱地址"
-
-#: simplecloud/admin/forms.py:21 simplecloud/frontend/forms.py:22
-msgid "Password"
-msgstr "密码"
-
-#: simplecloud/admin/forms.py:22
-#, python-format
-msgid "%(number)d characters or more! Be tricky."
-msgstr "至少%(number)d个字符"
-
-#: simplecloud/admin/forms.py:23
+#: simplecloud/admin/forms.py:19
 msgid "Choose your username"
 msgstr "用户名"
 
-#: simplecloud/admin/forms.py:24 simplecloud/image/forms.py:20
+#: simplecloud/admin/forms.py:20 simplecloud/image/forms.py:20
 #: simplecloud/template/forms.py:22
 msgid "Don't worry. you can change it later."
 msgstr "设定后不可更改"
 
-#: simplecloud/admin/forms.py:25 simplecloud/admin/forms.py:44
+#: simplecloud/admin/forms.py:21 simplecloud/settings/forms.py:17
+#: simplecloud/templates/admin/users.html:18
+msgid "Email"
+msgstr "邮箱"
+
+#: simplecloud/admin/forms.py:22
+msgid "What's your email address?"
+msgstr "常用邮箱地址"
+
+#: simplecloud/admin/forms.py:23 simplecloud/frontend/forms.py:22
+msgid "Password"
+msgstr "密码"
+
+#: simplecloud/admin/forms.py:24
+#, python-format
+msgid "%(number)d characters or more! Be tricky."
+msgstr "至少%(number)d个字符"
+
+#: simplecloud/admin/forms.py:25 simplecloud/settings/forms.py:18
+msgid "Quota of VirtualMachines"
+msgstr "虚拟机数目配额"
+
+#: simplecloud/admin/forms.py:26 simplecloud/admin/forms.py:45
 #: simplecloud/host/forms.py:25 simplecloud/host/forms.py:36
 #: simplecloud/image/forms.py:24 simplecloud/settings/forms.py:22
-#: simplecloud/settings/forms.py:34 simplecloud/template/forms.py:31
+#: simplecloud/settings/forms.py:38 simplecloud/template/forms.py:31
 #: simplecloud/templates/macros/_form.html:183 simplecloud/vm/forms.py:18
 msgid "Save"
 msgstr "保存"
 
-#: simplecloud/admin/forms.py:29 simplecloud/admin/forms.py:48
+#: simplecloud/admin/forms.py:30 simplecloud/admin/forms.py:49
 msgid "This username is taken"
 msgstr "用户名已被占用"
 
-#: simplecloud/admin/forms.py:33
+#: simplecloud/admin/forms.py:34
 msgid "This email is taken"
 msgstr "邮箱已被使用"
 
-#: simplecloud/admin/forms.py:37 simplecloud/templates/admin/users.html:17
+#: simplecloud/admin/forms.py:38 simplecloud/templates/admin/users.html:17
 msgid "Role"
 msgstr "角色"
 
-#: simplecloud/admin/forms.py:39 simplecloud/templates/admin/system.html:18
+#: simplecloud/admin/forms.py:40 simplecloud/templates/admin/system.html:18
 #: simplecloud/templates/admin/system.html:62
 #: simplecloud/templates/admin/users.html:16
 #: simplecloud/templates/host/index.html:21
@@ -75,11 +79,11 @@ msgstr "角色"
 msgid "Status"
 msgstr "状态"
 
-#: simplecloud/admin/forms.py:42 simplecloud/templates/admin/users.html:19
+#: simplecloud/admin/forms.py:43 simplecloud/templates/admin/users.html:19
 msgid "VM Quota"
 msgstr "虚拟机数目配额"
 
-#: simplecloud/admin/forms.py:43
+#: simplecloud/admin/forms.py:44
 msgid "Created time"
 msgstr "创建时间"
 
@@ -109,27 +113,27 @@ msgstr "添加用户失败"
 msgid "Users"
 msgstr "用户"
 
-#: simplecloud/admin/views.py:57 simplecloud/templates/admin/layout.html:14
+#: simplecloud/admin/views.py:58 simplecloud/templates/admin/layout.html:14
 #: simplecloud/templates/admin/system.html:6
 msgid "System"
 msgstr "系统"
 
-#: simplecloud/admin/views.py:72
+#: simplecloud/admin/views.py:73
 #, python-format
 msgid "Update User %(name)s (%(id)d)"
 msgstr "更新用户 %(name)s (%(id)d)"
 
-#: simplecloud/admin/views.py:74
+#: simplecloud/admin/views.py:75
 #, python-format
 msgid "User %(name)s was updated"
 msgstr "用户 %(name)s 删除成功"
 
-#: simplecloud/admin/views.py:88
+#: simplecloud/admin/views.py:89
 #, python-format
 msgid "Delete User %(name)s (%(id)d)"
 msgstr "删除用户 %(name)s (%(id)d)"
 
-#: simplecloud/admin/views.py:90
+#: simplecloud/admin/views.py:91
 #, python-format
 msgid "User %(name)s was deleted."
 msgstr "用户 %(name)s 删除成功"
@@ -150,10 +154,6 @@ msgstr "下次自动登录"
 msgid "Login"
 msgstr "登录"
 
-#: simplecloud/frontend/views.py:86 simplecloud/frontend/views.py:124
-msgid "Logged in"
-msgstr "成功登录"
-
 #: simplecloud/frontend/views.py:89 simplecloud/frontend/views.py:129
 msgid "Sorry, invalid login"
 msgstr "登录失败"
@@ -166,13 +166,9 @@ msgstr "请输入查询词"
 msgid "Reauthenticated."
 msgstr "重新认证"
 
-#: simplecloud/frontend/views.py:148 simplecloud/settings/forms.py:39
+#: simplecloud/frontend/views.py:148 simplecloud/settings/forms.py:43
 msgid "Password is wrong."
 msgstr "密码错误"
-
-#: simplecloud/frontend/views.py:156
-msgid "Logged out"
-msgstr "退出"
 
 #: simplecloud/frontend/views.py:204
 msgid "Your password has been changed, please log in again"
@@ -331,23 +327,23 @@ msgstr "删除镜像 %(name)s (%(id)d)"
 msgid "Image %(name)s was deleted."
 msgstr "镜像 %(name)s 删除成功"
 
-#: simplecloud/settings/forms.py:18
-msgid "Quota of VirtualMachines"
-msgstr "虚拟机数目配额"
-
 #: simplecloud/settings/forms.py:27
 msgid "Please pick another name."
 msgstr "请选择其他的名称"
 
 #: simplecloud/settings/forms.py:31
+msgid "Only admin user can update vm quota."
+msgstr "只有管理员用户才可以修改用户虚拟机配额"
+
+#: simplecloud/settings/forms.py:35
 msgid "Current password"
 msgstr "当前密码"
 
-#: simplecloud/settings/forms.py:32
+#: simplecloud/settings/forms.py:36
 msgid "New password"
 msgstr "新密码"
 
-#: simplecloud/settings/forms.py:33
+#: simplecloud/settings/forms.py:37
 msgid "Password again"
 msgstr "再次输入"
 
@@ -828,98 +824,98 @@ msgstr "关机"
 msgid "unknown"
 msgstr "未知"
 
-#: simplecloud/vm/utils.py:71 simplecloud/vm/utils.py:93
-#: simplecloud/vm/utils.py:120 simplecloud/vm/utils.py:192
+#: simplecloud/vm/utils.py:76 simplecloud/vm/utils.py:98
+#: simplecloud/vm/utils.py:125 simplecloud/vm/utils.py:197
 #, python-format
 msgid "Not found host with id %(id)d"
 msgstr "无法找到服务器 %(id)d"
 
-#: simplecloud/vm/utils.py:114 simplecloud/vm/utils.py:185
+#: simplecloud/vm/utils.py:119 simplecloud/vm/utils.py:190
 #, python-format
 msgid "Not found template with id %(id)d"
 msgstr "无法找到模板 %(id)d"
 
-#: simplecloud/vm/utils.py:158
+#: simplecloud/vm/utils.py:163
 #, python-format
 msgid "Failed to create VM %(name)s: %(error)s"
 msgstr "虚拟机创建失败 %(name)s: %(error)s"
 
-#: simplecloud/vm/utils.py:159
+#: simplecloud/vm/utils.py:164
 #, python-format
 msgid "Add VM %(name)s"
 msgstr "创建虚拟机 %(name)s"
 
-#: simplecloud/vm/utils.py:202 simplecloud/vm/utils.py:207
+#: simplecloud/vm/utils.py:207 simplecloud/vm/utils.py:212
 #, python-format
 msgid "Delete VM %(name)s (%(id)d)"
 msgstr "删除虚拟机 %(name)s (%(id)d)"
 
-#: simplecloud/vm/utils.py:204
+#: simplecloud/vm/utils.py:209
 #, python-format
 msgid "VM %(name)s was deleted."
 msgstr "虚拟机 %(name)s 删除成功"
 
-#: simplecloud/vm/utils.py:206
+#: simplecloud/vm/utils.py:211
 #, python-format
 msgid "Failed to delete VM %(name)s: %(error)s"
 msgstr "虚拟机删除失败 %(name)s: %(error)s"
 
-#: simplecloud/vm/utils.py:221 simplecloud/vm/utils.py:226
+#: simplecloud/vm/utils.py:226 simplecloud/vm/utils.py:231
 #, python-format
 msgid "Start VM %(name)s (%(id)d)"
 msgstr "启动虚拟机 %(name)s (%(id)d)"
 
-#: simplecloud/vm/utils.py:223
+#: simplecloud/vm/utils.py:228
 #, python-format
 msgid "VM %(name)s was started."
 msgstr "虚拟机 %(name)s 创建成功"
 
-#: simplecloud/vm/utils.py:225
+#: simplecloud/vm/utils.py:230
 #, python-format
 msgid "Failed to start VM %(name)s: %(error)s"
 msgstr "虚拟机启动失败 %(name)s: %(error)s"
 
-#: simplecloud/vm/utils.py:236 simplecloud/vm/utils.py:241
+#: simplecloud/vm/utils.py:241 simplecloud/vm/utils.py:246
 #, python-format
 msgid "Shutdown VM %(name)s (%(id)d)"
 msgstr "关闭虚拟机 %(name)s (%(id)d)"
 
-#: simplecloud/vm/utils.py:238
+#: simplecloud/vm/utils.py:243
 #, python-format
 msgid "VM %(name)s was shutdown."
 msgstr "虚拟机 %(name)s 关闭成功"
 
-#: simplecloud/vm/utils.py:240
+#: simplecloud/vm/utils.py:245
 #, python-format
 msgid "Failed to shutdown VM %(name)s: %(error)s"
 msgstr "虚拟机关闭失败 %(name)s: %(error)s"
 
-#: simplecloud/vm/utils.py:254 simplecloud/vm/utils.py:259
+#: simplecloud/vm/utils.py:259 simplecloud/vm/utils.py:264
 #, python-format
 msgid "Stop VM %(name)s (%(id)d)"
 msgstr "关闭虚拟机 %(name)s (%(id)d)"
 
-#: simplecloud/vm/utils.py:256
+#: simplecloud/vm/utils.py:261
 #, python-format
 msgid "VM %(name)s was stopped."
 msgstr "虚拟机 %(name)s 关闭成功"
 
-#: simplecloud/vm/utils.py:258
+#: simplecloud/vm/utils.py:263
 #, python-format
 msgid "Failed to stop VM %(name)s: %(error)s"
 msgstr "虚拟机关闭失败 %(name)s: %(error)s"
 
-#: simplecloud/vm/utils.py:268 simplecloud/vm/utils.py:273
+#: simplecloud/vm/utils.py:273 simplecloud/vm/utils.py:278
 #, python-format
 msgid "Reboot VM %(name)s (%(id)d)"
 msgstr "重启虚拟机 %(name)s (%(id)d)"
 
-#: simplecloud/vm/utils.py:270
+#: simplecloud/vm/utils.py:275
 #, python-format
 msgid "VM %(name)s was rebooted."
 msgstr "虚拟机 %(name)s 重启成功"
 
-#: simplecloud/vm/utils.py:272
+#: simplecloud/vm/utils.py:277
 #, python-format
 msgid "Failed to reboot VM %(name)s: %(error)s"
 msgstr "虚拟机重启失败 %(name)s: %(error)s"
@@ -937,4 +933,10 @@ msgstr "虚拟机创建失败"
 #, python-format
 msgid "Not supported action %(name)s"
 msgstr "不支持的操作 %(name)s"
+
+#~ msgid "Logged in"
+#~ msgstr "成功登录"
+
+#~ msgid "Logged out"
+#~ msgstr "退出"
 
