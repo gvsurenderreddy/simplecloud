@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  SimpleCloud\n"
 "Report-Msgid-Bugs-To: simplecloud@qq.com\n"
-"POT-Creation-Date: 2013-07-30 15:06+0800\n"
+"POT-Creation-Date: 2013-07-30 15:24+0800\n"
 "PO-Revision-Date: 2013-07-17 22:25+0800\n"
 "Last-Translator: Lei Shi <simplecloud@qq.com>\n"
 "Language-Team: zh_CN <Lei Shi simplecloud@qq.com>\n"
@@ -298,7 +298,7 @@ msgid "Not found image with id %(id)d"
 msgstr "无法找到镜像 %(id)d"
 
 #: simplecloud/image/views.py:58
-# python-format
+#, python-format
 msgid "Add Image %(name)s"
 msgstr "添加镜像 %(name)s"
 
@@ -847,6 +847,11 @@ msgstr "无法找到服务器 %(id)d"
 #, python-format
 msgid "Not found template with id %(id)d"
 msgstr "无法找到模板 %(id)d"
+
+#: simplecloud/vm/utils.py:160
+# python-format
+msgid "VM %(name)s was added."
+msgstr "虚拟机 %(name)s 添加成功"
 
 #: simplecloud/vm/utils.py:163
 #, python-format

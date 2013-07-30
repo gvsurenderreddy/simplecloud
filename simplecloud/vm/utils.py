@@ -157,7 +157,7 @@ def create_vm(vm):
         db.session.commit()
         
         
-        message = "VM %s was added." % vm.name
+        message = _("VM %(name)s was added.", name = vm.name)
         log_task("Add VM %s " % vm.name, TASK_SUCCESS, message)
     except Exception, ex:
         errMsg = _("Failed to create VM %(name)s: %(error)s", name = vm.name, error = str(ex))
