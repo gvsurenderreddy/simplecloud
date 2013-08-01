@@ -23,8 +23,6 @@ class BaseConfig(object):
     SECRET_KEY = 'secret key'
 
     make_dir(INSTANCE_CONFIG_PATH)
-#    LOCAL_XML_FILE = os.path.join(PROJECT_ROOT, 'vm.xml')
-#    copy_file(LOCAL_XML_FILE, INSTANCE_CONFIG_PATH)
     LOG_FOLDER = os.path.join(INSTANCE_FOLDER_PATH, 'logs')
     make_dir(LOG_FOLDER)
     
@@ -53,22 +51,6 @@ class DefaultConfig(BaseConfig):
     # Flask-cache: http://pythonhosted.org/Flask-Cache/
     CACHE_TYPE = 'simple'
     CACHE_DEFAULT_TIMEOUT = 60
-
-    # Flask-mail: http://pythonhosted.org/flask-mail/
-    # https://bitbucket.org/danjac/flask-mail/issue/3/problem-with-gmails-smtp-server
-    MAIL_DEBUG = DEBUG
-    MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_USE_TLS = True
-    MAIL_USE_SSL = False
-    # Should put MAIL_USERNAME and MAIL_PASSWORD in production under instance folder.
-    MAIL_USERNAME = 'gmail_username'
-    MAIL_PASSWORD = 'gmail_password'
-    DEFAULT_MAIL_SENDER = '%s@gmail.com' % MAIL_USERNAME
-
-    # Flask-openid: http://pythonhosted.org/Flask-OpenID/
-    OPENID_FS_STORE_PATH = os.path.join(INSTANCE_FOLDER_PATH, 'openid')
-    make_dir(OPENID_FS_STORE_PATH)
-
 
 class TestConfig(BaseConfig):
     TESTING = True

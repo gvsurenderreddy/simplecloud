@@ -3,8 +3,11 @@
 # http://docs.fabfile.org/en/1.5/tutorial.html
 
 from fabric.api import *
+import os.path
 
 project = "simplecloud"
+
+INSTANCE_FOLDER_PATH = "/tmp/instance"
 
 # the user to use for the remote commands
 env.user = ''
@@ -12,15 +15,15 @@ env.user = ''
 env.hosts = ['']
 
 
-def reset():
+def init():
     """
     Reset local debug env.
     """
-
-    local("rm -rf /tmp/instance")
-    local("mkdir /tmp/instance")
-    local("python manage.py initdb")
-
+    local("rm -rf %s" % INSTANCE_FOLDER_PATH)
+    local("mkdir %s" % INSTANCE_FOLDER_PATH)
+    local("mkdir %s/config" % INSTANCE_FOLDER_PATH)
+    local("cp config/kvm.xml %s/config/vm.xml" % INSTANCE_FOLDER_PATH)
+    setup()
 
 def setup():
     """
@@ -31,23 +34,31 @@ def setup():
     activate_this = "env/bin/activate_this.py"
     execfile(activate_this, dict(__file__=activate_this))
     local("python setup.py install")
-    reset()
+    if not os.path.exists(INSTANCE_FOLDER_PATH):
+	local("mkdir %s" % INSTANCE_FOLDER_PATH)
+    local("python manage.py initdb")
 
-
-def d():
+def debug():
     """
     Debug.
     """
 
-    reset()
+    init()
     local("python manage.py runserver -t 0.0.0.0")
 
-def t():
+def d():
+    local("rm -rf %s" % INSTANCE_FOLDER_PATH)
+    local("mkdir %s" % INSTANCE_FOLDER_PATH)
+    local("mkdir %s/config" % INSTANCE_FOLDER_PATH)
+    local("cp config/kvm.xml %s/config/vm.xml" % INSTANCE_FOLDER_PATH)
+    local("python manage.py initdb")
+    local("python manage.py runserver -t 0.0.0.0")
+
+def test():
     """
     Test
     """
-    local("rm -rf /tmp/instance")
-    local("mkdir /tmp/instance")
+    init()
     local("python manage.py inittestdb")
 
     local("python manage.py runserver -t 0.0.0.0")
