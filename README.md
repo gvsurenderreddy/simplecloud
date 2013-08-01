@@ -45,6 +45,7 @@ Add local user
 
     $ sudo groupadd simplecloud
     $ sudo useradd -d /home/simplecloud -m -s /bin/bash  -g simplecloud simplecloud
+    $ sudo usermod -G libvirtd -a simplecloud
 
 Create instance workspace and mount nfs server. 
 
@@ -111,6 +112,8 @@ Create instance workspace and mount nfs server.
     $ sudo mount -t nfs <NFS_SERVER>:<PATH> <INSTANCE_FOLDER_PATH>
 
 Copy public key from SimpleCloud Server /home/simplecloud/id_rsa.pub and setup the SSH public key authentication for libvirt connection.
+
+Libvirt SSH setup reference: http://wiki.libvirt.org/page/SSHSetup
 
 ACKNOWLEDGEMENTS
 ==========
