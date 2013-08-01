@@ -5,6 +5,8 @@ http://simplecloud.github.com
 
 SimpleCloud is an IaaS (Infrastructure as a Service) software and virtualization management platform.
 
+![SimpleCloud Dashboard screenshot](http://github.com/simplecloud/simplecloud/raw/master/screenshots/en/admindashboard.png)
+
 Features
 ===========
 
@@ -24,6 +26,14 @@ Features
   - Admin View: Dashboard/Users/Hosts/VirtualMachines/Images/Templates/Tasks/System 
   - User View: VirtualMachines/Templates
 
+Screenshots
+==========
+
+More screenshots:
+
+* English version: [Screenshots List](https://github.com/simplecloud/simplecloud/blob/master/screenshots.md)
+* Chinese version: [Screenshots List](https://github.com/simplecloud/simplecloud/blob/master/screenshots_chs.md)
+  
 Install
 ==========
 
