@@ -125,6 +125,12 @@ Copy public key from SimpleCloud Server /home/simplecloud/id_rsa.pub and setup t
 
 Libvirt SSH setup reference: http://wiki.libvirt.org/page/SSHSetup
 
+Developer Guide
+==========
+
+* Chinese version: [Developer Guide](https://github.com/simplecloud/simplecloud/blob/master/design.md)
+
+
 ACKNOWLEDGEMENTS
 ==========
 
