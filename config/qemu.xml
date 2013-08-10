@@ -1,7 +1,7 @@
 <domain type='qemu'>
   <name>%s</name>
   <vcpu>%s</vcpu>  
-  <memory unit='MB'>%s</memory>
+  <memory>%s000</memory>
   <os>
     <type arch='x86_64' machine='pc-1.0'>hvm</type>
     <boot dev='hd'/>

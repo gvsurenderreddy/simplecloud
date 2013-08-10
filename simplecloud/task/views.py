@@ -18,6 +18,6 @@ task = Blueprint('task', __name__, url_prefix='/tasks')
 @task.route('/')
 @login_required
 def index():
-    tasks = Task.query.all()
+    tasks = Task.query.order_by(Task.created_time.desc()).all()
     return render_template('task/index.html', tasks=tasks, active=_('Tasks'))    
 
