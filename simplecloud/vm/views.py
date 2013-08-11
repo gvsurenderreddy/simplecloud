@@ -15,6 +15,7 @@ from .models import VM
 from .forms import AddVMForm
 from .utils import VMAction, create_vm
 from ..task import log_task, TASK_FAILED
+from ..template import Template
 
 vm = Blueprint('vm', __name__, url_prefix='/vms')
 
@@ -30,7 +31,8 @@ def index():
         vms = VM.query.filter(VM.owner_id == current_user.id).all()
 
     form = AddVMForm(next=request.args.get('next'))
-
+    form.template_id.choices = Template.get_templates_choices()
+    
     if form.validate_on_submit():
         vm = VM()
         form.populate_obj(vm)

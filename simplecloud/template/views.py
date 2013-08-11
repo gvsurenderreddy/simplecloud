@@ -15,6 +15,7 @@ from ..extensions import db
 from .models import Template
 from .forms import AddTemplateForm, AddVMForm
 from ..task import log_task
+from ..image import Image
 
 template = Blueprint('template', __name__, url_prefix='/templates')
 
@@ -24,8 +25,11 @@ def index():
     templates = Template.query.filter().all()
     
     form = AddVMForm(next=request.args.get('next'))
+    form.template_id.choices = Template.get_templates_choices()
+    
     if current_user.is_admin():
         form = AddTemplateForm(next=request.args.get('next'))
+        form.image_id.choices = Image.get_images_choices()
         
     if form.validate_on_submit():
         template = Template()

@@ -28,5 +28,13 @@ class Image(db.Model):
     def disk_format(self):
         return IMAGE_TYPE[self.type_code]
     
+    @classmethod
+    def get_images_choices(cls):
+        image_list = []
+        images = cls.query.filter_by(status_code=IMAGE_OK).all()
+        for image in images:
+            image_list.append((str(image.id), image.name))
+        return image_list
+    
 
 

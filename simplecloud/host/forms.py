@@ -9,7 +9,7 @@ from flask.ext.wtf.html5 import IntegerField
 from flaskext.babel import lazy_gettext as _
 
 from ..utils import (NAME_LEN_MIN, NAME_LEN_MAX)
-from .constants import HOST_TYPE
+from .constants import HOST_TYPE, HOST_KVM
 from .models import Host
      
 
@@ -18,9 +18,9 @@ class AddHostForm(Form):
     next = HiddenField()
     address = TextField(_(u'The IP address or hostname of target host'), [Required()])
     type_code = RadioField(_(u"Hypervisor Type"), [AnyOf([str(val) for val in HOST_TYPE.keys()])],
-            choices=[(str(val), label) for val, label in HOST_TYPE.items()])
+            choices=[(str(val), label) for val, label in HOST_TYPE.items()], default=HOST_KVM)
     
-    username = TextField(_(u'The Username used by libvirt+ssh connection'), [Required()])
+    username = TextField(_(u'The Username used by libvirt+ssh connection'), [Required()], default="simplecloud")
 
     submit = SubmitField(_(u'Save'))
 

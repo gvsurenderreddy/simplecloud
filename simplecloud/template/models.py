@@ -30,6 +30,13 @@ class Template(db.Model):
 
     @property
     def status(self):
-        return TEMPLATE_STATUS[self.status_code]        
+        return TEMPLATE_STATUS[self.status_code]
 
+    @classmethod
+    def get_templates_choices(cls):
+        template_list = []
+        templates = cls.query.filter_by(status_code=TEMPLATE_OK).all()
+        for template in templates:
+            template_list.append((str(template.id), template.name))
+        return template_list
 

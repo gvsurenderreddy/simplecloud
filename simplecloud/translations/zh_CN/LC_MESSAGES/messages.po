@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  SimpleCloud\n"
 "Report-Msgid-Bugs-To: simplecloud@qq.com\n"
-"POT-Creation-Date: 2013-07-30 15:24+0800\n"
+"POT-Creation-Date: 2013-08-11 17:04+0800\n"
 "PO-Revision-Date: 2013-07-17 22:25+0800\n"
 "Last-Translator: Lei Shi <simplecloud@qq.com>\n"
 "Language-Team: zh_CN <Lei Shi simplecloud@qq.com>\n"
@@ -51,8 +51,9 @@ msgstr "虚拟机数目配额"
 #: simplecloud/admin/forms.py:26 simplecloud/admin/forms.py:45
 #: simplecloud/host/forms.py:25 simplecloud/host/forms.py:36
 #: simplecloud/image/forms.py:24 simplecloud/settings/forms.py:22
-#: simplecloud/settings/forms.py:38 simplecloud/template/forms.py:33
-#: simplecloud/templates/macros/_form.html:183 simplecloud/vm/forms.py:18
+#: simplecloud/settings/forms.py:38 simplecloud/template/forms.py:34
+#: simplecloud/template/forms.py:52 simplecloud/templates/macros/_form.html:183
+#: simplecloud/vm/forms.py:16
 msgid "Save"
 msgstr "保存"
 
@@ -387,85 +388,77 @@ msgstr "任务"
 msgid "Choose the template name"
 msgstr "模板名称"
 
-#: simplecloud/template/forms.py:23
-msgid "Choose the image attached on this template"
-msgstr "该模板使用镜像的ID"
-
 #: simplecloud/template/forms.py:24
+msgid "Choose the image attached on this template"
+msgstr "选择使用的镜像"
+
+#: simplecloud/template/forms.py:25
 #, python-format
 msgid "Choose the VCPU number (From %(min)d to %(max)d)"
 msgstr "VCPU数目（%(min)d 到 %(max)d）"
 
-#: simplecloud/template/forms.py:26
+#: simplecloud/template/forms.py:27
 msgid "Input the CPU value (1 physical CPU = 100 CPU value)"
 msgstr "输入占用物理CPU数（100 = 1个物理CPU）"
 
-#: simplecloud/template/forms.py:28
+#: simplecloud/template/forms.py:29
 #, python-format
 msgid "Choose the memory size (From %(min)dM to %(max)dM)"
 msgstr "内存大小（%(min)dM 到 %(max)dM）"
 
-#: simplecloud/template/forms.py:30
+#: simplecloud/template/forms.py:31
 #, python-format
 msgid "Choose the disk size (From %(min)dM to %(max)dM)"
 msgstr "磁盘大小（%(min)dM 到 %(max)dM）"
 
-#: simplecloud/template/forms.py:37
+#: simplecloud/template/forms.py:38
 msgid "This template name is taken"
 msgstr "模板名称已被占用"
 
-#: simplecloud/template/forms.py:41
+#: simplecloud/template/forms.py:42
 msgid "This Image is not found"
 msgstr "页面不存在"
 
-#: simplecloud/template/forms.py:49 simplecloud/vm/forms.py:15
+#: simplecloud/template/forms.py:50 simplecloud/vm/forms.py:14
 msgid "Choose virtualmachine name"
 msgstr "虚拟机名称"
 
-#: simplecloud/template/forms.py:50 simplecloud/vm/forms.py:16
-msgid "Choose the template ID"
-msgstr "模板ID"
+#: simplecloud/template/forms.py:51 simplecloud/vm/forms.py:15
+msgid "Choose the template"
+msgstr "选择模板"
 
-#: simplecloud/template/forms.py:57 simplecloud/vm/forms.py:23
-msgid "This Template is not found"
-msgstr "该模板不存在"
-
-#: simplecloud/template/forms.py:59 simplecloud/vm/forms.py:25
-msgid "This Template is not OK"
-msgstr "该模板不可用"
-
-#: simplecloud/template/views.py:35
+#: simplecloud/template/views.py:39
 #, python-format
 msgid "Add Template %(name)s"
 msgstr "添加模板 %(name)s"
 
-#: simplecloud/template/views.py:36
+#: simplecloud/template/views.py:40
 #, python-format
 msgid "Template %(name)s was added."
 msgstr "模板 %(name)s 添加成功"
 
-#: simplecloud/template/views.py:39
+#: simplecloud/template/views.py:43
 msgid "Failed to add Template"
 msgstr "模板添加失败"
 
-#: simplecloud/template/views.py:41 simplecloud/templates/admin/index.html:28
+#: simplecloud/template/views.py:45 simplecloud/templates/admin/index.html:28
 #: simplecloud/templates/admin/layout.html:12
 #: simplecloud/templates/template/index.html:11
 #: simplecloud/templates/user/layout.html:8
 msgid "Templates"
 msgstr "模板"
 
-#: simplecloud/template/views.py:54
+#: simplecloud/template/views.py:58
 #, python-format
 msgid "Couldn't delete template %(name)s with %(count)d vms using it."
 msgstr "模板%(name)s正被%(count)d个虚拟机使用，无法删除"
 
-#: simplecloud/template/views.py:61
+#: simplecloud/template/views.py:65
 #, python-format
 msgid "Delete Template %(name)s (%(id)d)"
 msgstr "删除模板 %(name)s (%(id)d)"
 
-#: simplecloud/template/views.py:63
+#: simplecloud/template/views.py:67
 #, python-format
 msgid "Template %(name)s was deleted."
 msgstr "模板 %(name)s 删除成功"
@@ -473,7 +466,7 @@ msgstr "模板 %(name)s 删除成功"
 #: simplecloud/templates/admin/index.html:36
 #: simplecloud/templates/admin/layout.html:10
 #: simplecloud/templates/user/layout.html:7
-#: simplecloud/templates/vm/index.html:13 simplecloud/vm/views.py:48
+#: simplecloud/templates/vm/index.html:13 simplecloud/vm/views.py:50
 msgid "VirtualMachines"
 msgstr "虚拟机"
 
@@ -849,7 +842,7 @@ msgid "Not found template with id %(id)d"
 msgstr "无法找到模板 %(id)d"
 
 #: simplecloud/vm/utils.py:160
-# python-format
+#, python-format
 msgid "VM %(name)s was added."
 msgstr "虚拟机 %(name)s 添加成功"
 
@@ -938,17 +931,23 @@ msgstr "虚拟机 %(name)s 重启成功"
 msgid "Failed to reboot VM %(name)s: %(error)s"
 msgstr "虚拟机重启失败 %(name)s: %(error)s"
 
-#: simplecloud/vm/views.py:40
+#: simplecloud/vm/views.py:42
 #, python-format
 msgid "VM Name %(name)s is taken."
 msgstr "虚拟机名称 %(name)s 已被占用"
 
-#: simplecloud/vm/views.py:46
+#: simplecloud/vm/views.py:48
 msgid "Failed to add VM"
 msgstr "虚拟机创建失败"
 
-#: simplecloud/vm/views.py:60
+#: simplecloud/vm/views.py:62
 #, python-format
 msgid "Not supported action %(name)s"
 msgstr "不支持的操作 %(name)s"
+
+#~ msgid "This Template is not found"
+#~ msgstr "该模板不存在"
+
+#~ msgid "This Template is not OK"
+#~ msgstr "该模板不可用"
 

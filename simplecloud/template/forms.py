@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask.ext.wtf import (HiddenField, SubmitField, TextField)
+from flask.ext.wtf import (HiddenField, SubmitField, TextField, SelectField)
 from flask.ext.wtf import AnyOf
 from flask.ext.wtf import Form, ValidationError
 from flask.ext.wtf import Required, Length, EqualTo, NumberRange
@@ -20,7 +20,8 @@ class AddTemplateForm(Form):
     next = HiddenField()
     name = TextField(_(u'Choose the template name'), [Required(), Length(NAME_LEN_MIN, NAME_LEN_MAX)],
             description=_(u"Don't worry. you can change it later."))
-    image_id = IntegerField(_(u'Choose the image attached on this template'), [Required()])
+    # image_id = IntegerField(_(u'Choose the image attached on this template'), [Required()])
+    image_id = SelectField(_(u'Choose the image attached on this template'), choices=[])
     vcpu_desc = _("Choose the VCPU number (From %(min)d to %(max)d)",  min=VCPU_NUM_MIN, max=VCPU_NUM_MAX)
     vcpu = IntegerField(vcpu_desc, [Required(), NumberRange(VCPU_NUM_MIN, VCPU_NUM_MAX)])
     pcpu_desc = _("Input the CPU value (1 physical CPU = 100 CPU value)")
@@ -47,13 +48,5 @@ class AddTemplateForm(Form):
 class AddVMForm(Form):
     next = HiddenField()
     name = TextField(_(u'Choose virtualmachine name'), [Required(), Length(1, NAME_LEN_MAX)])
-    template_id = IntegerField(_(u'Choose the template ID'), [Required()])
-    
-    submit = SubmitField('Save')
-            
-    def validate_template_id(self, field):
-        template = Template.query.filter_by(id=field.data).first()
-        if template is None:
-            raise ValidationError(_(u'This Template is not found'))
-        if template.status_code != TEMPLATE_OK:
-            raise ValidationError(_(u'This Template is not OK'))
+    template_id = SelectField(_(u'Choose the template'), choices=[])
+    submit = SubmitField(_('Save'))
